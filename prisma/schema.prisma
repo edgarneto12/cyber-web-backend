@@ -74,7 +74,7 @@ model ColorProduct {
   updated_at DateTime @updatedAt @map("updated_at")
 
   Product   Product @relation(fields: [productId], references: [id])
-  productId Int     @unique @map("id_product")
+  productId Int      @map("id_product")
 
   @@map("colors_product")
 }
@@ -86,7 +86,7 @@ model StorageOption {
   updated_at DateTime @updatedAt @map("updated_at")
 
   Product   Product @relation(fields: [productId], references: [id])
-  productId Int     @unique @map("id_product")
+  productId Int      @map("id_product")
 
   @@map("storage_options")
 }
@@ -101,7 +101,7 @@ model Review {
   updated_at     DateTime @updatedAt @map("updated_at")
 
   Product   Product @relation(fields: [productId], references: [id])
-  productId Int     @unique @map("id_product")
+  productId Int      @map("id_product")
 
   @@map("reviews")
 }
