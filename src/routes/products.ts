@@ -125,4 +125,26 @@ router.get('/reviews/:product_id', async (req, res) => {
   }
 });
 
+// GET /api/products/related/:brand
+router.get('/related/:brand', async (req, res) => {
+  const brand = req.params.brand;
+  if (!brand) return res.status(400).json({ error: 'brand inválido' });
+
+  try {
+    const products = await prisma.product.findMany({
+      where: { brand },
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        url_image: true,
+        // ...adicione outros campos se necessário
+      },
+    });
+    res.json({ data: products });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar produtos relacionados.' });
+  }
+});
+
 export default router;
