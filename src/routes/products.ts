@@ -47,20 +47,20 @@ router.get('/', async (req, res) => {
   const page = parseInt(req.query.page as string) || 1;
   const sort = (req.query.sort as string) || 'price';
   const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-  const take = 10; 
+  const take = 10;
   const skip = (page - 1) * take;
 
-  
+
   const categoryIds = Array.isArray(req.body?.category) ? req.body.category : undefined;
 
   try {
-    
+
     const total_items = await prisma.product.count({
       where: categoryIds ? { categoryId: { in: categoryIds } } : {},
     });
     const total_pages = Math.ceil(total_items / take);
 
-    
+
     const products = await prisma.product.findMany({
       where: categoryIds ? { categoryId: { in: categoryIds } } : {},
       orderBy: { [sort]: order },
@@ -71,7 +71,7 @@ router.get('/', async (req, res) => {
         name: true,
         price: true,
         url_image: true,
-        
+
       },
     });
 
@@ -89,7 +89,7 @@ router.get('/', async (req, res) => {
 });
 
 // GET /api/products/category/:category_name?page=1&sort=price&order=asc
-router.post('/category/:category_name', async (req, res) => {
+router.get('/category/:category_name', async (req, res) => {
   const { category_name } = req.params;
   const page = parseInt(req.query.page as string) || 1;
   const sort = (req.query.sort as string) || 'price';
