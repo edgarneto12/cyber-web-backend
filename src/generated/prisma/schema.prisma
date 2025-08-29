@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id               Int      @id @default(autoincrement())
+  name             String
+  description      String
+  brand            String
+  price            Decimal
+  discounted_price Decimal?
+  stock            Int
+  url_image        String
+  tag              String
+  created_at       DateTime @default(now()) @map("created_at")
+  updated_at       DateTime @updatedAt @map("updated_at")
+
+  category         Category        @relation(fields: [categoryId], references: [id])
+  categoryId       Int             @map("id_category")
+  smartphoneSpecId Int?            @unique @map("id_specs_smartphone")
+  smartphoneSpec   SmartphoneSpec? @relation(fields: [smartphoneSpecId], references: [id])
+  colors           ColorProduct[]
+  storageOptions   StorageOption[]
+  reviews          Review[]
+
+  @@map("products")
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  description String
+  created_at  DateTime @default(now()) @map("created_at")
+  updated_at  DateTime @updatedAt @map("updated_at")
+
+  products Product[]
+
+  @@map("categories")
+}
+
+model SmartphoneSpec {
+  id           Int      @id @default(autoincrement())
+  screen_size  String
+  cpu          String
+  total_cores  String
+  main_camera  String
+  front_camera String
+  battery      String
+  created_at   DateTime @default(now()) @map("created_at")
+  updated_at   DateTime @updatedAt @map("updated_at")
+
+  product Product?
+
+  @@map("smartphone_specs")
+}
+
+model ColorProduct {
+  id         Int      @id @default(autoincrement())
+  hex_code   String
+  name       String
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int     @map("id_product")
+
+  @@map("colors_product")
+}
+
+model StorageOption {
+  id         Int      @id @default(autoincrement())
+  size       String
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int     @map("id_product")
+
+  @@map("storage_options")
+}
+
+model Review {
+  id             Int      @id @default(autoincrement())
+  rating         Int
+  message        String
+  name_user      String
+  url_image_user String
+  created_at     DateTime @default(now()) @map("created_at")
+  updated_at     DateTime @updatedAt @map("updated_at")
+
+  Product   Product @relation(fields: [productId], references: [id])
+  productId Int     @map("id_product")
+
+  @@map("reviews")
+}
