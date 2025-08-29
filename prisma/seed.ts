@@ -11,6 +11,14 @@ async function main() {
   await prisma.product.deleteMany({});
   await prisma.category.deleteMany({});
 
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='categories';`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='products';`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='smartphone_specs';`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='colors_product';`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='storage_options';`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='reviews';`;
+  console.log('✅ Reset IDs.');
+
   const phonesCategory = await prisma.category.create({
     data: {
       name: 'Phones',
@@ -104,6 +112,19 @@ async function main() {
       data: [
         { rating: 5, message: 'Best console ever! The DualSense controller is incredible.', name_user: 'GamerGirl92', url_image_user: 'https://randomuser.me/api/portraits/women/50.jpg', productId: ps5.id },
         { rating: 5, message: 'Loading times are a thing of the past. Amazing!', name_user: 'Alex R.', url_image_user: 'https://randomuser.me/api/portraits/men/50.jpg', productId: ps5.id },
+      ],
+    });
+  }
+
+  const sonyHeadphones = await prisma.product.findFirst({ where: { name: 'Sony WH-1000XM5' } });
+  if (sonyHeadphones) {
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'The noise cancellation is pure magic. Worth every penny.', name_user: 'AudioPhile', url_image_user: 'https://randomuser.me/api/portraits/men/60.jpg', productId: sonyHeadphones.id },
+        { rating: 4, message: 'Very comfortable for long sessions, but the price is a bit steep.', name_user: 'Commuter Chris', url_image_user: 'https://randomuser.me/api/portraits/men/61.jpg', productId: sonyHeadphones.id },
+        { rating: 3, message: 'Good sound, but I expected more bass. The app is a bit clunky.', name_user: 'Mike P.', url_image_user: 'https://randomuser.me/api/portraits/men/62.jpg', productId: sonyHeadphones.id },
+        { rating: 5, message: 'I can finally work in peace at the coffee shop. A must-have for focus!', name_user: 'Digital Nomad', url_image_user: 'https://randomuser.me/api/portraits/women/60.jpg', productId: sonyHeadphones.id },
+        { rating: 2, message: 'The microphone for calls is not great. People complain they can\'t hear me well.', name_user: 'Remote Worker', url_image_user: 'https://randomuser.me/api/portraits/women/61.jpg', productId: sonyHeadphones.id },
       ],
     });
   }
