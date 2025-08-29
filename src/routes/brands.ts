@@ -3,7 +3,7 @@ import { prisma } from '../config/prisma';
 
 const brandsRouter = Router();
 
-// GET /api/brands - lista marcas e total de produtos por marca
+// GET /api/brands 
 brandsRouter.get('/', async (req, res) => {
   try {
     const brands = await prisma.product.groupBy({
