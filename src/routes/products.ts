@@ -88,6 +88,57 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/products/category/:category_name?page=1&sort=price&order=asc
+router.post('/category/:category_name', async (req, res) => {
+  const { category_name } = req.params;
+  const page = parseInt(req.query.page as string) || 1;
+  const sort = (req.query.sort as string) || 'price';
+  const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
+  const take = 10;
+  const skip = (page - 1) * take;
+
+  const brands = req.body.filters.brands;
+
+  try {
+    const whereClause: any = { category: { name: category_name } };
+
+    if(brands && brands.length > 0) {
+      whereClause.brand = { in: brands };
+    }
+
+    const total_items = await prisma.product.count({
+      where: whereClause,
+    })
+
+    const total_pages = Math.ceil(total_items / take);
+
+    const products = await prisma.product.findMany({
+      where: whereClause,
+      orderBy: { [sort]: order },
+      skip,
+      take,
+      select: {
+        id: true,
+        name: true,
+        price: true,
+        url_image: true,
+
+      },
+    });
+
+    res.json({
+      data: products,
+      metadata: {
+        total_pages,
+        actual_page: page,
+        total_items,
+      },
+    });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar produtos.' });
+  }
+});
+
 // GET /api/products/reviews/:product_id (obs: no doc do projeto esta api/reviews/:product_id tirar essa duvida)
 router.get('/reviews/:product_id', async (req, res) => {
   const productId = Number(req.params.product_id);
