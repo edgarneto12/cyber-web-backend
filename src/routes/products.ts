@@ -88,4 +88,41 @@ router.get('/', async (req, res) => {
   }
 });
 
+// GET /api/products/reviews/:product_id (obs: no doc do projeto esta api/reviews/:product_id tirar essa duvida)
+router.get('/reviews/:product_id', async (req, res) => {
+  const productId = Number(req.params.product_id);
+  if (!productId) return res.status(400).json({ error: 'product_id inválido' });
+
+  try {
+    // Busca reviews do produto
+    const reviews = await prisma.review.findMany({
+      where: { productId },
+      select: {
+        id: true,
+        name_user: true,
+        url_image_user: true,
+        message: true,
+        rating: true,
+        created_at: true,
+      },
+    });
+
+    // Calcula resumo
+    const total = reviews.length;
+    const summary = {
+      reviews: total,
+      excellent: reviews.filter(r => r.rating === 5).length,
+      good: reviews.filter(r => r.rating === 4).length,
+      avarage: reviews.filter(r => r.rating === 3).length,
+      bellow_average: reviews.filter(r => r.rating === 2).length,
+      poor: reviews.filter(r => r.rating === 1).length,
+      media: total ? (reviews.reduce((acc, r) => acc + r.rating, 0) / total).toFixed(1) : 0,
+    };
+
+    res.json({ data: reviews, summary });
+  } catch (error) {
+    res.status(500).json({ error: 'Erro ao buscar reviews.' });
+  }
+});
+
 export default router;
