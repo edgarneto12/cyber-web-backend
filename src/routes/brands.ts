@@ -1,24 +1,10 @@
 import { Router } from 'express';
-import { prisma } from '../config/prisma';
+import { BrandsController } from '../controllers/brands/BrandsController';
 
-const brandsRouter = Router();
+const router = Router();
+const brandsController = new BrandsController();
 
-// GET /api/brands 
-brandsRouter.get('/', async (req, res) => {
-  try {
-    const brands = await prisma.product.groupBy({
-      by: ['brand'],
-      _count: { brand: true },
-    });
-    const data = brands.map((item, idx) => ({
-      id: idx + 1,
-      brand: item.brand,
-      total: item._count.brand,
-    }));
-    res.json({ data });
-  } catch (error) {
-    res.status(500).json({ error: 'Erro ao buscar marcas.' });
-  }
-});
+// GET /api/brands
+router.get('/', brandsController.getAllBrands.bind(brandsController));
 
-export default brandsRouter;
+export default router;

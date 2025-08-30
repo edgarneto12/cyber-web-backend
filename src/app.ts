@@ -2,6 +2,7 @@ import express, { Application, Request, Response } from 'express';
 import { categoriesRouter } from './routes/categories';
 import productsRouter from './routes/products';
 import brandsRouter from './routes/brands';
+import reviewsRouter from './routes/reviews';
 
 const app: Application = express();
 
@@ -17,5 +18,6 @@ app.get('/', (req: Request, res: Response) => {
 app.use('/api/categories', categoriesRouter);
 app.use('/api/products', productsRouter);
 app.use('/api/brands', brandsRouter);
+app.use('/api/reviews', reviewsRouter);
 
 export default app;
