@@ -54,52 +54,52 @@ async function main() {
 
   await prisma.product.createMany({
     data: [
-      
+
       { name: 'Apple iPhone 15 Pro', description: 'The ultimate iPhone experience.', brand: 'Apple', price: 999.00, stock: 50, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845699234', tag: 'new_arrival', categoryId: phonesCategory.id },
-      { name: 'Samsung Galaxy S24 Ultra', description: 'Galaxy AI is here.', brand: 'Samsung', price: 1199.00, discounted_price: 1099.00, stock: 30, url_image: 'https://images.samsung.com/is/image/samsung/p6pim/br/2401/gallery/br-galaxy-s24-ultra-sm-s928-483232-sm-s928bztqzto-539313214?$650_519_PNG$', tag: 'bestseller', categoryId: phonesCategory.id },
-      { name: 'Xiaomi 14', description: 'Lens to legend.', brand: 'Xiaomi', price: 799.00, stock: 60, url_image: 'https://i02.appmifile.com/i/s/m/p/prod/eng/xiaomi-14-ultra/specs_black.png', tag: 'featured_product', categoryId: phonesCategory.id },
-      { name: 'Google Pixel 8 Pro', description: 'The best of Google, built around you.', brand: 'Google', price: 899.00, stock: 40, url_image: 'https://storage.googleapis.com/gweb-uniblog-publish-prod/images/H_Pixel_8_Pro_Obsidian_2.width-1300.format-webp.webp', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'Samsung Galaxy S24 Ultra', description: 'Galaxy AI is here.', brand: 'Samsung', price: 1199.00, discounted_price: 1099.00, stock: 30, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu6jxwGQ7NRnzLx28HpD9Tv62eqv4DczJiXA&s', tag: 'bestseller', categoryId: phonesCategory.id },
+      { name: 'Xiaomi 14', description: 'Lens to legend.', brand: 'Xiaomi', price: 799.00, stock: 60, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrYujiWuMblH9dRE1u38CsQo7-c6xFiL0TA&s', tag: 'featured_product', categoryId: phonesCategory.id },
+      { name: 'Google Pixel 8 Pro', description: 'The best of Google, built around you.', brand: 'Google', price: 899.00, stock: 40, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyCsIF1qT74MG8hCDOJYWMFJ5uWYwJLPlC8w&s', tag: 'new_arrival', categoryId: phonesCategory.id },
       { name: 'Apple iPhone 14 Pro', description: 'A magical new way to interact with iPhone.', brand: 'Apple', price: 899.00, discounted_price: 449.50, stock: 25, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703891083', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
-      
-      { name: 'OnePlus 12', description: 'Fast and smooth with flagship performance.', brand: 'OnePlus', price: 699.00, stock: 45, url_image: 'https://oasis.opstatics.com/content/dam/oasis/page/2024/global/products/oneplus-12/specs/kv-1440.jpg', tag: 'new_arrival', categoryId: phonesCategory.id },
-      { name: 'Motorola Edge 50 Pro', description: 'Flagship performance with stunning display.', brand: 'Motorola', price: 649.00, stock: 40, url_image: 'https://motorolaus.vtexassets.com/arquivos/ids/163053-800-auto?v=638488964393430000&width=800&height=auto&aspect=true', tag: 'bestseller', categoryId: phonesCategory.id },
-      { name: 'Huawei P60 Pro', description: 'Ultra Lighting Camera with XMAGE technology.', brand: 'Huawei', price: 899.00, stock: 35, url_image: 'https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/phones/p60-pro/images/p60-pro-kv.png', tag: 'featured_product', categoryId: phonesCategory.id },
-      { name: 'Redmi Note 13 Pro', description: 'Powerful mid-range with 200MP camera.', brand: 'Redmi', price: 399.00, stock: 60, url_image: 'https://i01.appmifile.com/webfile/globalimg/products/pc/redmi-note-13-pro/specs-header.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
-      { name: 'Nothing Phone (2)', description: 'Pure instinct. Glyph Interface illuminated.', brand: 'Nothing', price: 599.00, stock: 50, url_image: 'https://nothing.tech/cdn/shop/files/Phone2_PDP_Gallery_Glyph_Desktop_1600x.jpg?v=1689159123', tag: 'new_arrival', categoryId: phonesCategory.id },
-      { name: 'OPPO Find X7 Ultra', description: 'Master portrait photography with Hasselblad.', brand: 'OPPO', price: 849.00, stock: 35, url_image: 'https://image01.oppo.com/content/dam/oppo/common/mkt/v2-2/find-x7-ultra-new/pc/find-x7-ultra-brown-kv-pc.png', tag: 'featured_product', categoryId: phonesCategory.id },
+
+      { name: 'OnePlus 12', description: 'Fast and smooth with flagship performance.', brand: 'OnePlus', price: 699.00, stock: 45, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_746948-MLA74551247139_022024-F.webp', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'Motorola Edge 50 Pro', description: 'Flagship performance with stunning display.', brand: 'Motorola', price: 649.00, stock: 40, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6wExWylNtf6OqcA2hpn4K4BTnYEZ5N_xJjQ&s', tag: 'bestseller', categoryId: phonesCategory.id },
+      { name: 'Huawei P60 Pro', description: 'Ultra Lighting Camera with XMAGE technology.', brand: 'Huawei', price: 899.00, stock: 35, url_image: 'https://down-br.img.susercontent.com/file/cn-11134207-7ras8-md4boy332whsdf.webp', tag: 'featured_product', categoryId: phonesCategory.id },
+      { name: 'Redmi Note 13 Pro', description: 'Powerful mid-range with 200MP camera.', brand: 'Redmi', price: 399.00, stock: 60, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_940349-MLA77263586307_062024-F.webp', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
+      { name: 'Nothing Phone (2)', description: 'Pure instinct. Glyph Interface illuminated.', brand: 'Nothing', price: 599.00, stock: 50, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_671382-MLB80116521160_112024-F-celular-nothing-phone-1-5g-8gb256gb-black-120hz.webp', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'OPPO Find X7 Ultra', description: 'Master portrait photography with Hasselblad.', brand: 'OPPO', price: 849.00, stock: 35, url_image: 'https://www.oppo.com/content/dam/oppo/product-asset-library/find/find-x8-series/en/oppo-find-x8-pro/white-apac/assets/images-color-konka-b-1.png', tag: 'featured_product', categoryId: phonesCategory.id },
       { name: 'Vivo X100 Pro', description: 'Professional portrait photography redefined.', brand: 'Vivo', price: 749.00, stock: 40, url_image: 'https://www.vivo.com/content/dam/vivo/en/products/x100-pro/img/kv-img.png', tag: 'bestseller', categoryId: phonesCategory.id },
-      { name: 'Google Pixel 7a', description: 'Affordable Pixel with flagship camera.', brand: 'Google', price: 499.00, stock: 55, url_image: 'https://storage.googleapis.com/gweb-uniblog-publish-prod/images/Pixel_7a_Obsidian.width-1300.format-webp.webp', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
-      
-      
-      { name: 'Apple Watch Ultra 2', description: 'Next-level adventure.', brand: 'Apple', price: 799.00, stock: 45, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MT623ref_VW_34FR+watch-49-titanium-ultra2_VW_34FR+watch-face-49-trail-ultra2_VW_34FR_WF_CO?wid=752&hei=720&bg=p-Eixo,0,0,0,0&trim=1&fmt=p-jpg&qlt=80&.v=1694507270905', tag: 'new_arrival', categoryId: watchesCategory.id },
-      { name: 'Samsung Galaxy Watch6', description: 'Start your everyday wellness journey.', brand: 'Samsung', price: 299.00, stock: 70, url_image: 'https://images.samsung.com/is/image/samsung/p6pim/br/2307/gallery/br-galaxy-watch6-r940-sm-r940nzepzto-537330283?$650_519_PNG$', tag: 'bestseller', categoryId: watchesCategory.id },
-      { name: 'Huawei Watch GT 4', description: 'Smart health and fitness companion.', brand: 'Huawei', price: 249.00, stock: 60, url_image: 'https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/wearables/watch-gt4/images/watch-gt4-kv.png', tag: 'featured_product', categoryId: watchesCategory.id },
-      { name: 'Xiaomi Watch S3', description: 'Premium design meets smart functionality.', brand: 'Xiaomi', price: 199.00, stock: 80, url_image: 'https://i02.appmifile.com/mi-com-product/fly-birds/xiaomi-watch-s3/specs-kv.png', tag: 'discount_up_to_50', categoryId: watchesCategory.id },
-      
-      
-      { name: 'Sony WH-1000XM5', description: 'The best noise canceling headphones.', brand: 'Sony', price: 399.00, stock: 80, url_image: 'https://www.sony.com/image/5d02da5df55283e2e8b93441fb8a7dfa?fmt=png-alpha&wid=480', tag: 'featured_product', categoryId: headphonesCategory.id },
+      { name: 'Google Pixel 7a', description: 'Affordable Pixel with flagship camera.', brand: 'Google', price: 499.00, stock: 55, url_image: 'https://t2.tudocdn.net/668354?w=146&h=304', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
+
+
+      { name: 'Apple Watch Ultra 2', description: 'Next-level adventure.', brand: 'Apple', price: 799.00, stock: 45, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_920283-MLA79324426317_092024-F.webp', tag: 'new_arrival', categoryId: watchesCategory.id },
+      { name: 'Samsung Galaxy Watch6', description: 'Start your everyday wellness journey.', brand: 'Samsung', price: 299.00, stock: 70, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_933129-MLA83356899866_042025-F.webp', tag: 'bestseller', categoryId: watchesCategory.id },
+      { name: 'Huawei Watch GT 4', description: 'Smart health and fitness companion.', brand: 'Huawei', price: 249.00, stock: 60, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_936222-MLA88066097922_072025-F.webp', tag: 'featured_product', categoryId: watchesCategory.id },
+      { name: 'Xiaomi Watch S3', description: 'Premium design meets smart functionality.', brand: 'Xiaomi', price: 199.00, stock: 80, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_763982-MLB90740603591_082025-F-xiaomi-watch-s3-resistente-agua-gps-prata.webp', tag: 'discount_up_to_50', categoryId: watchesCategory.id },
+
+
+      { name: 'Sony WH-1000XM5', description: 'The best noise canceling headphones.', brand: 'Sony', price: 399.00, stock: 80, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_886761-MLU78248415334_082024-F.webp', tag: 'featured_product', categoryId: headphonesCategory.id },
       { name: 'Apple AirPods Max', description: 'A perfect balance of high-fidelity audio.', brand: 'Apple', price: 549.00, discounted_price: 499.00, stock: 35, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/airpods-max-hero-select-202011_FMT_WHH?wid=607&hei=556&fmt=jpeg&qlt=90&.v=1633623988000', tag: 'discount_up_to_50', categoryId: headphonesCategory.id },
-      { name: 'Bose QuietComfort Ultra', description: 'World-class noise cancellation.', brand: 'Bose', price: 429.00, stock: 55, url_image: 'https://assets.bose.com/content/dam/Bose_DAM/Web/consumer_electronics/global/products/headphones/qc_ultra_headphones/product_silo_images/qc-ultra-headphones-black-Silo-01-full.png/jcr:content/renditions/cq5dam.web.1280.1280.png', tag: 'bestseller', categoryId: headphonesCategory.id },
-      { name: 'Sennheiser Momentum 4', description: 'Exceptional sound meets intelligent adaptive noise cancellation.', brand: 'Sennheiser', price: 349.00, stock: 45, url_image: 'https://assets.sennheiser.com/img/18026/square_louped_01_sq_momentum_4_wireless_black_sennheiser.png', tag: 'new_arrival', categoryId: headphonesCategory.id },
-      { name: 'Audio-Technica ATH-M50xBT2', description: 'Professional studio quality with wireless freedom.', brand: 'Audio-Technica', price: 199.00, stock: 70, url_image: 'https://www.audio-technica.com/cms/resource_library/product_images/7cc6c4cd7c49c56e/application_image_file_14321_large.jpg', tag: 'bestseller', categoryId: headphonesCategory.id },
-      
-      
-      { name: 'Canon EOS R5', description: 'A professional mirrorless camera.', brand: 'Canon', price: 3899.00, stock: 15, url_image: 'https://i1.adis.ws/i/canon/eos-r5_front_rf24-105mmf4lisusm_square_32c2049825244b38996e127688234479?$prod-gallery-1by1-s-jpg$', tag: 'featured_product', categoryId: camerasCategory.id },
-      { name: 'Sony Alpha 7 IV', description: 'Beyond basic. A new standard for full-frame.', brand: 'Sony', price: 2499.00, stock: 20, url_image: 'https://www.sony.com/image/24855535b804342b4d8328571e22b3c1?fmt=png-alpha&wid=480', tag: 'bestseller', categoryId: camerasCategory.id },
-      { name: 'Nikon Z9', description: 'No compromise mirrorless flagship.', brand: 'Nikon', price: 5499.00, stock: 12, url_image: 'https://www.nikon.com/content/dam/nikon/global/products/cameras/mirrorless/fx/z-9/product/img/sample_01.jpg', tag: 'new_arrival', categoryId: camerasCategory.id },
-      { name: 'Fujifilm X-T5', description: 'Classic design with modern performance.', brand: 'Fujifilm', price: 1699.00, stock: 25, url_image: 'https://fujifilm-x.com/wp-content/uploads/2022/11/X-T5_BlackSilver_Front_XF18-55mm.png', tag: 'featured_product', categoryId: camerasCategory.id },
-      
-   
-      { name: 'MacBook Pro 14"', description: 'Mind-blowing performance with M3 Pro chip.', brand: 'Apple', price: 1999.00, stock: 25, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/mbp14-spaceblack-select-202310?wid=904&hei=840&fmt=jpeg&qlt=90&.v=1697230830200', tag: 'new_arrival', categoryId: computersCategory.id },
-      { name: 'Dell XPS 15', description: 'Stunning display, powerful performance.', brand: 'Dell', price: 1799.00, discounted_price: 1599.00, stock: 30, url_image: 'https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/xps-notebooks/xps-15-9530/media-gallery/touch-platinum-silver/notebook-xps-15-9530-t-platinum-silver-gallery-4.psd?fmt=pjpg&pscan=auto&scl=1&hei=402&wid=573&qlt=100,0&resMode=sharp2&size=573,402', tag: 'discount_up_to_50', categoryId: computersCategory.id },
-      { name: 'ThinkPad X1 Carbon Gen 11', description: 'Ultra-lightweight business laptop.', brand: 'Lenovo', price: 1899.00, stock: 20, url_image: 'https://p1-ofp.static.pub/fes/cms/2023/02/07/8o2j2v8vxkj8wnjm5xk0qcyrs4i80v451866.png', tag: 'bestseller', categoryId: computersCategory.id },
-      { name: 'ASUS ROG Zephyrus G16', description: 'Gaming laptop with style and performance.', brand: 'ASUS', price: 2299.00, stock: 18, url_image: 'https://dlcdnwebimgs.asus.com/gain/A8B0CC23-6467-4B09-AB6D-D867F93F7B9E/w800', tag: 'new_arrival', categoryId: computersCategory.id },
-      
-      
-      { name: 'PlayStation 5', description: 'Play Has No Limits.', brand: 'Sony', price: 499.00, stock: 100, url_image: 'https://www.sony.com/image/48f0382f63343330a8427144e1a0b382?fmt=png-alpha&wid=480', tag: 'bestseller', categoryId: gamingCategory.id },
-      { name: 'Xbox Series X', description: 'The fastest, most powerful Xbox ever.', brand: 'Microsoft', price: 499.00, stock: 80, url_image: 'https://assets.xboxservices.com/assets/fb/d2/fbd2cb61-5c9e-4a8f-9036-dcf75ec55796.png?n=642227_Hero-Gallery-0_1083x609_02.png', tag: 'new_arrival', categoryId: gamingCategory.id },
-      { name: 'Nintendo Switch OLED', description: 'Vivid colors and crisp contrast in handheld mode.', brand: 'Nintendo', price: 349.00, stock: 120, url_image: 'https://assets.nintendo.com/image/upload/f_auto/q_auto/dpr_2.0/c_scale,w_400/ncom/en_US/switch/site-design-update/hardware/switch-oled-model/hero', tag: 'featured_product', categoryId: gamingCategory.id },
-      { name: 'Steam Deck OLED', description: 'Portable PC gaming with OLED display.', brand: 'Valve', price: 649.00, stock: 40, url_image: 'https://cdn.cloudflare.steamstatic.com/steamdeck/images/steamdeck_buy_final.png', tag: 'new_arrival', categoryId: gamingCategory.id },
+      { name: 'Bose QuietComfort Ultra', description: 'World-class noise cancellation.', brand: 'Bose', price: 429.00, stock: 55, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_925352-MLU77144327918_062024-F.webp', tag: 'bestseller', categoryId: headphonesCategory.id },
+      { name: 'Sennheiser Momentum 4', description: 'Exceptional sound meets intelligent adaptive noise cancellation.', brand: 'Sennheiser', price: 349.00, stock: 45, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_915486-CBT79045236925_092024-F.webp', tag: 'new_arrival', categoryId: headphonesCategory.id },
+      { name: 'Audio-Technica ATH-M50xBT2', description: 'Professional studio quality with wireless freedom.', brand: 'Audio-Technica', price: 199.00, stock: 70, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_775923-MLU77330942319_062024-F.webp', tag: 'bestseller', categoryId: headphonesCategory.id },
+
+
+      { name: 'Canon EOS R5', description: 'A professional mirrorless camera.', brand: 'Canon', price: 3899.00, stock: 15, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_671122-MLA79770987687_102024-F.webp', tag: 'featured_product', categoryId: camerasCategory.id },
+      { name: 'Sony Alpha 7 IV', description: 'Beyond basic. A new standard for full-frame.', brand: 'Sony', price: 2499.00, stock: 20, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_954080-MLA51716406745_092022-F.webp', tag: 'bestseller', categoryId: camerasCategory.id },
+      { name: 'Nikon Z9', description: 'No compromise mirrorless flagship.', brand: 'Nikon', price: 5499.00, stock: 12, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_969159-MLB77859076863_072024-F-nikon-z9-mirrorless-camera-42k-avst.webp', tag: 'new_arrival', categoryId: camerasCategory.id },
+      { name: 'Fujifilm X-T5', description: 'Classic design with modern performance.', brand: 'Fujifilm', price: 1699.00, stock: 25, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_718377-MLU70013387283_062023-F.webp', tag: 'featured_product', categoryId: camerasCategory.id },
+
+
+      { name: 'MacBook Pro 14', description: 'Mind-blowing performance with M3 Pro chip.', brand: 'Apple', price: 1999.00, stock: 25, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_732996-MLA74328205367_012024-F.webp', tag: 'new_arrival', categoryId: computersCategory.id },
+      { name: 'Dell XPS 15', description: 'Stunning display, powerful performance.', brand: 'Dell', price: 1799.00, discounted_price: 1599.00, stock: 30, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_701295-MLB89096839712_082025-F.webp', tag: 'discount_up_to_50', categoryId: computersCategory.id },
+      { name: 'ThinkPad X1 Carbon Gen 11', description: 'Ultra-lightweight business laptop.', brand: 'Lenovo', price: 1899.00, stock: 20, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_704772-MLB88854957746_082025-F.webp', tag: 'bestseller', categoryId: computersCategory.id },
+      { name: 'ASUS ROG Zephyrus G16', description: 'Gaming laptop with style and performance.', brand: 'ASUS', price: 2299.00, stock: 18, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_882518-MLU78104048064_082024-F.webp', tag: 'new_arrival', categoryId: computersCategory.id },
+
+
+      { name: 'PlayStation 5', description: 'Play Has No Limits.', brand: 'Sony', price: 499.00, stock: 100, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_610989-MLA80823022081_112024-F.webp', tag: 'bestseller', categoryId: gamingCategory.id },
+      { name: 'Xbox Series X', description: 'The fastest, most powerful Xbox ever.', brand: 'Microsoft', price: 499.00, stock: 80, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_675844-MLA80617260308_112024-F.webp', tag: 'new_arrival', categoryId: gamingCategory.id },
+      { name: 'Nintendo Switch OLED', description: 'Vivid colors and crisp contrast in handheld mode.', brand: 'Nintendo', price: 349.00, stock: 120, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_841241-MEC48197690250_112021-F.webp', tag: 'featured_product', categoryId: gamingCategory.id },
+      { name: 'Steam Deck OLED', description: 'Portable PC gaming with OLED display.', brand: 'Valve', price: 649.00, stock: 40, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_984473-MLU75721678297_042024-F.webp', tag: 'new_arrival', categoryId: gamingCategory.id },
     ],
   });
   console.log('📱 Products created.');
@@ -109,7 +109,16 @@ async function main() {
     await prisma.smartphoneSpec.create({ data: { screen_size: '6.1 inches', cpu: 'A17 Pro chip', total_cores: '6-core CPU', main_camera: '48MP Main + 12MP Ultra Wide + 12MP Telephoto', front_camera: '12MP TrueDepth', battery: 'Up to 23 hours video playback', product: { connect: { id: iphone15.id } } } });
     await prisma.colorProduct.createMany({ data: [{ name: 'Natural Titanium', hex_code: '#8B8681', productId: iphone15.id }, { name: 'Blue Titanium', hex_code: '#2A3D52', productId: iphone15.id }] });
     await prisma.storageOption.createMany({ data: [{ size: '128GB', productId: iphone15.id }, { size: '256GB', productId: iphone15.id }, { size: '512GB', productId: iphone15.id }] });
-    await prisma.review.create({ data: { rating: 5, message: 'Absolutely fantastic device! The camera is a game-changer.', name_user: 'Jane Doe', url_image_user: 'https://randomuser.me/api/portraits/women/44.jpg', productId: iphone15.id } });
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Absolutely fantastic device! The camera is a game-changer.', name_user: 'Jane Doe', url_image_user: 'https://randomuser.me/api/portraits/women/44.jpg', productId: iphone15.id },
+        { rating: 4, message: 'Very fast and responsive, but battery life could be a little better under heavy use.', name_user: 'TechGuru', url_image_user: 'https://randomuser.me/api/portraits/men/45.jpg', productId: iphone15.id },
+        { rating: 5, message: 'The Action mode for video is incredible. Super smooth footage!', name_user: 'VideoCreator', url_image_user: 'https://randomuser.me/api/portraits/women/46.jpg', productId: iphone15.id },
+        { rating: 3, message: 'A great phone, but not a huge leap from the 14 Pro. The USB-C port is a welcome change.', name_user: 'PragmaticUser', url_image_user: 'https://randomuser.me/api/portraits/men/47.jpg', productId: iphone15.id },
+        { rating: 5, message: 'Titanium build feels premium and surprisingly light. Best iPhone yet!', name_user: 'AppleFan', url_image_user: 'https://randomuser.me/api/portraits/women/48.jpg', productId: iphone15.id },
+        { rating: 4, message: 'Performance is top-tier, but it gets a bit warm when gaming.', name_user: 'GamerX', url_image_user: 'https://randomuser.me/api/portraits/men/49.jpg', productId: iphone15.id }
+      ]
+    });
   }
 
   const galaxyS24 = await prisma.product.findFirst({ where: { name: 'Samsung Galaxy S24 Ultra' } });
@@ -126,14 +135,15 @@ async function main() {
       },
     });
 
-    await prisma.review.create({
-      data: {
-        rating: 4,
-        message: 'Great phone, amazing screen and features. Battery could be a bit better.',
-        name_user: 'John Smith',
-        url_image_user: 'https://randomuser.me/api/portraits/men/32.jpg',
-        productId: galaxyS24.id,
-      },
+    await prisma.review.createMany({
+      data: [
+        { rating: 4, message: 'Great phone, amazing screen and features. Battery could be a bit better.', name_user: 'John Smith', url_image_user: 'https://randomuser.me/api/portraits/men/32.jpg', productId: galaxyS24.id },
+        { rating: 5, message: 'The S Pen is a productivity powerhouse. The flat screen is a huge improvement!', name_user: 'ProductivityPro', url_image_user: 'https://randomuser.me/api/portraits/women/33.jpg', productId: galaxyS24.id },
+        { rating: 5, message: 'Galaxy AI features are surprisingly useful, especially Circle to Search.', name_user: 'AI_Explorer', url_image_user: 'https://randomuser.me/api/portraits/men/34.jpg', productId: galaxyS24.id },
+        { rating: 4, message: 'The camera zoom is insane! You can capture incredible detail from far away.', name_user: 'Shutterbug', url_image_user: 'https://randomuser.me/api/portraits/women/35.jpg', productId: galaxyS24.id },
+        { rating: 3, message: 'It\'s a fantastic phone, but it feels a bit too large and heavy for one-handed use.', name_user: 'SmallHands', url_image_user: 'https://randomuser.me/api/portraits/men/36.jpg', productId: galaxyS24.id },
+        { rating: 5, message: 'Best Android phone on the market, period.', name_user: 'AndroidLoyalist', url_image_user: 'https://randomuser.me/api/portraits/women/37.jpg', productId: galaxyS24.id }
+      ]
     });
   }
 
