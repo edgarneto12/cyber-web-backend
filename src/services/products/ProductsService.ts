@@ -23,7 +23,7 @@ export class ProductsService {
 	async getByTag(tag_name: string) {
 		return prisma.product.findMany({
 			where: { tag: tag_name },
-			select: { id: true, name: true, price: true, tag: true, url_image: true },
+			select: { id: true, name: true, price: true, tag: true, url_image: true, discounted_price: true },
 		});
 	}
 
