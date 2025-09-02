@@ -3,8 +3,12 @@ import { categoriesRouter } from './routes/categories';
 import productsRouter from './routes/products';
 import brandsRouter from './routes/brands';
 import reviewsRouter from './routes/reviews';
+import cors from 'cors';
+
 
 const app: Application = express();
+
+app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.use(express.json());
 
