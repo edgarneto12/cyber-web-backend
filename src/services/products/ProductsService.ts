@@ -7,9 +7,9 @@ export class ProductsService {
 			where: { id: productId },
 			include: {
 				category: { select: { id: true, name: true } },
-				smartphoneSpec: true,
+				smartphone_spec: true,
 				colors: { select: { id: true, name: true, hex_code: true } },
-				storageOptions: { select: { id: true, size: true } },
+				storage_options: { select: { id: true, size: true } },
 				reviews: {
 					select: { id: true, rating: true, message: true, name_user: true, url_image_user: true, created_at: true },
 					take: 5,
