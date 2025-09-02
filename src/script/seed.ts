@@ -4,18 +4,24 @@ const prisma = new PrismaClient();
 
 async function main() {
 
+  // A ordem de exclusão é importante para evitar erros de chave estrangeira.
+  // Deleta os modelos que dependem do Product primeiro.
   await prisma.review.deleteMany({});
-  await prisma.storageOption.deleteMany({});
   await prisma.colorProduct.deleteMany({});
   await prisma.smartphoneSpec.deleteMany({});
+
+  // Para relações muitos-para-muitos, o Prisma gerencia uma tabela de junção.
+  // Limpar a tabela Product e StorageOption separadamente resolve a relação.
   await prisma.product.deleteMany({});
+  await prisma.storageOption.deleteMany({});
   await prisma.category.deleteMany({});
+
 
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='categories';`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='products';`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='smartphone_specs';`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='colors_product';`;
-  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='storage_options';`;
+  await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='StorageOption';`;
   await prisma.$executeRaw`DELETE FROM sqlite_sequence WHERE name='reviews';`;
   console.log('✅ Reset IDs.');
 
@@ -104,11 +110,44 @@ async function main() {
   });
   console.log('📱 Products created.');
 
+  // Create unique storage options once
+  await prisma.storageOption.createMany({
+    data: [
+      { size: '16GB' },
+      { size: '64GB' },
+      { size: '128GB' },
+      { size: '256GB' },
+      { size: '512GB' },
+      { size: '1TB' },
+      { size: '2TB' },
+    ],
+  });
+  console.log('💾 Unique storage options created.');
+
+  // Fetch all storage options to map them
+  const storageOptions = await prisma.storageOption.findMany();
+  const storageMap = storageOptions.reduce((acc, option) => {
+    acc[option.size] = option.id;
+    return acc;
+  }, {} as Record<string, number>);
+
+
   const iphone15 = await prisma.product.findFirst({ where: { name: 'Apple iPhone 15 Pro' } });
   if (iphone15) {
     await prisma.smartphoneSpec.create({ data: { screen_size: '6.1 inches', cpu: 'A17 Pro chip', total_cores: '6-core CPU', main_camera: '48MP Main + 12MP Ultra Wide + 12MP Telephoto', front_camera: '12MP TrueDepth', battery: 'Up to 23 hours video playback', product: { connect: { id: iphone15.id } } } });
     await prisma.colorProduct.createMany({ data: [{ name: 'Natural Titanium', hex_code: '#8B8681', productId: iphone15.id }, { name: 'Blue Titanium', hex_code: '#2A3D52', productId: iphone15.id }] });
-    await prisma.storageOption.createMany({ data: [{ size: '128GB', productId: iphone15.id }, { size: '256GB', productId: iphone15.id }, { size: '512GB', productId: iphone15.id }] });
+    await prisma.product.update({
+      where: { id: iphone15.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['128GB'] },
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Absolutely fantastic device! The camera is a game-changer.', name_user: 'Jane Doe', url_image_user: 'https://randomuser.me/api/portraits/women/44.jpg', productId: iphone15.id },
@@ -135,6 +174,27 @@ async function main() {
       },
     });
 
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Titanium Black', hex_code: '#2C2C2C', productId: galaxyS24.id }, 
+        { name: 'Titanium Gray', hex_code: '#8A8A8A', productId: galaxyS24.id },
+        { name: 'Titanium Violet', hex_code: '#6B4E8D', productId: galaxyS24.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: galaxyS24.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 4, message: 'Great phone, amazing screen and features. Battery could be a bit better.', name_user: 'John Smith', url_image_user: 'https://randomuser.me/api/portraits/men/32.jpg', productId: galaxyS24.id },
@@ -155,6 +215,17 @@ async function main() {
         { rating: 5, message: 'Loading times are a thing of the past. Amazing!', name_user: 'Alex R.', url_image_user: 'https://randomuser.me/api/portraits/men/50.jpg', productId: ps5.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'White', hex_code: '#FFFFFF', productId: ps5.id }]
+    });
+    await prisma.product.update({
+      where: { id: ps5.id },
+      data: {
+        storage_options: {
+          connect: [{ id: storageMap['1TB'] }],
+        },
+      },
+    });
   }
 
   const sonyHeadphones = await prisma.product.findFirst({ where: { name: 'Sony WH-1000XM5' } });
@@ -167,12 +238,50 @@ async function main() {
         { rating: 5, message: 'I can finally work in peace at the coffee shop. A must-have for focus!', name_user: 'Digital Nomad', url_image_user: 'https://randomuser.me/api/portraits/women/60.jpg', productId: sonyHeadphones.id },
         { rating: 2, message: 'The microphone for calls is not great. People complain they can\'t hear me well.', name_user: 'Remote Worker', url_image_user: 'https://randomuser.me/api/portraits/women/61.jpg', productId: sonyHeadphones.id },
       ],
+      });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: sonyHeadphones.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: sonyHeadphones.id }
+      ]
     });
   }
 
   
   const onePlus12 = await prisma.product.findFirst({ where: { name: 'OnePlus 12' } });
   if (onePlus12) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.82 inches',
+        cpu: 'Snapdragon 8 Gen 3',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 64MP Periscope Telephoto + 48MP Ultra Wide',
+        front_camera: '32MP',
+        battery: '5400mAh',
+        product: { connect: { id: onePlus12.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Silky Black', hex_code: '#1C1C1C', productId: onePlus12.id }, 
+        { name: 'Flowy Emerald', hex_code: '#2F5F3F', productId: onePlus12.id },
+        { name: 'White', hex_code: '#F5F5F5', productId: onePlus12.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: onePlus12.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Blazing fast performance and amazing display quality!', name_user: 'SpeedDemon', url_image_user: 'https://randomuser.me/api/portraits/men/65.jpg', productId: onePlus12.id },
@@ -187,6 +296,38 @@ async function main() {
   
   const motorolaEdge = await prisma.product.findFirst({ where: { name: 'Motorola Edge 50 Pro' } });
   if (motorolaEdge) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.7 inches',
+        cpu: 'Snapdragon 7 Gen 3',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 13MP Ultra Wide + 10MP Telephoto',
+        front_camera: '50MP',
+        battery: '4500mAh',
+        product: { connect: { id: motorolaEdge.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Moonlight Pearl', hex_code: '#E8E8E8', productId: motorolaEdge.id }, 
+        { name: 'Luxe Lavender', hex_code: '#B19CD9', productId: motorolaEdge.id },
+        { name: 'Black Beauty', hex_code: '#1A1A1A', productId: motorolaEdge.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: motorolaEdge.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Excellent curved display and smooth performance throughout.', name_user: 'DisplayLover', url_image_user: 'https://randomuser.me/api/portraits/women/67.jpg', productId: motorolaEdge.id },
@@ -201,6 +342,38 @@ async function main() {
  
   const huaweiP60 = await prisma.product.findFirst({ where: { name: 'Huawei P60 Pro' } });
   if (huaweiP60) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.67 inches',
+        cpu: 'Snapdragon 8+ Gen 1',
+        total_cores: '8-core CPU',
+        main_camera: '48MP Main + 13MP Ultra Wide + 48MP Telephoto',
+        front_camera: '13MP',
+        battery: '4815mAh',
+        product: { connect: { id: huaweiP60.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Pearl White', hex_code: '#F0F0F0', productId: huaweiP60.id }, 
+        { name: 'Rococo Pearl', hex_code: '#E6D8CC', productId: huaweiP60.id },
+        { name: 'Emerald Green', hex_code: '#2D5A3D', productId: huaweiP60.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: huaweiP60.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Camera quality is absolutely stunning, especially in night mode.', name_user: 'PhotoPro', url_image_user: 'https://randomuser.me/api/portraits/men/70.jpg', productId: huaweiP60.id },
@@ -215,6 +388,38 @@ async function main() {
   
   const redmiNote = await prisma.product.findFirst({ where: { name: 'Redmi Note 13 Pro' } });
   if (redmiNote) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.67 inches',
+        cpu: 'Snapdragon 7s Gen 2',
+        total_cores: '8-core CPU',
+        main_camera: '200MP Main + 8MP Ultra Wide + 2MP Macro',
+        front_camera: '16MP',
+        battery: '5100mAh',
+        product: { connect: { id: redmiNote.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Aurora Purple', hex_code: '#8B5A9F', productId: redmiNote.id }, 
+        { name: 'Midnight Black', hex_code: '#0D0D0D', productId: redmiNote.id },
+        { name: 'Ocean Teal', hex_code: '#4A9B9B', productId: redmiNote.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: redmiNote.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['128GB'] },
+            { id: storageMap['256GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Amazing value for money! 200MP camera takes incredible photos.', name_user: 'BudgetHunter', url_image_user: 'https://randomuser.me/api/portraits/women/72.jpg', productId: redmiNote.id },
@@ -229,6 +434,38 @@ async function main() {
  
   const nothingPhone = await prisma.product.findFirst({ where: { name: 'Nothing Phone (2)' } });
   if (nothingPhone) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.7 inches',
+        cpu: 'Snapdragon 8+ Gen 1',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 50MP Ultra Wide',
+        front_camera: '32MP',
+        battery: '4700mAh',
+        product: { connect: { id: nothingPhone.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'White', hex_code: '#FFFFFF', productId: nothingPhone.id }, 
+        { name: 'Dark Gray', hex_code: '#3A3A3A', productId: nothingPhone.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: nothingPhone.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['128GB'] },
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'The Glyph Interface is so cool and functional! Unique design.', name_user: 'GlyphFan', url_image_user: 'https://randomuser.me/api/portraits/men/75.jpg', productId: nothingPhone.id },
@@ -243,6 +480,39 @@ async function main() {
  
   const oppoFind = await prisma.product.findFirst({ where: { name: 'OPPO Find X7 Ultra' } });
   if (oppoFind) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.82 inches',
+        cpu: 'Snapdragon 8 Gen 3',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 50MP Ultra Wide + 50MP Periscope + 50MP Telephoto',
+        front_camera: '32MP',
+        battery: '5000mAh',
+        product: { connect: { id: oppoFind.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Ocean Blue', hex_code: '#1E4A72', productId: oppoFind.id }, 
+        { name: 'Sepia Brown', hex_code: '#8B6F47', productId: oppoFind.id },
+        { name: 'Tailored Black', hex_code: '#0F0F0F', productId: oppoFind.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: oppoFind.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Hasselblad camera partnership delivers exceptional portrait photos.', name_user: 'PortraitPro', url_image_user: 'https://randomuser.me/api/portraits/women/77.jpg', productId: oppoFind.id },
@@ -257,6 +527,38 @@ async function main() {
   
   const vivoX100 = await prisma.product.findFirst({ where: { name: 'Vivo X100 Pro' } });
   if (vivoX100) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.78 inches',
+        cpu: 'MediaTek Dimensity 9300',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 50MP Ultra Wide + 50MP Telephoto',
+        front_camera: '32MP',
+        battery: '5400mAh',
+        product: { connect: { id: vivoX100.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Asteroid Black', hex_code: '#1A1A1A', productId: vivoX100.id }, 
+        { name: 'Sunset Orange', hex_code: '#FF7F50', productId: vivoX100.id },
+        { name: 'Glacier Blue', hex_code: '#5F9FDB', productId: vivoX100.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: vivoX100.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Portrait photography is redefined with this phone. Simply amazing!', name_user: 'PortraitMaster', url_image_user: 'https://randomuser.me/api/portraits/men/80.jpg', productId: vivoX100.id },
@@ -271,6 +573,36 @@ async function main() {
   
   const pixel7a = await prisma.product.findFirst({ where: { name: 'Google Pixel 7a' } });
   if (pixel7a) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.1 inches',
+        cpu: 'Google Tensor G2',
+        total_cores: '8-core CPU',
+        main_camera: '64MP Main + 13MP Ultra Wide',
+        front_camera: '13MP',
+        battery: '4385mAh',
+        product: { connect: { id: pixel7a.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Charcoal', hex_code: '#36454F', productId: pixel7a.id }, 
+        { name: 'Sea', hex_code: '#5F8A8B', productId: pixel7a.id },
+        { name: 'Snow', hex_code: '#F8F8FF', productId: pixel7a.id },
+        { name: 'Coral', hex_code: '#FF7F7F', productId: pixel7a.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: pixel7a.id },
+      data: {
+        storage_options: {
+          connect: [{ id: storageMap['128GB'] }],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Best camera in this price range. Pure Android experience is amazing!', name_user: 'PixelPerfect', url_image_user: 'https://randomuser.me/api/portraits/women/82.jpg', productId: pixel7a.id },
@@ -282,7 +614,6 @@ async function main() {
     });
   }
 
-  
   const huaweiWatch = await prisma.product.findFirst({ where: { name: 'Huawei Watch GT 4' } });
   if (huaweiWatch) {
     await prisma.review.createMany({
@@ -293,6 +624,12 @@ async function main() {
         { rating: 3, message: 'Good watch, but app ecosystem is limited compared to others.', name_user: 'AppEcosystem', url_image_user: 'https://randomuser.me/api/portraits/women/86.jpg', productId: huaweiWatch.id },
         { rating: 4, message: 'Comfortable to wear and great for outdoor activities.', name_user: 'OutdoorEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/men/87.jpg', productId: huaweiWatch.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: huaweiWatch.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: huaweiWatch.id }
+      ]
     });
   }
 
@@ -308,6 +645,12 @@ async function main() {
         { rating: 4, message: 'Solid build and accurate sensors for fitness tracking.', name_user: 'SensorAccuracy', url_image_user: 'https://randomuser.me/api/portraits/women/89.jpg', productId: xiaomiWatch.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Silver', hex_code: '#C0C0C0', productId: xiaomiWatch.id },
+        { name: 'Black', hex_code: '#000000', productId: xiaomiWatch.id }
+      ]
+    });
   }
 
   
@@ -321,6 +664,12 @@ async function main() {
         { rating: 3, message: 'Great sound, but the app interface could be more intuitive.', name_user: 'AppUIDesigner', url_image_user: 'https://randomuser.me/api/portraits/women/91.jpg', productId: sennheiserMomentum.id },
         { rating: 4, message: 'Excellent for long listening sessions with fatigue-free sound.', name_user: 'LongListener', url_image_user: 'https://randomuser.me/api/portraits/men/92.jpg', productId: sennheiserMomentum.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: sennheiserMomentum.id },
+        { name: 'White', hex_code: '#FFFFFF', productId: sennheiserMomentum.id }
+      ]
     });
   }
 
@@ -336,6 +685,12 @@ async function main() {
         { rating: 4, message: 'Reliable headphones that deliver consistent professional results.', name_user: 'ConsistencyKing', url_image_user: 'https://randomuser.me/api/portraits/women/94.jpg', productId: audioTechnica.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: audioTechnica.id },
+        { name: 'Blue', hex_code: '#1E3A8A', productId: audioTechnica.id }
+      ]
+    });
   }
 
   
@@ -349,6 +704,9 @@ async function main() {
         { rating: 3, message: 'Great camera, but the learning curve is significant for beginners.', name_user: 'BeginnerPhotog', url_image_user: 'https://randomuser.me/api/portraits/women/96.jpg', productId: nikonZ9.id },
         { rating: 4, message: 'Excellent build quality and weather sealing for outdoor shooting.', name_user: 'OutdoorPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/97.jpg', productId: nikonZ9.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: nikonZ9.id }]
     });
   }
 
@@ -364,6 +722,12 @@ async function main() {
         { rating: 4, message: 'Perfect size for travel photography with professional results.', name_user: 'TravelPhotographer', url_image_user: 'https://randomuser.me/api/portraits/women/99.jpg', productId: fujiXT5.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: fujiXT5.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: fujiXT5.id }
+      ]
+    });
   }
 
  
@@ -378,6 +742,20 @@ async function main() {
         { rating: 4, message: 'Exceptional battery life and performance for demanding workloads.', name_user: 'WorkloadMaster', url_image_user: 'https://randomuser.me/api/portraits/men/102.jpg', productId: thinkpadX1.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: thinkpadX1.id }]
+    });
+    await prisma.product.update({
+      where: { id: thinkpadX1.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
   }
 
   const asusROG = await prisma.product.findFirst({ where: { name: 'ASUS ROG Zephyrus G16' } });
@@ -390,6 +768,24 @@ async function main() {
         { rating: 3, message: 'Powerful machine, but battery life during gaming is disappointing.', name_user: 'BatteryGamer', url_image_user: 'https://randomuser.me/api/portraits/men/104.jpg', productId: asusROG.id },
         { rating: 4, message: 'Excellent build quality and RGB lighting system is amazing.', name_user: 'RGBMaster', url_image_user: 'https://randomuser.me/api/portraits/women/104.jpg', productId: asusROG.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Eclipse Gray', hex_code: '#3A3A3A', productId: asusROG.id },
+        { name: 'White', hex_code: '#FFFFFF', productId: asusROG.id }
+      ]
+    });
+    await prisma.product.update({
+      where: { id: asusROG.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+            { id: storageMap['2TB'] },
+          ],
+        },
+      },
     });
   }
 
@@ -404,6 +800,17 @@ async function main() {
         { rating: 4, message: 'Excellent performance and quiet operation during gameplay.', name_user: 'QuietGamer', url_image_user: 'https://randomuser.me/api/portraits/men/107.jpg', productId: xboxSeriesX.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: xboxSeriesX.id }]
+    });
+    await prisma.product.update({
+      where: { id: xboxSeriesX.id },
+      data: {
+        storage_options: {
+          connect: [{ id: storageMap['1TB'] }],
+        },
+      },
+    });
   }
 
   const switchOLED = await prisma.product.findFirst({ where: { name: 'Nintendo Switch OLED' } });
@@ -416,6 +823,17 @@ async function main() {
         { rating: 3, message: 'Good console, but Joy-Con drift is still an issue after all these years.', name_user: 'DriftVictim', url_image_user: 'https://randomuser.me/api/portraits/men/109.jpg', productId: switchOLED.id },
         { rating: 4, message: 'Perfect family gaming console with something for everyone.', name_user: 'FamilyGamer', url_image_user: 'https://randomuser.me/api/portraits/women/109.jpg', productId: switchOLED.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'White', hex_code: '#FFFFFF', productId: switchOLED.id }]
+    });
+    await prisma.product.update({
+      where: { id: switchOLED.id },
+      data: {
+        storage_options: {
+          connect: [{ id: storageMap['64GB'] }],
+        },
+      },
     });
   }
 
@@ -430,11 +848,58 @@ async function main() {
         { rating: 4, message: 'Perfect for indie games and older AAA titles. Love the versatility!', name_user: 'IndieGamer', url_image_user: 'https://randomuser.me/api/portraits/men/112.jpg', productId: steamDeck.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: steamDeck.id }]
+    });
+    await prisma.product.update({
+      where: { id: steamDeck.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
   }
 
   
   const xiaomi14 = await prisma.product.findFirst({ where: { name: 'Xiaomi 14' } });
   if (xiaomi14) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.36 inches',
+        cpu: 'Snapdragon 8 Gen 3',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 50MP Ultra Wide + 50MP Telephoto',
+        front_camera: '32MP',
+        battery: '4610mAh',
+        product: { connect: { id: xiaomi14.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: xiaomi14.id }, 
+        { name: 'White', hex_code: '#FFFFFF', productId: xiaomi14.id },
+        { name: 'Green', hex_code: '#228B22', productId: xiaomi14.id },
+        { name: 'Pink', hex_code: '#FFB6C1', productId: xiaomi14.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: xiaomi14.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'Incredible camera quality with Leica partnership. Flagship performance!', name_user: 'XiaomiFan', url_image_user: 'https://randomuser.me/api/portraits/men/113.jpg', productId: xiaomi14.id },
@@ -449,6 +914,39 @@ async function main() {
   
   const pixel8Pro = await prisma.product.findFirst({ where: { name: 'Google Pixel 8 Pro' } });
   if (pixel8Pro) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.7 inches',
+        cpu: 'Google Tensor G3',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 48MP Ultra Wide + 48MP Telephoto',
+        front_camera: '10.5MP',
+        battery: '5050mAh',
+        product: { connect: { id: pixel8Pro.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Obsidian', hex_code: '#3C3C3C', productId: pixel8Pro.id }, 
+        { name: 'Porcelain', hex_code: '#F5F5DC', productId: pixel8Pro.id },
+        { name: 'Bay', hex_code: '#87CEEB', productId: pixel8Pro.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: pixel8Pro.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['128GB'] },
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
         { rating: 5, message: 'AI features are revolutionary! Magic Eraser and Call Screen are game-changers.', name_user: 'AIEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/women/115.jpg', productId: pixel8Pro.id },
@@ -463,8 +961,44 @@ async function main() {
   
   const iphone14Pro = await prisma.product.findFirst({ where: { name: 'Apple iPhone 14 Pro' } });
   if (iphone14Pro) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.1 inches',
+        cpu: 'A16 Bionic chip',
+        total_cores: '6-core CPU',
+        main_camera: '48MP Main + 12MP Ultra Wide + 12MP Telephoto',
+        front_camera: '12MP TrueDepth',
+        battery: 'Up to 23 hours video playback',
+        product: { connect: { id: iphone14Pro.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Deep Purple', hex_code: '#5D4E6D', productId: iphone14Pro.id }, 
+        { name: 'Gold', hex_code: '#FFD700', productId: iphone14Pro.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: iphone14Pro.id },
+        { name: 'Space Black', hex_code: '#1C1C1E', productId: iphone14Pro.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: iphone14Pro.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['128GB'] },
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
+
     await prisma.review.createMany({
       data: [
+
         { rating: 5, message: 'Dynamic Island is innovative! 48MP camera takes stunning photos.', name_user: 'DynamicIslandFan', url_image_user: 'https://randomuser.me/api/portraits/men/118.jpg', productId: iphone14Pro.id },
         { rating: 4, message: 'Great phone with excellent build quality, but the price is steep.', name_user: 'PremiumBuyer', url_image_user: 'https://randomuser.me/api/portraits/women/118.jpg', productId: iphone14Pro.id },
         { rating: 5, message: 'iOS ecosystem integration is seamless. Perfect for productivity!', name_user: 'iOSEcosystem', url_image_user: 'https://randomuser.me/api/portraits/men/119.jpg', productId: iphone14Pro.id },
@@ -486,6 +1020,17 @@ async function main() {
         { rating: 4, message: 'Precision GPS and diving features are incredibly accurate.', name_user: 'DivingInstructor', url_image_user: 'https://randomuser.me/api/portraits/women/122.jpg', productId: appleWatchUltra.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Titanium', hex_code: '#B0B0B0', productId: appleWatchUltra.id }]
+    });
+    await prisma.product.update({
+      where: { id: appleWatchUltra.id },
+      data: {
+        storage_options: {
+          connect: [{ id: storageMap['64GB'] }],
+        },
+      },
+    });
   }
 
   
@@ -499,6 +1044,20 @@ async function main() {
         { rating: 3, message: 'Good smartwatch, but rotating bezel from older models was better.', name_user: 'BezelMisser', url_image_user: 'https://randomuser.me/api/portraits/women/124.jpg', productId: galaxyWatch6.id },
         { rating: 4, message: 'Sleep tracking and heart rate monitoring are very accurate.', name_user: 'SleepTracker', url_image_user: 'https://randomuser.me/api/portraits/men/125.jpg', productId: galaxyWatch6.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Graphite', hex_code: '#2F2F2F', productId: galaxyWatch6.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: galaxyWatch6.id }
+      ]
+    });
+    await prisma.product.update({
+      where: { id: galaxyWatch6.id },
+      data: {
+        storage_options: {
+          connect: [{ id: storageMap['16GB'] }],
+        },
+      },
     });
   }
 
@@ -514,6 +1073,12 @@ async function main() {
         { rating: 4, message: 'Seamless integration with Apple devices makes them worth it.', name_user: 'AppleEcosystem', url_image_user: 'https://randomuser.me/api/portraits/women/127.jpg', productId: airpodsMax.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Space Gray', hex_code: '#A2AAAD', productId: airpodsMax.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: airpodsMax.id }
+      ]
+    });
   }
 
   const boseQC = await prisma.product.findFirst({ where: { name: 'Bose QuietComfort Ultra' } });
@@ -526,6 +1091,12 @@ async function main() {
         { rating: 3, message: 'Great headphones, but the app could be more user-friendly.', name_user: 'AppCritic', url_image_user: 'https://randomuser.me/api/portraits/women/129.jpg', productId: boseQC.id },
         { rating: 4, message: 'Long battery life and quick charge feature are very convenient.', name_user: 'BatteryLife', url_image_user: 'https://randomuser.me/api/portraits/men/130.jpg', productId: boseQC.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Black', hex_code: '#000000', productId: boseQC.id },
+        { name: 'White', hex_code: '#FFFFFF', productId: boseQC.id }
+      ]
     });
   }
 
@@ -540,6 +1111,9 @@ async function main() {
         { rating: 4, message: 'In-body image stabilization works perfectly with RF lenses.', name_user: 'StabilizationTester', url_image_user: 'https://randomuser.me/api/portraits/women/132.jpg', productId: canonR5.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: canonR5.id }]
+    });
   }
 
   const sonyA7IV = await prisma.product.findFirst({ where: { name: 'Sony Alpha 7 IV' } });
@@ -553,9 +1127,12 @@ async function main() {
         { rating: 4, message: 'Real-time tracking autofocus is incredibly accurate for moving subjects.', name_user: 'ActionPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/135.jpg', productId: sonyA7IV.id },
       ],
     });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: sonyA7IV.id }]
+    });
   }
 
-  const macbookPro14 = await prisma.product.findFirst({ where: { name: 'MacBook Pro 14"' } });
+  const macbookPro14 = await prisma.product.findFirst({ where: { name: 'MacBook Pro 14' } });
   if (macbookPro14) {
     await prisma.review.createMany({
       data: [
@@ -565,6 +1142,23 @@ async function main() {
         { rating: 3, message: 'Great laptop, but limited port selection still requires dongles.', name_user: 'DongleHater', url_image_user: 'https://randomuser.me/api/portraits/men/137.jpg', productId: macbookPro14.id },
         { rating: 4, message: 'Silent operation and cool running even under heavy workloads.', name_user: 'SilentWorker', url_image_user: 'https://randomuser.me/api/portraits/women/137.jpg', productId: macbookPro14.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Space Gray', hex_code: '#4A4A4A', productId: macbookPro14.id },
+        { name: 'Silver', hex_code: '#C0C0C0', productId: macbookPro14.id }
+      ]
+    });
+    await prisma.product.update({
+      where: { id: macbookPro14.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
     });
   }
 
@@ -578,6 +1172,23 @@ async function main() {
         { rating: 3, message: 'Good laptop, but thermal management could be better under load.', name_user: 'ThermalTester', url_image_user: 'https://randomuser.me/api/portraits/women/139.jpg', productId: dellXPS15.id },
         { rating: 4, message: 'Excellent keyboard and premium materials throughout.', name_user: 'MaterialExpert', url_image_user: 'https://randomuser.me/api/portraits/men/140.jpg', productId: dellXPS15.id },
       ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Silver', hex_code: '#C0C0C0', productId: dellXPS15.id },
+        { name: 'Graphite', hex_code: '#2F2F2F', productId: dellXPS15.id }
+      ]
+    });
+    await prisma.product.update({
+      where: { id: dellXPS15.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
     });
   }
 
