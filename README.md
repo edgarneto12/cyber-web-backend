@@ -1,3 +1,5 @@
+
+
 🕹️ CYBER WEB BACKEND
 
 ## Description
@@ -30,16 +32,66 @@ Follow the steps below to run the project locally:
 	```
 3. Set up the database:
 	- The project is already configured for SQLite. If needed, adjust the `.env` file.
-	- Run migrations and seed:
+	- Run migrations:
 	```bash
 	npx prisma migrate dev
-	npx ts-node prisma/seed.ts
 	```
-4. Start the server:
+4. Generate Prisma Client:
+	```bash
+	npx prisma generate
+	```
+5. Seed the database with sample data:
+	```bash
+	npx prisma db seed
+	```
+	Or alternatively:
+	```bash
+	npx tsx src/script/seed.ts
+	```
+6. Start the server:
 	```bash
 	npm run dev
 	```
-5. Access the API at `http://localhost:3001`
+7. Access the API at `http://localhost:3001`
+
+## Database Commands
+Essential commands for database management:
+
+### Generate Prisma Client
+```bash
+npx prisma generate
+```
+Generates the Prisma client based on your schema. Run this after schema changes.
+
+### Run Database Migrations
+```bash
+npx prisma migrate dev
+```
+Creates and applies database migrations for development.
+
+### Seed Database
+```bash
+npx prisma db seed
+```
+Populates the database with sample data defined in the seed file.
+
+### Alternative Seed Command
+```bash
+npx tsx src/script/seed.ts
+```
+Directly executes the seed script using tsx.
+
+### Open Prisma Studio
+```bash
+npx prisma studio
+```
+Opens a visual database browser at `http://localhost:5555`
+
+### Reset Database
+```bash
+npx prisma migrate reset
+```
+Resets the database and re-runs all migrations and seeds.
 
 ## Front-end
 The front-end for this project is available at:
