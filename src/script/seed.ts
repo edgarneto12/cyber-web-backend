@@ -4,14 +4,10 @@ const prisma = new PrismaClient();
 
 async function main() {
 
-  // A ordem de exclusão é importante para evitar erros de chave estrangeira.
-  // Deleta os modelos que dependem do Product primeiro.
   await prisma.review.deleteMany({});
   await prisma.colorProduct.deleteMany({});
   await prisma.smartphoneSpec.deleteMany({});
 
-  // Para relações muitos-para-muitos, o Prisma gerencia uma tabela de junção.
-  // Limpar a tabela Product e StorageOption separadamente resolve a relação.
   await prisma.product.deleteMany({});
   await prisma.storageOption.deleteMany({});
   await prisma.category.deleteMany({});
@@ -61,11 +57,11 @@ async function main() {
   await prisma.product.createMany({
     data: [
 
+      { name: 'Apple iPhone 14 Pro', description: 'Enhanced capabilities thanks toan enlarged display of 6.7 inchesand work without rechargingthroughout the day. Incredible photosas in weak, yesand in bright lightusing the new systemwith two cameras ', brand: 'Apple', price: 1499.00, discounted_price: 1399, stock: 25, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703891083', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
       { name: 'Apple iPhone 15 Pro', description: 'The ultimate iPhone experience.', brand: 'Apple', price: 999.00, stock: 50, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-15-pro-finish-select-202309-6-1inch-naturaltitanium?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1692845699234', tag: 'new_arrival', categoryId: phonesCategory.id },
       { name: 'Samsung Galaxy S24 Ultra', description: 'Galaxy AI is here.', brand: 'Samsung', price: 1199.00, discounted_price: 1099.00, stock: 30, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTu6jxwGQ7NRnzLx28HpD9Tv62eqv4DczJiXA&s', tag: 'bestseller', categoryId: phonesCategory.id },
       { name: 'Xiaomi 14', description: 'Lens to legend.', brand: 'Xiaomi', price: 799.00, stock: 60, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTSrYujiWuMblH9dRE1u38CsQo7-c6xFiL0TA&s', tag: 'featured_product', categoryId: phonesCategory.id },
       { name: 'Google Pixel 8 Pro', description: 'The best of Google, built around you.', brand: 'Google', price: 899.00, stock: 40, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyCsIF1qT74MG8hCDOJYWMFJ5uWYwJLPlC8w&s', tag: 'new_arrival', categoryId: phonesCategory.id },
-      { name: 'Apple iPhone 14 Pro', description: 'A magical new way to interact with iPhone.', brand: 'Apple', price: 899.00, discounted_price: 449.50, stock: 25, url_image: 'https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-14-pro-finish-select-202209-6-1inch-deeppurple?wid=5120&hei=2880&fmt=p-jpg&qlt=80&.v=1663703891083', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
 
       { name: 'OnePlus 12', description: 'Fast and smooth with flagship performance.', brand: 'OnePlus', price: 699.00, stock: 45, url_image: 'https://http2.mlstatic.com/D_NQ_NP_2X_746948-MLA74551247139_022024-F.webp', tag: 'new_arrival', categoryId: phonesCategory.id },
       { name: 'Motorola Edge 50 Pro', description: 'Flagship performance with stunning display.', brand: 'Motorola', price: 649.00, stock: 40, url_image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6wExWylNtf6OqcA2hpn4K4BTnYEZ5N_xJjQ&s', tag: 'bestseller', categoryId: phonesCategory.id },
@@ -110,7 +106,6 @@ async function main() {
   });
   console.log('📱 Products created.');
 
-  // Create unique storage options once
   await prisma.storageOption.createMany({
     data: [
       { size: '16GB' },
@@ -124,7 +119,6 @@ async function main() {
   });
   console.log('💾 Unique storage options created.');
 
-  // Fetch all storage options to map them
   const storageOptions = await prisma.storageOption.findMany();
   const storageMap = storageOptions.reduce((acc, option) => {
     acc[option.size] = option.id;
@@ -737,9 +731,9 @@ async function main() {
       data: [
         { rating: 5, message: 'Business laptop perfection! Lightweight yet incredibly durable.', name_user: 'BusinessExec', url_image_user: 'https://randomuser.me/api/portraits/men/100.jpg', productId: thinkpadX1.id },
         { rating: 4, message: 'Excellent keyboard and build quality, but display could be brighter.', name_user: 'KeyboardEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/women/100.jpg', productId: thinkpadX1.id },
-        { rating: 5, message: 'Most reliable laptop I have ever owned. Perfect for productivity.', name_user: 'ProductivityPro', url_image_user: 'https://randomuser.me/api/portraits/men/101.jpg', productId: thinkpadX1.id },
-        { rating: 3, message: 'Good laptop, but premium price for business-focused features.', name_user: 'BudgetBusiness', url_image_user: 'https://randomuser.me/api/portraits/women/101.jpg', productId: thinkpadX1.id },
-        { rating: 4, message: 'Exceptional battery life and performance for demanding workloads.', name_user: 'WorkloadMaster', url_image_user: 'https://randomuser.me/api/portraits/men/102.jpg', productId: thinkpadX1.id },
+        { rating: 5, message: 'Most reliable laptop I have ever owned. Perfect for productivity.', name_user: 'ProductivityPro', url_image_user: 'https://randomuser.me/api/portraits/men/12.jpg', productId: thinkpadX1.id },
+        { rating: 3, message: 'Good laptop, but premium price for business-focused features.', name_user: 'BudgetBusiness', url_image_user: 'https://randomuser.me/api/portraits/women/12.jpg', productId: thinkpadX1.id },
+        { rating: 4, message: 'Exceptional battery life and performance for demanding workloads.', name_user: 'WorkloadMaster', url_image_user: 'https://randomuser.me/api/portraits/men/13.jpg', productId: thinkpadX1.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -762,11 +756,11 @@ async function main() {
   if (asusROG) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Gaming powerhouse with sleek design. Runs everything at max settings!', name_user: 'GamingBeast', url_image_user: 'https://randomuser.me/api/portraits/women/102.jpg', productId: asusROG.id },
-        { rating: 4, message: 'Great performance and display, but fans can get loud during gaming.', name_user: 'SilentGamer', url_image_user: 'https://randomuser.me/api/portraits/men/103.jpg', productId: asusROG.id },
-        { rating: 5, message: 'Perfect balance of gaming performance and professional aesthetics.', name_user: 'GameDevPro', url_image_user: 'https://randomuser.me/api/portraits/women/103.jpg', productId: asusROG.id },
-        { rating: 3, message: 'Powerful machine, but battery life during gaming is disappointing.', name_user: 'BatteryGamer', url_image_user: 'https://randomuser.me/api/portraits/men/104.jpg', productId: asusROG.id },
-        { rating: 4, message: 'Excellent build quality and RGB lighting system is amazing.', name_user: 'RGBMaster', url_image_user: 'https://randomuser.me/api/portraits/women/104.jpg', productId: asusROG.id },
+        { rating: 5, message: 'Gaming powerhouse with sleek design. Runs everything at max settings!', name_user: 'GamingBeast', url_image_user: 'https://randomuser.me/api/portraits/women/23.jpg', productId: asusROG.id },
+        { rating: 4, message: 'Great performance and display, but fans can get loud during gaming.', name_user: 'SilentGamer', url_image_user: 'https://randomuser.me/api/portraits/men/25.jpg', productId: asusROG.id },
+        { rating: 5, message: 'Perfect balance of gaming performance and professional aesthetics.', name_user: 'GameDevPro', url_image_user: 'https://randomuser.me/api/portraits/women/21.jpg', productId: asusROG.id },
+        { rating: 3, message: 'Powerful machine, but battery life during gaming is disappointing.', name_user: 'BatteryGamer', url_image_user: 'https://randomuser.me/api/portraits/men/21.jpg', productId: asusROG.id },
+        { rating: 4, message: 'Excellent build quality and RGB lighting system is amazing.', name_user: 'RGBMaster', url_image_user: 'https://randomuser.me/api/portraits/women/4.jpg', productId: asusROG.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -793,11 +787,11 @@ async function main() {
   if (xboxSeriesX) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'True 4K gaming with lightning-fast loading times. Xbox Game Pass is amazing!', name_user: 'XboxFanatic', url_image_user: 'https://randomuser.me/api/portraits/men/105.jpg', productId: xboxSeriesX.id },
-        { rating: 4, message: 'Powerful console with great backwards compatibility, but exclusive games are limited.', name_user: 'GameLibrarian', url_image_user: 'https://randomuser.me/api/portraits/women/105.jpg', productId: xboxSeriesX.id },
-        { rating: 5, message: 'Best value in gaming with Game Pass subscription. Highly recommended!', name_user: 'ValueGamer', url_image_user: 'https://randomuser.me/api/portraits/men/106.jpg', productId: xboxSeriesX.id },
-        { rating: 3, message: 'Good console, but design is too large for my entertainment center.', name_user: 'SpaceSaver', url_image_user: 'https://randomuser.me/api/portraits/women/106.jpg', productId: xboxSeriesX.id },
-        { rating: 4, message: 'Excellent performance and quiet operation during gameplay.', name_user: 'QuietGamer', url_image_user: 'https://randomuser.me/api/portraits/men/107.jpg', productId: xboxSeriesX.id },
+        { rating: 5, message: 'True 4K gaming with lightning-fast loading times. Xbox Game Pass is amazing!', name_user: 'XboxFanatic', url_image_user: 'https://randomuser.me/api/portraits/men/77.jpg', productId: xboxSeriesX.id },
+        { rating: 4, message: 'Powerful console with great backwards compatibility, but exclusive games are limited.', name_user: 'GameLibrarian', url_image_user: 'https://randomuser.me/api/portraits/women/65.jpg', productId: xboxSeriesX.id },
+        { rating: 5, message: 'Best value in gaming with Game Pass subscription. Highly recommended!', name_user: 'ValueGamer', url_image_user: 'https://randomuser.me/api/portraits/men/65.jpg', productId: xboxSeriesX.id },
+        { rating: 3, message: 'Good console, but design is too large for my entertainment center.', name_user: 'SpaceSaver', url_image_user: 'https://randomuser.me/api/portraits/women/61.jpg', productId: xboxSeriesX.id },
+        { rating: 4, message: 'Excellent performance and quiet operation during gameplay.', name_user: 'QuietGamer', url_image_user: 'https://randomuser.me/api/portraits/men/13.jpg', productId: xboxSeriesX.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -817,11 +811,11 @@ async function main() {
   if (switchOLED) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'OLED screen is gorgeous! Perfect for portable and docked gaming.', name_user: 'PortableGamer', url_image_user: 'https://randomuser.me/api/portraits/women/107.jpg', productId: switchOLED.id },
-        { rating: 4, message: 'Great upgrade from original Switch, but performance is still limited.', name_user: 'SwitchUpgrader', url_image_user: 'https://randomuser.me/api/portraits/men/108.jpg', productId: switchOLED.id },
-        { rating: 5, message: 'Nintendo exclusives are unmatched. Joy-Con controllers work perfectly!', name_user: 'NintendoNinja', url_image_user: 'https://randomuser.me/api/portraits/women/108.jpg', productId: switchOLED.id },
-        { rating: 3, message: 'Good console, but Joy-Con drift is still an issue after all these years.', name_user: 'DriftVictim', url_image_user: 'https://randomuser.me/api/portraits/men/109.jpg', productId: switchOLED.id },
-        { rating: 4, message: 'Perfect family gaming console with something for everyone.', name_user: 'FamilyGamer', url_image_user: 'https://randomuser.me/api/portraits/women/109.jpg', productId: switchOLED.id },
+        { rating: 5, message: 'OLED screen is gorgeous! Perfect for portable and docked gaming.', name_user: 'PortableGamer', url_image_user: 'https://randomuser.me/api/portraits/women/88.jpg', productId: switchOLED.id },
+        { rating: 4, message: 'Great upgrade from original Switch, but performance is still limited.', name_user: 'SwitchUpgrader', url_image_user: 'https://randomuser.me/api/portraits/men/66.jpg', productId: switchOLED.id },
+        { rating: 5, message: 'Nintendo exclusives are unmatched. Joy-Con controllers work perfectly!', name_user: 'NintendoNinja', url_image_user: 'https://randomuser.me/api/portraits/women/33.jpg', productId: switchOLED.id },
+        { rating: 3, message: 'Good console, but Joy-Con drift is still an issue after all these years.', name_user: 'DriftVictim', url_image_user: 'https://randomuser.me/api/portraits/men/22.jpg', productId: switchOLED.id },
+        { rating: 4, message: 'Perfect family gaming console with something for everyone.', name_user: 'FamilyGamer', url_image_user: 'https://randomuser.me/api/portraits/women/11.jpg', productId: switchOLED.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -841,11 +835,11 @@ async function main() {
   if (steamDeck) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'PC gaming on the go is finally perfect! OLED screen is beautiful.', name_user: 'PCGamingNomad', url_image_user: 'https://randomuser.me/api/portraits/men/110.jpg', productId: steamDeck.id },
-        { rating: 4, message: 'Amazing device for Steam library, but battery life could be better.', name_user: 'SteamLibrarian', url_image_user: 'https://randomuser.me/api/portraits/women/110.jpg', productId: steamDeck.id },
-        { rating: 5, message: 'Desktop PC experience in a handheld. Revolutionary gaming device!', name_user: 'HandheldRevolutionary', url_image_user: 'https://randomuser.me/api/portraits/men/111.jpg', productId: steamDeck.id },
-        { rating: 3, message: 'Great concept, but some games require tweaking to run properly.', name_user: 'TinkererGamer', url_image_user: 'https://randomuser.me/api/portraits/women/111.jpg', productId: steamDeck.id },
-        { rating: 4, message: 'Perfect for indie games and older AAA titles. Love the versatility!', name_user: 'IndieGamer', url_image_user: 'https://randomuser.me/api/portraits/men/112.jpg', productId: steamDeck.id },
+        { rating: 5, message: 'PC gaming on the go is finally perfect! OLED screen is beautiful.', name_user: 'PCGamingNomad', url_image_user: 'https://randomuser.me/api/portraits/men/1.jpg', productId: steamDeck.id },
+        { rating: 4, message: 'Amazing device for Steam library, but battery life could be better.', name_user: 'SteamLibrarian', url_image_user: 'https://randomuser.me/api/portraits/women/34.jpg', productId: steamDeck.id },
+        { rating: 5, message: 'Desktop PC experience in a handheld. Revolutionary gaming device!', name_user: 'HandheldRevolutionary', url_image_user: 'https://randomuser.me/api/portraits/men/34.jpg', productId: steamDeck.id },
+        { rating: 3, message: 'Great concept, but some games require tweaking to run properly.', name_user: 'TinkererGamer', url_image_user: 'https://randomuser.me/api/portraits/women/33.jpg', productId: steamDeck.id },
+        { rating: 4, message: 'Perfect for indie games and older AAA titles. Love the versatility!', name_user: 'IndieGamer', url_image_user: 'https://randomuser.me/api/portraits/men/36.jpg', productId: steamDeck.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -902,11 +896,11 @@ async function main() {
 
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Incredible camera quality with Leica partnership. Flagship performance!', name_user: 'XiaomiFan', url_image_user: 'https://randomuser.me/api/portraits/men/113.jpg', productId: xiaomi14.id },
-        { rating: 4, message: 'Great value flagship, but MIUI can be overwhelming for some users.', name_user: 'MIUIUser', url_image_user: 'https://randomuser.me/api/portraits/women/113.jpg', productId: xiaomi14.id },
-        { rating: 5, message: 'Best price-to-performance ratio in the flagship segment.', name_user: 'ValueHunter2024', url_image_user: 'https://randomuser.me/api/portraits/men/114.jpg', productId: xiaomi14.id },
-        { rating: 3, message: 'Good phone, but software update schedule could be more consistent.', name_user: 'UpdateTracker', url_image_user: 'https://randomuser.me/api/portraits/women/114.jpg', productId: xiaomi14.id },
-        { rating: 4, message: 'Excellent build quality and display. Fast charging is amazing!', name_user: 'ChargingEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/men/115.jpg', productId: xiaomi14.id },
+        { rating: 5, message: 'Incredible camera quality with Leica partnership. Flagship performance!', name_user: 'XiaomiFan', url_image_user: 'https://randomuser.me/api/portraits/men/43.jpg', productId: xiaomi14.id },
+        { rating: 4, message: 'Great value flagship, but MIUI can be overwhelming for some users.', name_user: 'MIUIUser', url_image_user: 'https://randomuser.me/api/portraits/women/43.jpg', productId: xiaomi14.id },
+        { rating: 5, message: 'Best price-to-performance ratio in the flagship segment.', name_user: 'ValueHunter2024', url_image_user: 'https://randomuser.me/api/portraits/men/42.jpg', productId: xiaomi14.id },
+        { rating: 3, message: 'Good phone, but software update schedule could be more consistent.', name_user: 'UpdateTracker', url_image_user: 'https://randomuser.me/api/portraits/women/41.jpg', productId: xiaomi14.id },
+        { rating: 4, message: 'Excellent build quality and display. Fast charging is amazing!', name_user: 'ChargingEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/men/48.jpg', productId: xiaomi14.id },
       ],
     });
   }
@@ -949,11 +943,11 @@ async function main() {
 
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'AI features are revolutionary! Magic Eraser and Call Screen are game-changers.', name_user: 'AIEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/women/115.jpg', productId: pixel8Pro.id },
-        { rating: 4, message: 'Pure Android experience with best-in-class camera computational photography.', name_user: 'AndroidPurist', url_image_user: 'https://randomuser.me/api/portraits/men/116.jpg', productId: pixel8Pro.id },
-        { rating: 5, message: 'Night Sight and Portrait modes are absolutely incredible!', name_user: 'NightPhotographer', url_image_user: 'https://randomuser.me/api/portraits/women/116.jpg', productId: pixel8Pro.id },
-        { rating: 3, message: 'Great camera, but battery life could be improved for heavy usage.', name_user: 'HeavyUser', url_image_user: 'https://randomuser.me/api/portraits/men/117.jpg', productId: pixel8Pro.id },
-        { rating: 4, message: 'Regular updates and security patches make this phone future-proof.', name_user: 'SecurityFirst', url_image_user: 'https://randomuser.me/api/portraits/women/117.jpg', productId: pixel8Pro.id },
+        { rating: 5, message: 'AI features are revolutionary! Magic Eraser and Call Screen are game-changers.', name_user: 'AIEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/women/83.jpg', productId: pixel8Pro.id },
+        { rating: 4, message: 'Pure Android experience with best-in-class camera computational photography.', name_user: 'AndroidPurist', url_image_user: 'https://randomuser.me/api/portraits/men/32.jpg', productId: pixel8Pro.id },
+        { rating: 5, message: 'Night Sight and Portrait modes are absolutely incredible!', name_user: 'NightPhotographer', url_image_user: 'https://randomuser.me/api/portraits/women/11.jpg', productId: pixel8Pro.id },
+        { rating: 3, message: 'Great camera, but battery life could be improved for heavy usage.', name_user: 'HeavyUser', url_image_user: 'https://randomuser.me/api/portraits/men/11.jpg', productId: pixel8Pro.id },
+        { rating: 4, message: 'Regular updates and security patches make this phone future-proof.', name_user: 'SecurityFirst', url_image_user: 'https://randomuser.me/api/portraits/women/16.jpg', productId: pixel8Pro.id },
       ],
     });
   }
@@ -963,22 +957,23 @@ async function main() {
   if (iphone14Pro) {
     await prisma.smartphoneSpec.create({
       data: {
-        screen_size: '6.1 inches',
-        cpu: 'A16 Bionic chip',
-        total_cores: '6-core CPU',
-        main_camera: '48MP Main + 12MP Ultra Wide + 12MP Telephoto',
-        front_camera: '12MP TrueDepth',
-        battery: 'Up to 23 hours video playback',
+        screen_size: '6.7"',
+        cpu: 'Apple A16 Bionic',
+        total_cores: '6',
+        main_camera: '48-12 -12 MP',
+        front_camera: '12 MP',
+        battery: '4323 mAh',
         product: { connect: { id: iphone14Pro.id } },
       },
     });
 
     await prisma.colorProduct.createMany({ 
       data: [
-        { name: 'Deep Purple', hex_code: '#5D4E6D', productId: iphone14Pro.id }, 
-        { name: 'Gold', hex_code: '#FFD700', productId: iphone14Pro.id },
-        { name: 'Silver', hex_code: '#C0C0C0', productId: iphone14Pro.id },
-        { name: 'Space Black', hex_code: '#1C1C1E', productId: iphone14Pro.id }
+        { name: 'Black', hex_code: '#000000', productId: iphone14Pro.id },
+        { name: 'Purple', hex_code: '#781DBC', productId: iphone14Pro.id },
+        { name: 'Red', hex_code: '#E10000', productId: iphone14Pro.id },
+        { name: 'Gold', hex_code: '#E1B000', productId: iphone14Pro.id },
+        { name: 'Silver', hex_code: '#E8E8E8', productId: iphone14Pro.id }
       ] 
     });
 
@@ -999,11 +994,11 @@ async function main() {
     await prisma.review.createMany({
       data: [
 
-        { rating: 5, message: 'Dynamic Island is innovative! 48MP camera takes stunning photos.', name_user: 'DynamicIslandFan', url_image_user: 'https://randomuser.me/api/portraits/men/118.jpg', productId: iphone14Pro.id },
-        { rating: 4, message: 'Great phone with excellent build quality, but the price is steep.', name_user: 'PremiumBuyer', url_image_user: 'https://randomuser.me/api/portraits/women/118.jpg', productId: iphone14Pro.id },
-        { rating: 5, message: 'iOS ecosystem integration is seamless. Perfect for productivity!', name_user: 'iOSEcosystem', url_image_user: 'https://randomuser.me/api/portraits/men/119.jpg', productId: iphone14Pro.id },
-        { rating: 3, message: 'Good phone, but not a huge upgrade from iPhone 13 Pro.', name_user: 'UpgradeSkipper', url_image_user: 'https://randomuser.me/api/portraits/women/119.jpg', productId: iphone14Pro.id },
-        { rating: 4, message: 'Camera quality is outstanding, especially in ProRAW mode.', name_user: 'ProRAWShooter', url_image_user: 'https://randomuser.me/api/portraits/men/120.jpg', productId: iphone14Pro.id },
+        { rating: 5, message: 'Dynamic Island is innovative! 48MP camera takes stunning photos.', name_user: 'DynamicIslandFan', url_image_user: 'https://randomuser.me/api/portraits/men/90.jpg', productId: iphone14Pro.id },
+        { rating: 4, message: 'Great phone with excellent build quality, but the price is steep.', name_user: 'PremiumBuyer', url_image_user: 'https://randomuser.me/api/portraits/women/90.jpg', productId: iphone14Pro.id },
+        { rating: 5, message: 'iOS ecosystem integration is seamless. Perfect for productivity!', name_user: 'iOSEcosystem', url_image_user: 'https://randomuser.me/api/portraits/men/99.jpg', productId: iphone14Pro.id },
+        { rating: 3, message: 'Good phone, but not a huge upgrade from iPhone 13 Pro.', name_user: 'UpgradeSkipper', url_image_user: 'https://randomuser.me/api/portraits/women/99.jpg', productId: iphone14Pro.id },
+        { rating: 4, message: 'Camera quality is outstanding, especially in ProRAW mode.', name_user: 'ProRAWShooter', url_image_user: 'https://randomuser.me/api/portraits/men/98.jpg', productId: iphone14Pro.id },
       ],
     });
   }
@@ -1013,11 +1008,11 @@ async function main() {
   if (appleWatchUltra) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Perfect for extreme sports and outdoor adventures. Built like a tank!', name_user: 'ExtremeAthlete', url_image_user: 'https://randomuser.me/api/portraits/women/120.jpg', productId: appleWatchUltra.id },
-        { rating: 4, message: 'Amazing battery life and rugged design, but quite expensive.', name_user: 'RuggedTester', url_image_user: 'https://randomuser.me/api/portraits/men/121.jpg', productId: appleWatchUltra.id },
-        { rating: 5, message: 'Best smartwatch for serious athletes and outdoor enthusiasts.', name_user: 'OutdoorPro', url_image_user: 'https://randomuser.me/api/portraits/women/121.jpg', productId: appleWatchUltra.id },
-        { rating: 3, message: 'Great watch, but too bulky for everyday casual wear.', name_user: 'CasualWearer', url_image_user: 'https://randomuser.me/api/portraits/men/122.jpg', productId: appleWatchUltra.id },
-        { rating: 4, message: 'Precision GPS and diving features are incredibly accurate.', name_user: 'DivingInstructor', url_image_user: 'https://randomuser.me/api/portraits/women/122.jpg', productId: appleWatchUltra.id },
+        { rating: 5, message: 'Perfect for extreme sports and outdoor adventures. Built like a tank!', name_user: 'ExtremeAthlete', url_image_user: 'https://randomuser.me/api/portraits/women/31.jpg', productId: appleWatchUltra.id },
+        { rating: 4, message: 'Amazing battery life and rugged design, but quite expensive.', name_user: 'RuggedTester', url_image_user: 'https://randomuser.me/api/portraits/men/38.jpg', productId: appleWatchUltra.id },
+        { rating: 5, message: 'Best smartwatch for serious athletes and outdoor enthusiasts.', name_user: 'OutdoorPro', url_image_user: 'https://randomuser.me/api/portraits/women/38.jpg', productId: appleWatchUltra.id },
+        { rating: 3, message: 'Great watch, but too bulky for everyday casual wear.', name_user: 'CasualWearer', url_image_user: 'https://randomuser.me/api/portraits/men/39.jpg', productId: appleWatchUltra.id },
+        { rating: 4, message: 'Precision GPS and diving features are incredibly accurate.', name_user: 'DivingInstructor', url_image_user: 'https://randomuser.me/api/portraits/women/39.jpg', productId: appleWatchUltra.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1038,11 +1033,11 @@ async function main() {
   if (galaxyWatch6) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Excellent health tracking with body composition analysis!', name_user: 'HealthMonitor', url_image_user: 'https://randomuser.me/api/portraits/men/123.jpg', productId: galaxyWatch6.id },
-        { rating: 4, message: 'Great integration with Samsung phones, but battery could be better.', name_user: 'SamsungEcosystem', url_image_user: 'https://randomuser.me/api/portraits/women/123.jpg', productId: galaxyWatch6.id },
-        { rating: 5, message: 'Wear OS 4 is smooth and responsive. Love the customization options!', name_user: 'WearOSFan', url_image_user: 'https://randomuser.me/api/portraits/men/124.jpg', productId: galaxyWatch6.id },
-        { rating: 3, message: 'Good smartwatch, but rotating bezel from older models was better.', name_user: 'BezelMisser', url_image_user: 'https://randomuser.me/api/portraits/women/124.jpg', productId: galaxyWatch6.id },
-        { rating: 4, message: 'Sleep tracking and heart rate monitoring are very accurate.', name_user: 'SleepTracker', url_image_user: 'https://randomuser.me/api/portraits/men/125.jpg', productId: galaxyWatch6.id },
+        { rating: 5, message: 'Excellent health tracking with body composition analysis!', name_user: 'HealthMonitor', url_image_user: 'https://randomuser.me/api/portraits/men/40.jpg', productId: galaxyWatch6.id },
+        { rating: 4, message: 'Great integration with Samsung phones, but battery could be better.', name_user: 'SamsungEcosystem', url_image_user: 'https://randomuser.me/api/portraits/women/40.jpg', productId: galaxyWatch6.id },
+        { rating: 5, message: 'Wear OS 4 is smooth and responsive. Love the customization options!', name_user: 'WearOSFan', url_image_user: 'https://randomuser.me/api/portraits/men/41.jpg', productId: galaxyWatch6.id },
+        { rating: 3, message: 'Good smartwatch, but rotating bezel from older models was better.', name_user: 'BezelMisser', url_image_user: 'https://randomuser.me/api/portraits/women/41.jpg', productId: galaxyWatch6.id },
+        { rating: 4, message: 'Sleep tracking and heart rate monitoring are very accurate.', name_user: 'SleepTracker', url_image_user: 'https://randomuser.me/api/portraits/men/85.jpg', productId: galaxyWatch6.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1066,11 +1061,11 @@ async function main() {
   if (airpodsMax) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Premium build quality with exceptional sound and noise cancellation.', name_user: 'PremiumAudio', url_image_user: 'https://randomuser.me/api/portraits/women/125.jpg', productId: airpodsMax.id },
-        { rating: 4, message: 'Amazing sound quality, but the weight can be uncomfortable for long use.', name_user: 'WeightWatcher', url_image_user: 'https://randomuser.me/api/portraits/men/126.jpg', productId: airpodsMax.id },
-        { rating: 5, message: 'Spatial Audio is mind-blowing for movies and music!', name_user: 'SpatialAudioFan', url_image_user: 'https://randomuser.me/api/portraits/women/126.jpg', productId: airpodsMax.id },
-        { rating: 3, message: 'Great headphones, but the case design is impractical and weird.', name_user: 'CaseDesignCritic', url_image_user: 'https://randomuser.me/api/portraits/men/127.jpg', productId: airpodsMax.id },
-        { rating: 4, message: 'Seamless integration with Apple devices makes them worth it.', name_user: 'AppleEcosystem', url_image_user: 'https://randomuser.me/api/portraits/women/127.jpg', productId: airpodsMax.id },
+        { rating: 5, message: 'Premium build quality with exceptional sound and noise cancellation.', name_user: 'PremiumAudio', url_image_user: 'https://randomuser.me/api/portraits/women/61.jpg', productId: airpodsMax.id },
+        { rating: 4, message: 'Amazing sound quality, but the weight can be uncomfortable for long use.', name_user: 'WeightWatcher', url_image_user: 'https://randomuser.me/api/portraits/men/61.jpg', productId: airpodsMax.id },
+        { rating: 5, message: 'Spatial Audio is mind-blowing for movies and music!', name_user: 'SpatialAudioFan', url_image_user: 'https://randomuser.me/api/portraits/women/62.jpg', productId: airpodsMax.id },
+        { rating: 3, message: 'Great headphones, but the case design is impractical and weird.', name_user: 'CaseDesignCritic', url_image_user: 'https://randomuser.me/api/portraits/men/62.jpg', productId: airpodsMax.id },
+        { rating: 4, message: 'Seamless integration with Apple devices makes them worth it.', name_user: 'AppleEcosystem', url_image_user: 'https://randomuser.me/api/portraits/women/63.jpg', productId: airpodsMax.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1085,11 +1080,11 @@ async function main() {
   if (boseQC) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Best noise cancellation in the market! Perfect for travel.', name_user: 'FrequentFlyer', url_image_user: 'https://randomuser.me/api/portraits/men/128.jpg', productId: boseQC.id },
-        { rating: 4, message: 'Incredible comfort and noise cancellation, but lacks some smart features.', name_user: 'ComfortLover', url_image_user: 'https://randomuser.me/api/portraits/women/128.jpg', productId: boseQC.id },
-        { rating: 5, message: 'Immersive Audio feature creates an amazing listening experience.', name_user: 'ImmersiveListener', url_image_user: 'https://randomuser.me/api/portraits/men/129.jpg', productId: boseQC.id },
-        { rating: 3, message: 'Great headphones, but the app could be more user-friendly.', name_user: 'AppCritic', url_image_user: 'https://randomuser.me/api/portraits/women/129.jpg', productId: boseQC.id },
-        { rating: 4, message: 'Long battery life and quick charge feature are very convenient.', name_user: 'BatteryLife', url_image_user: 'https://randomuser.me/api/portraits/men/130.jpg', productId: boseQC.id },
+        { rating: 5, message: 'Best noise cancellation in the market! Perfect for travel.', name_user: 'FrequentFlyer', url_image_user: 'https://randomuser.me/api/portraits/men/64.jpg', productId: boseQC.id },
+        { rating: 4, message: 'Incredible comfort and noise cancellation, but lacks some smart features.', name_user: 'ComfortLover', url_image_user: 'https://randomuser.me/api/portraits/women/64.jpg', productId: boseQC.id },
+        { rating: 5, message: 'Immersive Audio feature creates an amazing listening experience.', name_user: 'ImmersiveListener', url_image_user: 'https://randomuser.me/api/portraits/men/65.jpg', productId: boseQC.id },
+        { rating: 3, message: 'Great headphones, but the app could be more user-friendly.', name_user: 'AppCritic', url_image_user: 'https://randomuser.me/api/portraits/women/8.jpg', productId: boseQC.id },
+        { rating: 4, message: 'Long battery life and quick charge feature are very convenient.', name_user: 'BatteryLife', url_image_user: 'https://randomuser.me/api/portraits/men/8.jpg', productId: boseQC.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1104,11 +1099,11 @@ async function main() {
   if (canonR5) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Professional-grade camera with incredible 8K video capabilities!', name_user: 'VideoProducer', url_image_user: 'https://randomuser.me/api/portraits/women/130.jpg', productId: canonR5.id },
-        { rating: 4, message: 'Amazing image quality and autofocus, but overheating can be an issue.', name_user: 'OverheatWatcher', url_image_user: 'https://randomuser.me/api/portraits/men/131.jpg', productId: canonR5.id },
-        { rating: 5, message: 'Best mirrorless camera for wedding and portrait photography.', name_user: 'WeddingPhotographer', url_image_user: 'https://randomuser.me/api/portraits/women/131.jpg', productId: canonR5.id },
-        { rating: 3, message: 'Excellent camera, but the price point is quite high for hobbyists.', name_user: 'HobbyistPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/132.jpg', productId: canonR5.id },
-        { rating: 4, message: 'In-body image stabilization works perfectly with RF lenses.', name_user: 'StabilizationTester', url_image_user: 'https://randomuser.me/api/portraits/women/132.jpg', productId: canonR5.id },
+        { rating: 5, message: 'Professional-grade camera with incredible 8K video capabilities!', name_user: 'VideoProducer', url_image_user: 'https://randomuser.me/api/portraits/women/3.jpg', productId: canonR5.id },
+        { rating: 4, message: 'Amazing image quality and autofocus, but overheating can be an issue.', name_user: 'OverheatWatcher', url_image_user: 'https://randomuser.me/api/portraits/men/3.jpg', productId: canonR5.id },
+        { rating: 5, message: 'Best mirrorless camera for wedding and portrait photography.', name_user: 'WeddingPhotographer', url_image_user: 'https://randomuser.me/api/portraits/women/4.jpg', productId: canonR5.id },
+        { rating: 3, message: 'Excellent camera, but the price point is quite high for hobbyists.', name_user: 'HobbyistPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/56.jpg', productId: canonR5.id },
+        { rating: 4, message: 'In-body image stabilization works perfectly with RF lenses.', name_user: 'StabilizationTester', url_image_user: 'https://randomuser.me/api/portraits/women/6.jpg', productId: canonR5.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1120,11 +1115,11 @@ async function main() {
   if (sonyA7IV) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Perfect all-around camera for both photo and video work!', name_user: 'HybridShooter', url_image_user: 'https://randomuser.me/api/portraits/men/133.jpg', productId: sonyA7IV.id },
-        { rating: 4, message: 'Great image quality and features, but menu system is complex.', name_user: 'MenuNavigatorPro', url_image_user: 'https://randomuser.me/api/portraits/women/133.jpg', productId: sonyA7IV.id },
-        { rating: 5, message: 'Excellent low-light performance and dynamic range.', name_user: 'LowLightSpecialist', url_image_user: 'https://randomuser.me/api/portraits/men/134.jpg', productId: sonyA7IV.id },
-        { rating: 3, message: 'Good camera, but battery life could definitely be improved.', name_user: 'BatteryLifeWatcher', url_image_user: 'https://randomuser.me/api/portraits/women/134.jpg', productId: sonyA7IV.id },
-        { rating: 4, message: 'Real-time tracking autofocus is incredibly accurate for moving subjects.', name_user: 'ActionPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/135.jpg', productId: sonyA7IV.id },
+        { rating: 5, message: 'Perfect all-around camera for both photo and video work!', name_user: 'HybridShooter', url_image_user: 'https://randomuser.me/api/portraits/men/6.jpg', productId: sonyA7IV.id },
+        { rating: 4, message: 'Great image quality and features, but menu system is complex.', name_user: 'MenuNavigatorPro', url_image_user: 'https://randomuser.me/api/portraits/women/7.jpg', productId: sonyA7IV.id },
+        { rating: 5, message: 'Excellent low-light performance and dynamic range.', name_user: 'LowLightSpecialist', url_image_user: 'https://randomuser.me/api/portraits/men/8.jpg', productId: sonyA7IV.id },
+        { rating: 3, message: 'Good camera, but battery life could definitely be improved.', name_user: 'BatteryLifeWatcher', url_image_user: 'https://randomuser.me/api/portraits/women/9.jpg', productId: sonyA7IV.id },
+        { rating: 4, message: 'Real-time tracking autofocus is incredibly accurate for moving subjects.', name_user: 'ActionPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/3.jpg', productId: sonyA7IV.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1136,11 +1131,11 @@ async function main() {
   if (macbookPro14) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'M3 Pro chip delivers incredible performance for video editing and development!', name_user: 'VideoEditor', url_image_user: 'https://randomuser.me/api/portraits/women/135.jpg', productId: macbookPro14.id },
-        { rating: 4, message: 'Amazing display and performance, but the price is quite premium.', name_user: 'PremiumLaptopBuyer', url_image_user: 'https://randomuser.me/api/portraits/men/136.jpg', productId: macbookPro14.id },
-        { rating: 5, message: 'Perfect laptop for creative professionals. Battery life is outstanding!', name_user: 'CreativeProfessional', url_image_user: 'https://randomuser.me/api/portraits/women/136.jpg', productId: macbookPro14.id },
-        { rating: 3, message: 'Great laptop, but limited port selection still requires dongles.', name_user: 'DongleHater', url_image_user: 'https://randomuser.me/api/portraits/men/137.jpg', productId: macbookPro14.id },
-        { rating: 4, message: 'Silent operation and cool running even under heavy workloads.', name_user: 'SilentWorker', url_image_user: 'https://randomuser.me/api/portraits/women/137.jpg', productId: macbookPro14.id },
+        { rating: 5, message: 'M3 Pro chip delivers incredible performance for video editing and development!', name_user: 'VideoEditor', url_image_user: 'https://randomuser.me/api/portraits/women/1.jpg', productId: macbookPro14.id },
+        { rating: 4, message: 'Amazing display and performance, but the price is quite premium.', name_user: 'PremiumLaptopBuyer', url_image_user: 'https://randomuser.me/api/portraits/men/11.jpg', productId: macbookPro14.id },
+        { rating: 5, message: 'Perfect laptop for creative professionals. Battery life is outstanding!', name_user: 'CreativeProfessional', url_image_user: 'https://randomuser.me/api/portraits/women/16.jpg', productId: macbookPro14.id },
+        { rating: 3, message: 'Great laptop, but limited port selection still requires dongles.', name_user: 'DongleHater', url_image_user: 'https://randomuser.me/api/portraits/men/17.jpg', productId: macbookPro14.id },
+        { rating: 4, message: 'Silent operation and cool running even under heavy workloads.', name_user: 'SilentWorker', url_image_user: 'https://randomuser.me/api/portraits/women/17.jpg', productId: macbookPro14.id },
       ],
     });
     await prisma.colorProduct.createMany({
@@ -1166,11 +1161,11 @@ async function main() {
   if (dellXPS15) {
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Stunning 4K display and powerful performance for content creation!', name_user: 'ContentCreator', url_image_user: 'https://randomuser.me/api/portraits/men/138.jpg', productId: dellXPS15.id },
-        { rating: 4, message: 'Great build quality and display, but trackpad could be more responsive.', name_user: 'TrackpadCritic', url_image_user: 'https://randomuser.me/api/portraits/women/138.jpg', productId: dellXPS15.id },
-        { rating: 5, message: 'Best Windows laptop for developers and creative professionals.', name_user: 'WindowsDeveloper', url_image_user: 'https://randomuser.me/api/portraits/men/139.jpg', productId: dellXPS15.id },
-        { rating: 3, message: 'Good laptop, but thermal management could be better under load.', name_user: 'ThermalTester', url_image_user: 'https://randomuser.me/api/portraits/women/139.jpg', productId: dellXPS15.id },
-        { rating: 4, message: 'Excellent keyboard and premium materials throughout.', name_user: 'MaterialExpert', url_image_user: 'https://randomuser.me/api/portraits/men/140.jpg', productId: dellXPS15.id },
+        { rating: 5, message: 'Stunning 4K display and powerful performance for content creation!', name_user: 'ContentCreator', url_image_user: 'https://randomuser.me/api/portraits/men/13.jpg', productId: dellXPS15.id },
+        { rating: 4, message: 'Great build quality and display, but trackpad could be more responsive.', name_user: 'TrackpadCritic', url_image_user: 'https://randomuser.me/api/portraits/women/13.jpg', productId: dellXPS15.id },
+        { rating: 5, message: 'Best Windows laptop for developers and creative professionals.', name_user: 'WindowsDeveloper', url_image_user: 'https://randomuser.me/api/portraits/men/14.jpg', productId: dellXPS15.id },
+        { rating: 3, message: 'Good laptop, but thermal management could be better under load.', name_user: 'ThermalTester', url_image_user: 'https://randomuser.me/api/portraits/women/14.jpg', productId: dellXPS15.id },
+        { rating: 4, message: 'Excellent keyboard and premium materials throughout.', name_user: 'MaterialExpert', url_image_user: 'https://randomuser.me/api/portraits/men/19.jpg', productId: dellXPS15.id },
       ],
     });
     await prisma.colorProduct.createMany({
