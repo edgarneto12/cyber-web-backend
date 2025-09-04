@@ -32,7 +32,9 @@ export class ProductsController {
     const page = parseInt(req.query.page as string) || 1;
     const sort = (req.query.sort as string) || 'price';
     const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-    const brands = req.body.filters?.brands;
+    const brandsQuery = req.query.brands as string;
+    const brands = brandsQuery ? brandsQuery.split(',') : undefined;
+
     try {
       const result = await this.productsService.getByCategoryName(category_name, page, sort, order, brands);
       res.json({ data: result.products, metadata: result.metadata });
