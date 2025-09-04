@@ -14,7 +14,6 @@ app.use(cors({ origin: 'http://localhost:5173' }));
 
 app.use(express.json());
 
-// Rota raiz
 app.get('/', (req: Request, res: Response) => {
   res.send('API is running!');
 });

@@ -1,7 +1,6 @@
 import { prisma } from '../../config/prisma';
 
 export class ProductsService {
-	// GET /api/products/:id
 	async getById(productId: number) {
 		return prisma.product.findUnique({
 			where: { id: productId },
@@ -19,7 +18,6 @@ export class ProductsService {
 		});
 	}
 
-	// GET /api/products/tag/:tag_name
 	async getByTag(tag_name: string) {
 		return prisma.product.findMany({
 			where: { tag: tag_name },
@@ -27,7 +25,6 @@ export class ProductsService {
 		});
 	}
 
-	// GET /api/products
 	async getAll({ page = 1, sort = 'price', order = 'asc', categoryIds }: { page?: number; sort?: string; order?: 'asc'|'desc'; categoryIds?: number[] }) {
 		const take = 10;
 		const skip = (page - 1) * take;
@@ -44,7 +41,6 @@ export class ProductsService {
 		return { products, metadata: { total_pages, actual_page: page, total_items } };
 	}
 
-	// GET /api/products/category/:category_name
 	async getByCategoryName(category_name: string, page = 1, sort = 'price', order: 'asc'|'desc' = 'asc', brands?: string[]) {
 		const take = 10;
 		const skip = (page - 1) * take;
@@ -62,7 +58,6 @@ export class ProductsService {
 		return { products, metadata: { total_pages, actual_page: page, total_items } };
 	}
 
-	// GET /api/products/reviews/:product_id
 	async getReviews(productId: number) {
 		const reviews = await prisma.review.findMany({
 			where: { productId },
@@ -88,7 +83,6 @@ export class ProductsService {
 		return { reviews, summary };
 	}
 
-	// GET /api/products/related/:brand
 	async getRelatedByBrand(brand: string) {
 		return prisma.product.findMany({
 			where: { brand },
