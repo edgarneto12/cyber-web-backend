@@ -28,9 +28,15 @@ export class ProductsService {
 	async getAll({ page = 1, sort = 'price', order = 'asc', categoryIds }: { page?: number; sort?: string; order?: 'asc'|'desc'; categoryIds?: number[] }) {
 		const take = 10;
 		const skip = (page - 1) * take;
-		const where = categoryIds ? { categoryId: { in: categoryIds } } : {};
+
+		const where: any = {};
+		if (categoryIds && categoryIds.length > 0) {
+			where.categoryId = { in: categoryIds };
+		}
+
 		const total_items = await prisma.product.count({ where });
 		const total_pages = Math.ceil(total_items / take);
+
 		const products = await prisma.product.findMany({
 			where,
 			orderBy: { [sort]: order },

@@ -15,11 +15,14 @@ export class ProductsController {
   }
 
   async getAll(req: Request, res: Response) {
-    const page = parseInt(req.query.page as string) || 1;
-    const sort = (req.query.sort as string) || 'price';
-    const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-    const categoryIds = Array.isArray(req.body?.category) ? req.body.category : undefined;
     try {
+      const page = parseInt(req.query.page as string) || 1;
+      const sort = (req.query.sort as string) || 'price';
+      const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
+
+      const categoriesQuery = req.query.categories as string;
+      const categoryIds = categoriesQuery ? categoriesQuery.split(',').map(id => parseInt(id, 10)) : undefined;
+
       const result = await this.productsService.getAll({ page, sort, order, categoryIds });
       res.json({ data: result.products, metadata: result.metadata });
     } catch (error) {
