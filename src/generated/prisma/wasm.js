@@ -127,10 +127,7 @@ exports.Prisma.ProductScalarFieldEnum = {
   stock: 'stock',
   url_image: 'url_image',
   tag: 'tag',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  categoryId: 'categoryId',
-  smartphoneSpecId: 'smartphoneSpecId'
+  categoryId: 'categoryId'
 };
 
 exports.Prisma.CategoryScalarFieldEnum = {
@@ -150,7 +147,8 @@ exports.Prisma.SmartphoneSpecScalarFieldEnum = {
   front_camera: 'front_camera',
   battery: 'battery',
   created_at: 'created_at',
-  updated_at: 'updated_at'
+  updated_at: 'updated_at',
+  productId: 'productId'
 };
 
 exports.Prisma.ColorProductScalarFieldEnum = {
@@ -164,10 +162,7 @@ exports.Prisma.ColorProductScalarFieldEnum = {
 
 exports.Prisma.StorageOptionScalarFieldEnum = {
   id: 'id',
-  size: 'size',
-  created_at: 'created_at',
-  updated_at: 'updated_at',
-  productId: 'productId'
+  size: 'size'
 };
 
 exports.Prisma.ReviewScalarFieldEnum = {

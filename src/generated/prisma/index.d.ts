@@ -1312,13 +1312,13 @@ export namespace Prisma {
 
   export type ProductCountOutputType = {
     colors: number
-    storageOptions: number
+    storage_options: number
     reviews: number
   }
 
   export type ProductCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     colors?: boolean | ProductCountOutputTypeCountColorsArgs
-    storageOptions?: boolean | ProductCountOutputTypeCountStorageOptionsArgs
+    storage_options?: boolean | ProductCountOutputTypeCountStorage_optionsArgs
     reviews?: boolean | ProductCountOutputTypeCountReviewsArgs
   }
 
@@ -1343,7 +1343,7 @@ export namespace Prisma {
   /**
    * ProductCountOutputType without action
    */
-  export type ProductCountOutputTypeCountStorageOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type ProductCountOutputTypeCountStorage_optionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: StorageOptionWhereInput
   }
 
@@ -1387,6 +1387,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type StorageOptionCountOutputType
+   */
+
+  export type StorageOptionCountOutputType = {
+    products: number
+  }
+
+  export type StorageOptionCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    products?: boolean | StorageOptionCountOutputTypeCountProductsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * StorageOptionCountOutputType without action
+   */
+  export type StorageOptionCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the StorageOptionCountOutputType
+     */
+    select?: StorageOptionCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * StorageOptionCountOutputType without action
+   */
+  export type StorageOptionCountOutputTypeCountProductsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ProductWhereInput
+  }
+
+
+  /**
    * Models
    */
 
@@ -1404,20 +1435,18 @@ export namespace Prisma {
 
   export type ProductAvgAggregateOutputType = {
     id: number | null
-    price: Decimal | null
-    discounted_price: Decimal | null
+    price: number | null
+    discounted_price: number | null
     stock: number | null
     categoryId: number | null
-    smartphoneSpecId: number | null
   }
 
   export type ProductSumAggregateOutputType = {
     id: number | null
-    price: Decimal | null
-    discounted_price: Decimal | null
+    price: number | null
+    discounted_price: number | null
     stock: number | null
     categoryId: number | null
-    smartphoneSpecId: number | null
   }
 
   export type ProductMinAggregateOutputType = {
@@ -1425,15 +1454,12 @@ export namespace Prisma {
     name: string | null
     description: string | null
     brand: string | null
-    price: Decimal | null
-    discounted_price: Decimal | null
+    price: number | null
+    discounted_price: number | null
     stock: number | null
     url_image: string | null
     tag: string | null
-    created_at: Date | null
-    updated_at: Date | null
     categoryId: number | null
-    smartphoneSpecId: number | null
   }
 
   export type ProductMaxAggregateOutputType = {
@@ -1441,15 +1467,12 @@ export namespace Prisma {
     name: string | null
     description: string | null
     brand: string | null
-    price: Decimal | null
-    discounted_price: Decimal | null
+    price: number | null
+    discounted_price: number | null
     stock: number | null
     url_image: string | null
     tag: string | null
-    created_at: Date | null
-    updated_at: Date | null
     categoryId: number | null
-    smartphoneSpecId: number | null
   }
 
   export type ProductCountAggregateOutputType = {
@@ -1462,10 +1485,7 @@ export namespace Prisma {
     stock: number
     url_image: number
     tag: number
-    created_at: number
-    updated_at: number
     categoryId: number
-    smartphoneSpecId: number
     _all: number
   }
 
@@ -1476,7 +1496,6 @@ export namespace Prisma {
     discounted_price?: true
     stock?: true
     categoryId?: true
-    smartphoneSpecId?: true
   }
 
   export type ProductSumAggregateInputType = {
@@ -1485,7 +1504,6 @@ export namespace Prisma {
     discounted_price?: true
     stock?: true
     categoryId?: true
-    smartphoneSpecId?: true
   }
 
   export type ProductMinAggregateInputType = {
@@ -1498,10 +1516,7 @@ export namespace Prisma {
     stock?: true
     url_image?: true
     tag?: true
-    created_at?: true
-    updated_at?: true
     categoryId?: true
-    smartphoneSpecId?: true
   }
 
   export type ProductMaxAggregateInputType = {
@@ -1514,10 +1529,7 @@ export namespace Prisma {
     stock?: true
     url_image?: true
     tag?: true
-    created_at?: true
-    updated_at?: true
     categoryId?: true
-    smartphoneSpecId?: true
   }
 
   export type ProductCountAggregateInputType = {
@@ -1530,10 +1542,7 @@ export namespace Prisma {
     stock?: true
     url_image?: true
     tag?: true
-    created_at?: true
-    updated_at?: true
     categoryId?: true
-    smartphoneSpecId?: true
     _all?: true
   }
 
@@ -1628,15 +1637,12 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal
-    discounted_price: Decimal | null
+    price: number
+    discounted_price: number | null
     stock: number
     url_image: string
     tag: string
-    created_at: Date
-    updated_at: Date
     categoryId: number
-    smartphoneSpecId: number | null
     _count: ProductCountAggregateOutputType | null
     _avg: ProductAvgAggregateOutputType | null
     _sum: ProductSumAggregateOutputType | null
@@ -1668,14 +1674,11 @@ export namespace Prisma {
     stock?: boolean
     url_image?: boolean
     tag?: boolean
-    created_at?: boolean
-    updated_at?: boolean
     categoryId?: boolean
-    smartphoneSpecId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    smartphoneSpec?: boolean | Product$smartphoneSpecArgs<ExtArgs>
+    smartphone_spec?: boolean | Product$smartphone_specArgs<ExtArgs>
     colors?: boolean | Product$colorsArgs<ExtArgs>
-    storageOptions?: boolean | Product$storageOptionsArgs<ExtArgs>
+    storage_options?: boolean | Product$storage_optionsArgs<ExtArgs>
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
@@ -1690,12 +1693,8 @@ export namespace Prisma {
     stock?: boolean
     url_image?: boolean
     tag?: boolean
-    created_at?: boolean
-    updated_at?: boolean
     categoryId?: boolean
-    smartphoneSpecId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    smartphoneSpec?: boolean | Product$smartphoneSpecArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1708,12 +1707,8 @@ export namespace Prisma {
     stock?: boolean
     url_image?: boolean
     tag?: boolean
-    created_at?: boolean
-    updated_at?: boolean
     categoryId?: boolean
-    smartphoneSpecId?: boolean
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    smartphoneSpec?: boolean | Product$smartphoneSpecArgs<ExtArgs>
   }, ExtArgs["result"]["product"]>
 
   export type ProductSelectScalar = {
@@ -1726,37 +1721,32 @@ export namespace Prisma {
     stock?: boolean
     url_image?: boolean
     tag?: boolean
-    created_at?: boolean
-    updated_at?: boolean
     categoryId?: boolean
-    smartphoneSpecId?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "brand" | "price" | "discounted_price" | "stock" | "url_image" | "tag" | "created_at" | "updated_at" | "categoryId" | "smartphoneSpecId", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "brand" | "price" | "discounted_price" | "stock" | "url_image" | "tag" | "categoryId", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    smartphoneSpec?: boolean | Product$smartphoneSpecArgs<ExtArgs>
+    smartphone_spec?: boolean | Product$smartphone_specArgs<ExtArgs>
     colors?: boolean | Product$colorsArgs<ExtArgs>
-    storageOptions?: boolean | Product$storageOptionsArgs<ExtArgs>
+    storage_options?: boolean | Product$storage_optionsArgs<ExtArgs>
     reviews?: boolean | Product$reviewsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type ProductIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    smartphoneSpec?: boolean | Product$smartphoneSpecArgs<ExtArgs>
   }
   export type ProductIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     category?: boolean | CategoryDefaultArgs<ExtArgs>
-    smartphoneSpec?: boolean | Product$smartphoneSpecArgs<ExtArgs>
   }
 
   export type $ProductPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Product"
     objects: {
       category: Prisma.$CategoryPayload<ExtArgs>
-      smartphoneSpec: Prisma.$SmartphoneSpecPayload<ExtArgs> | null
+      smartphone_spec: Prisma.$SmartphoneSpecPayload<ExtArgs> | null
       colors: Prisma.$ColorProductPayload<ExtArgs>[]
-      storageOptions: Prisma.$StorageOptionPayload<ExtArgs>[]
+      storage_options: Prisma.$StorageOptionPayload<ExtArgs>[]
       reviews: Prisma.$ReviewPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -1764,15 +1754,12 @@ export namespace Prisma {
       name: string
       description: string
       brand: string
-      price: Prisma.Decimal
-      discounted_price: Prisma.Decimal | null
+      price: number
+      discounted_price: number | null
       stock: number
       url_image: string
       tag: string
-      created_at: Date
-      updated_at: Date
       categoryId: number
-      smartphoneSpecId: number | null
     }, ExtArgs["result"]["product"]>
     composites: {}
   }
@@ -2168,9 +2155,9 @@ export namespace Prisma {
   export interface Prisma__ProductClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     category<T extends CategoryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CategoryDefaultArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    smartphoneSpec<T extends Product$smartphoneSpecArgs<ExtArgs> = {}>(args?: Subset<T, Product$smartphoneSpecArgs<ExtArgs>>): Prisma__SmartphoneSpecClient<$Result.GetResult<Prisma.$SmartphoneSpecPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    smartphone_spec<T extends Product$smartphone_specArgs<ExtArgs> = {}>(args?: Subset<T, Product$smartphone_specArgs<ExtArgs>>): Prisma__SmartphoneSpecClient<$Result.GetResult<Prisma.$SmartphoneSpecPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     colors<T extends Product$colorsArgs<ExtArgs> = {}>(args?: Subset<T, Product$colorsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ColorProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
-    storageOptions<T extends Product$storageOptionsArgs<ExtArgs> = {}>(args?: Subset<T, Product$storageOptionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorageOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    storage_options<T extends Product$storage_optionsArgs<ExtArgs> = {}>(args?: Subset<T, Product$storage_optionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$StorageOptionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     reviews<T extends Product$reviewsArgs<ExtArgs> = {}>(args?: Subset<T, Product$reviewsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReviewPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -2205,15 +2192,12 @@ export namespace Prisma {
     readonly name: FieldRef<"Product", 'String'>
     readonly description: FieldRef<"Product", 'String'>
     readonly brand: FieldRef<"Product", 'String'>
-    readonly price: FieldRef<"Product", 'Decimal'>
-    readonly discounted_price: FieldRef<"Product", 'Decimal'>
+    readonly price: FieldRef<"Product", 'Float'>
+    readonly discounted_price: FieldRef<"Product", 'Float'>
     readonly stock: FieldRef<"Product", 'Int'>
     readonly url_image: FieldRef<"Product", 'String'>
     readonly tag: FieldRef<"Product", 'String'>
-    readonly created_at: FieldRef<"Product", 'DateTime'>
-    readonly updated_at: FieldRef<"Product", 'DateTime'>
     readonly categoryId: FieldRef<"Product", 'Int'>
-    readonly smartphoneSpecId: FieldRef<"Product", 'Int'>
   }
     
 
@@ -2608,9 +2592,9 @@ export namespace Prisma {
   }
 
   /**
-   * Product.smartphoneSpec
+   * Product.smartphone_spec
    */
-  export type Product$smartphoneSpecArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Product$smartphone_specArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the SmartphoneSpec
      */
@@ -2651,9 +2635,9 @@ export namespace Prisma {
   }
 
   /**
-   * Product.storageOptions
+   * Product.storage_options
    */
-  export type Product$storageOptionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Product$storage_optionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
      * Select specific fields to fetch from the StorageOption
      */
@@ -3833,10 +3817,12 @@ export namespace Prisma {
 
   export type SmartphoneSpecAvgAggregateOutputType = {
     id: number | null
+    productId: number | null
   }
 
   export type SmartphoneSpecSumAggregateOutputType = {
     id: number | null
+    productId: number | null
   }
 
   export type SmartphoneSpecMinAggregateOutputType = {
@@ -3849,6 +3835,7 @@ export namespace Prisma {
     battery: string | null
     created_at: Date | null
     updated_at: Date | null
+    productId: number | null
   }
 
   export type SmartphoneSpecMaxAggregateOutputType = {
@@ -3861,6 +3848,7 @@ export namespace Prisma {
     battery: string | null
     created_at: Date | null
     updated_at: Date | null
+    productId: number | null
   }
 
   export type SmartphoneSpecCountAggregateOutputType = {
@@ -3873,16 +3861,19 @@ export namespace Prisma {
     battery: number
     created_at: number
     updated_at: number
+    productId: number
     _all: number
   }
 
 
   export type SmartphoneSpecAvgAggregateInputType = {
     id?: true
+    productId?: true
   }
 
   export type SmartphoneSpecSumAggregateInputType = {
     id?: true
+    productId?: true
   }
 
   export type SmartphoneSpecMinAggregateInputType = {
@@ -3895,6 +3886,7 @@ export namespace Prisma {
     battery?: true
     created_at?: true
     updated_at?: true
+    productId?: true
   }
 
   export type SmartphoneSpecMaxAggregateInputType = {
@@ -3907,6 +3899,7 @@ export namespace Prisma {
     battery?: true
     created_at?: true
     updated_at?: true
+    productId?: true
   }
 
   export type SmartphoneSpecCountAggregateInputType = {
@@ -3919,6 +3912,7 @@ export namespace Prisma {
     battery?: true
     created_at?: true
     updated_at?: true
+    productId?: true
     _all?: true
   }
 
@@ -4018,6 +4012,7 @@ export namespace Prisma {
     battery: string
     created_at: Date
     updated_at: Date
+    productId: number
     _count: SmartphoneSpecCountAggregateOutputType | null
     _avg: SmartphoneSpecAvgAggregateOutputType | null
     _sum: SmartphoneSpecSumAggregateOutputType | null
@@ -4049,7 +4044,8 @@ export namespace Prisma {
     battery?: boolean
     created_at?: boolean
     updated_at?: boolean
-    product?: boolean | SmartphoneSpec$productArgs<ExtArgs>
+    productId?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["smartphoneSpec"]>
 
   export type SmartphoneSpecSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4062,6 +4058,8 @@ export namespace Prisma {
     battery?: boolean
     created_at?: boolean
     updated_at?: boolean
+    productId?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["smartphoneSpec"]>
 
   export type SmartphoneSpecSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -4074,6 +4072,8 @@ export namespace Prisma {
     battery?: boolean
     created_at?: boolean
     updated_at?: boolean
+    productId?: boolean
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["smartphoneSpec"]>
 
   export type SmartphoneSpecSelectScalar = {
@@ -4086,19 +4086,24 @@ export namespace Prisma {
     battery?: boolean
     created_at?: boolean
     updated_at?: boolean
+    productId?: boolean
   }
 
-  export type SmartphoneSpecOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "screen_size" | "cpu" | "total_cores" | "main_camera" | "front_camera" | "battery" | "created_at" | "updated_at", ExtArgs["result"]["smartphoneSpec"]>
+  export type SmartphoneSpecOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "screen_size" | "cpu" | "total_cores" | "main_camera" | "front_camera" | "battery" | "created_at" | "updated_at" | "productId", ExtArgs["result"]["smartphoneSpec"]>
   export type SmartphoneSpecInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    product?: boolean | SmartphoneSpec$productArgs<ExtArgs>
+    product?: boolean | ProductDefaultArgs<ExtArgs>
   }
-  export type SmartphoneSpecIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SmartphoneSpecIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SmartphoneSpecIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
+  export type SmartphoneSpecIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    product?: boolean | ProductDefaultArgs<ExtArgs>
+  }
 
   export type $SmartphoneSpecPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "SmartphoneSpec"
     objects: {
-      product: Prisma.$ProductPayload<ExtArgs> | null
+      product: Prisma.$ProductPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -4110,6 +4115,7 @@ export namespace Prisma {
       battery: string
       created_at: Date
       updated_at: Date
+      productId: number
     }, ExtArgs["result"]["smartphoneSpec"]>
     composites: {}
   }
@@ -4504,7 +4510,7 @@ export namespace Prisma {
    */
   export interface Prisma__SmartphoneSpecClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    product<T extends SmartphoneSpec$productArgs<ExtArgs> = {}>(args?: Subset<T, SmartphoneSpec$productArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -4543,6 +4549,7 @@ export namespace Prisma {
     readonly battery: FieldRef<"SmartphoneSpec", 'String'>
     readonly created_at: FieldRef<"SmartphoneSpec", 'DateTime'>
     readonly updated_at: FieldRef<"SmartphoneSpec", 'DateTime'>
+    readonly productId: FieldRef<"SmartphoneSpec", 'Int'>
   }
     
 
@@ -4790,6 +4797,10 @@ export namespace Prisma {
      * The data used to create many SmartphoneSpecs.
      */
     data: SmartphoneSpecCreateManyInput | SmartphoneSpecCreateManyInput[]
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SmartphoneSpecIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4860,6 +4871,10 @@ export namespace Prisma {
      * Limit how many SmartphoneSpecs to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SmartphoneSpecIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4926,25 +4941,6 @@ export namespace Prisma {
      * Limit how many SmartphoneSpecs to delete.
      */
     limit?: number
-  }
-
-  /**
-   * SmartphoneSpec.product
-   */
-  export type SmartphoneSpec$productArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Product
-     */
-    select?: ProductSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Product
-     */
-    omit?: ProductOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: ProductInclude<ExtArgs> | null
-    where?: ProductWhereInput
   }
 
   /**
@@ -6087,72 +6083,50 @@ export namespace Prisma {
 
   export type StorageOptionAvgAggregateOutputType = {
     id: number | null
-    productId: number | null
   }
 
   export type StorageOptionSumAggregateOutputType = {
     id: number | null
-    productId: number | null
   }
 
   export type StorageOptionMinAggregateOutputType = {
     id: number | null
     size: string | null
-    created_at: Date | null
-    updated_at: Date | null
-    productId: number | null
   }
 
   export type StorageOptionMaxAggregateOutputType = {
     id: number | null
     size: string | null
-    created_at: Date | null
-    updated_at: Date | null
-    productId: number | null
   }
 
   export type StorageOptionCountAggregateOutputType = {
     id: number
     size: number
-    created_at: number
-    updated_at: number
-    productId: number
     _all: number
   }
 
 
   export type StorageOptionAvgAggregateInputType = {
     id?: true
-    productId?: true
   }
 
   export type StorageOptionSumAggregateInputType = {
     id?: true
-    productId?: true
   }
 
   export type StorageOptionMinAggregateInputType = {
     id?: true
     size?: true
-    created_at?: true
-    updated_at?: true
-    productId?: true
   }
 
   export type StorageOptionMaxAggregateInputType = {
     id?: true
     size?: true
-    created_at?: true
-    updated_at?: true
-    productId?: true
   }
 
   export type StorageOptionCountAggregateInputType = {
     id?: true
     size?: true
-    created_at?: true
-    updated_at?: true
-    productId?: true
     _all?: true
   }
 
@@ -6245,9 +6219,6 @@ export namespace Prisma {
   export type StorageOptionGroupByOutputType = {
     id: number
     size: string
-    created_at: Date
-    updated_at: Date
-    productId: number
     _count: StorageOptionCountAggregateOutputType | null
     _avg: StorageOptionAvgAggregateOutputType | null
     _sum: StorageOptionSumAggregateOutputType | null
@@ -6272,60 +6243,41 @@ export namespace Prisma {
   export type StorageOptionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     size?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    productId?: boolean
-    Product?: boolean | ProductDefaultArgs<ExtArgs>
+    products?: boolean | StorageOption$productsArgs<ExtArgs>
+    _count?: boolean | StorageOptionCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["storageOption"]>
 
   export type StorageOptionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     size?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    productId?: boolean
-    Product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["storageOption"]>
 
   export type StorageOptionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     size?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    productId?: boolean
-    Product?: boolean | ProductDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["storageOption"]>
 
   export type StorageOptionSelectScalar = {
     id?: boolean
     size?: boolean
-    created_at?: boolean
-    updated_at?: boolean
-    productId?: boolean
   }
 
-  export type StorageOptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "size" | "created_at" | "updated_at" | "productId", ExtArgs["result"]["storageOption"]>
+  export type StorageOptionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "size", ExtArgs["result"]["storageOption"]>
   export type StorageOptionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Product?: boolean | ProductDefaultArgs<ExtArgs>
+    products?: boolean | StorageOption$productsArgs<ExtArgs>
+    _count?: boolean | StorageOptionCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type StorageOptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Product?: boolean | ProductDefaultArgs<ExtArgs>
-  }
-  export type StorageOptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    Product?: boolean | ProductDefaultArgs<ExtArgs>
-  }
+  export type StorageOptionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type StorageOptionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $StorageOptionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "StorageOption"
     objects: {
-      Product: Prisma.$ProductPayload<ExtArgs>
+      products: Prisma.$ProductPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
       size: string
-      created_at: Date
-      updated_at: Date
-      productId: number
     }, ExtArgs["result"]["storageOption"]>
     composites: {}
   }
@@ -6720,7 +6672,7 @@ export namespace Prisma {
    */
   export interface Prisma__StorageOptionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    Product<T extends ProductDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ProductDefaultArgs<ExtArgs>>): Prisma__ProductClient<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    products<T extends StorageOption$productsArgs<ExtArgs> = {}>(args?: Subset<T, StorageOption$productsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ProductPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6752,9 +6704,6 @@ export namespace Prisma {
   interface StorageOptionFieldRefs {
     readonly id: FieldRef<"StorageOption", 'Int'>
     readonly size: FieldRef<"StorageOption", 'String'>
-    readonly created_at: FieldRef<"StorageOption", 'DateTime'>
-    readonly updated_at: FieldRef<"StorageOption", 'DateTime'>
-    readonly productId: FieldRef<"StorageOption", 'Int'>
   }
     
 
@@ -7002,10 +6951,6 @@ export namespace Prisma {
      * The data used to create many StorageOptions.
      */
     data: StorageOptionCreateManyInput | StorageOptionCreateManyInput[]
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StorageOptionIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7076,10 +7021,6 @@ export namespace Prisma {
      * Limit how many StorageOptions to update.
      */
     limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: StorageOptionIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -7146,6 +7087,30 @@ export namespace Prisma {
      * Limit how many StorageOptions to delete.
      */
     limit?: number
+  }
+
+  /**
+   * StorageOption.products
+   */
+  export type StorageOption$productsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Product
+     */
+    select?: ProductSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Product
+     */
+    omit?: ProductOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ProductInclude<ExtArgs> | null
+    where?: ProductWhereInput
+    orderBy?: ProductOrderByWithRelationInput | ProductOrderByWithRelationInput[]
+    cursor?: ProductWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ProductScalarFieldEnum | ProductScalarFieldEnum[]
   }
 
   /**
@@ -8325,10 +8290,7 @@ export namespace Prisma {
     stock: 'stock',
     url_image: 'url_image',
     tag: 'tag',
-    created_at: 'created_at',
-    updated_at: 'updated_at',
-    categoryId: 'categoryId',
-    smartphoneSpecId: 'smartphoneSpecId'
+    categoryId: 'categoryId'
   };
 
   export type ProductScalarFieldEnum = (typeof ProductScalarFieldEnum)[keyof typeof ProductScalarFieldEnum]
@@ -8354,7 +8316,8 @@ export namespace Prisma {
     front_camera: 'front_camera',
     battery: 'battery',
     created_at: 'created_at',
-    updated_at: 'updated_at'
+    updated_at: 'updated_at',
+    productId: 'productId'
   };
 
   export type SmartphoneSpecScalarFieldEnum = (typeof SmartphoneSpecScalarFieldEnum)[keyof typeof SmartphoneSpecScalarFieldEnum]
@@ -8374,10 +8337,7 @@ export namespace Prisma {
 
   export const StorageOptionScalarFieldEnum: {
     id: 'id',
-    size: 'size',
-    created_at: 'created_at',
-    updated_at: 'updated_at',
-    productId: 'productId'
+    size: 'size'
   };
 
   export type StorageOptionScalarFieldEnum = (typeof StorageOptionScalarFieldEnum)[keyof typeof StorageOptionScalarFieldEnum]
@@ -8433,9 +8393,9 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Decimal'
+   * Reference to a field of type 'Float'
    */
-  export type DecimalFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Decimal'>
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
 
 
@@ -8443,13 +8403,6 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime'
    */
   export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'Float'
-   */
-  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
     
   /**
    * Deep Input Types
@@ -8464,19 +8417,16 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     brand?: StringFilter<"Product"> | string
-    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discounted_price?: DecimalNullableFilter<"Product"> | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFilter<"Product"> | number
+    discounted_price?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
     url_image?: StringFilter<"Product"> | string
     tag?: StringFilter<"Product"> | string
-    created_at?: DateTimeFilter<"Product"> | Date | string
-    updated_at?: DateTimeFilter<"Product"> | Date | string
     categoryId?: IntFilter<"Product"> | number
-    smartphoneSpecId?: IntNullableFilter<"Product"> | number | null
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    smartphoneSpec?: XOR<SmartphoneSpecNullableScalarRelationFilter, SmartphoneSpecWhereInput> | null
+    smartphone_spec?: XOR<SmartphoneSpecNullableScalarRelationFilter, SmartphoneSpecWhereInput> | null
     colors?: ColorProductListRelationFilter
-    storageOptions?: StorageOptionListRelationFilter
+    storage_options?: StorageOptionListRelationFilter
     reviews?: ReviewListRelationFilter
   }
 
@@ -8490,40 +8440,34 @@ export namespace Prisma {
     stock?: SortOrder
     url_image?: SortOrder
     tag?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrderInput | SortOrder
     category?: CategoryOrderByWithRelationInput
-    smartphoneSpec?: SmartphoneSpecOrderByWithRelationInput
+    smartphone_spec?: SmartphoneSpecOrderByWithRelationInput
     colors?: ColorProductOrderByRelationAggregateInput
-    storageOptions?: StorageOptionOrderByRelationAggregateInput
+    storage_options?: StorageOptionOrderByRelationAggregateInput
     reviews?: ReviewOrderByRelationAggregateInput
   }
 
   export type ProductWhereUniqueInput = Prisma.AtLeast<{
     id?: number
-    smartphoneSpecId?: number
     AND?: ProductWhereInput | ProductWhereInput[]
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     brand?: StringFilter<"Product"> | string
-    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discounted_price?: DecimalNullableFilter<"Product"> | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFilter<"Product"> | number
+    discounted_price?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
     url_image?: StringFilter<"Product"> | string
     tag?: StringFilter<"Product"> | string
-    created_at?: DateTimeFilter<"Product"> | Date | string
-    updated_at?: DateTimeFilter<"Product"> | Date | string
     categoryId?: IntFilter<"Product"> | number
     category?: XOR<CategoryScalarRelationFilter, CategoryWhereInput>
-    smartphoneSpec?: XOR<SmartphoneSpecNullableScalarRelationFilter, SmartphoneSpecWhereInput> | null
+    smartphone_spec?: XOR<SmartphoneSpecNullableScalarRelationFilter, SmartphoneSpecWhereInput> | null
     colors?: ColorProductListRelationFilter
-    storageOptions?: StorageOptionListRelationFilter
+    storage_options?: StorageOptionListRelationFilter
     reviews?: ReviewListRelationFilter
-  }, "id" | "smartphoneSpecId">
+  }, "id">
 
   export type ProductOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8535,10 +8479,7 @@ export namespace Prisma {
     stock?: SortOrder
     url_image?: SortOrder
     tag?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrderInput | SortOrder
     _count?: ProductCountOrderByAggregateInput
     _avg?: ProductAvgOrderByAggregateInput
     _max?: ProductMaxOrderByAggregateInput
@@ -8554,15 +8495,12 @@ export namespace Prisma {
     name?: StringWithAggregatesFilter<"Product"> | string
     description?: StringWithAggregatesFilter<"Product"> | string
     brand?: StringWithAggregatesFilter<"Product"> | string
-    price?: DecimalWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discounted_price?: DecimalNullableWithAggregatesFilter<"Product"> | Decimal | DecimalJsLike | number | string | null
+    price?: FloatWithAggregatesFilter<"Product"> | number
+    discounted_price?: FloatNullableWithAggregatesFilter<"Product"> | number | null
     stock?: IntWithAggregatesFilter<"Product"> | number
     url_image?: StringWithAggregatesFilter<"Product"> | string
     tag?: StringWithAggregatesFilter<"Product"> | string
-    created_at?: DateTimeWithAggregatesFilter<"Product"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     categoryId?: IntWithAggregatesFilter<"Product"> | number
-    smartphoneSpecId?: IntNullableWithAggregatesFilter<"Product"> | number | null
   }
 
   export type CategoryWhereInput = {
@@ -8635,7 +8573,8 @@ export namespace Prisma {
     battery?: StringFilter<"SmartphoneSpec"> | string
     created_at?: DateTimeFilter<"SmartphoneSpec"> | Date | string
     updated_at?: DateTimeFilter<"SmartphoneSpec"> | Date | string
-    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
+    productId?: IntFilter<"SmartphoneSpec"> | number
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
   }
 
   export type SmartphoneSpecOrderByWithRelationInput = {
@@ -8648,11 +8587,13 @@ export namespace Prisma {
     battery?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    productId?: SortOrder
     product?: ProductOrderByWithRelationInput
   }
 
   export type SmartphoneSpecWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    productId?: number
     AND?: SmartphoneSpecWhereInput | SmartphoneSpecWhereInput[]
     OR?: SmartphoneSpecWhereInput[]
     NOT?: SmartphoneSpecWhereInput | SmartphoneSpecWhereInput[]
@@ -8664,8 +8605,8 @@ export namespace Prisma {
     battery?: StringFilter<"SmartphoneSpec"> | string
     created_at?: DateTimeFilter<"SmartphoneSpec"> | Date | string
     updated_at?: DateTimeFilter<"SmartphoneSpec"> | Date | string
-    product?: XOR<ProductNullableScalarRelationFilter, ProductWhereInput> | null
-  }, "id">
+    product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+  }, "id" | "productId">
 
   export type SmartphoneSpecOrderByWithAggregationInput = {
     id?: SortOrder
@@ -8677,6 +8618,7 @@ export namespace Prisma {
     battery?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    productId?: SortOrder
     _count?: SmartphoneSpecCountOrderByAggregateInput
     _avg?: SmartphoneSpecAvgOrderByAggregateInput
     _max?: SmartphoneSpecMaxOrderByAggregateInput
@@ -8697,6 +8639,7 @@ export namespace Prisma {
     battery?: StringWithAggregatesFilter<"SmartphoneSpec"> | string
     created_at?: DateTimeWithAggregatesFilter<"SmartphoneSpec"> | Date | string
     updated_at?: DateTimeWithAggregatesFilter<"SmartphoneSpec"> | Date | string
+    productId?: IntWithAggregatesFilter<"SmartphoneSpec"> | number
   }
 
   export type ColorProductWhereInput = {
@@ -8767,39 +8710,27 @@ export namespace Prisma {
     NOT?: StorageOptionWhereInput | StorageOptionWhereInput[]
     id?: IntFilter<"StorageOption"> | number
     size?: StringFilter<"StorageOption"> | string
-    created_at?: DateTimeFilter<"StorageOption"> | Date | string
-    updated_at?: DateTimeFilter<"StorageOption"> | Date | string
-    productId?: IntFilter<"StorageOption"> | number
-    Product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
+    products?: ProductListRelationFilter
   }
 
   export type StorageOptionOrderByWithRelationInput = {
     id?: SortOrder
     size?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    productId?: SortOrder
-    Product?: ProductOrderByWithRelationInput
+    products?: ProductOrderByRelationAggregateInput
   }
 
   export type StorageOptionWhereUniqueInput = Prisma.AtLeast<{
     id?: number
+    size?: string
     AND?: StorageOptionWhereInput | StorageOptionWhereInput[]
     OR?: StorageOptionWhereInput[]
     NOT?: StorageOptionWhereInput | StorageOptionWhereInput[]
-    size?: StringFilter<"StorageOption"> | string
-    created_at?: DateTimeFilter<"StorageOption"> | Date | string
-    updated_at?: DateTimeFilter<"StorageOption"> | Date | string
-    productId?: IntFilter<"StorageOption"> | number
-    Product?: XOR<ProductScalarRelationFilter, ProductWhereInput>
-  }, "id">
+    products?: ProductListRelationFilter
+  }, "id" | "size">
 
   export type StorageOptionOrderByWithAggregationInput = {
     id?: SortOrder
     size?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    productId?: SortOrder
     _count?: StorageOptionCountOrderByAggregateInput
     _avg?: StorageOptionAvgOrderByAggregateInput
     _max?: StorageOptionMaxOrderByAggregateInput
@@ -8813,9 +8744,6 @@ export namespace Prisma {
     NOT?: StorageOptionScalarWhereWithAggregatesInput | StorageOptionScalarWhereWithAggregatesInput[]
     id?: IntWithAggregatesFilter<"StorageOption"> | number
     size?: StringWithAggregatesFilter<"StorageOption"> | string
-    created_at?: DateTimeWithAggregatesFilter<"StorageOption"> | Date | string
-    updated_at?: DateTimeWithAggregatesFilter<"StorageOption"> | Date | string
-    productId?: IntWithAggregatesFilter<"StorageOption"> | number
   }
 
   export type ReviewWhereInput = {
@@ -8894,17 +8822,15 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
-    smartphoneSpec?: SmartphoneSpecCreateNestedOneWithoutProductInput
+    smartphone_spec?: SmartphoneSpecCreateNestedOneWithoutProductInput
     colors?: ColorProductCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionCreateNestedManyWithoutProductsInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
@@ -8913,17 +8839,15 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     categoryId: number
-    smartphoneSpecId?: number | null
+    smartphone_spec?: SmartphoneSpecUncheckedCreateNestedOneWithoutProductInput
     colors?: ColorProductUncheckedCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionUncheckedCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionUncheckedCreateNestedManyWithoutProductsInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -8931,17 +8855,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    smartphoneSpec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
+    smartphone_spec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
     colors?: ColorProductUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
@@ -8950,17 +8872,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
+    smartphone_spec?: SmartphoneSpecUncheckedUpdateOneWithoutProductNestedInput
     colors?: ColorProductUncheckedUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUncheckedUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUncheckedUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -8969,28 +8889,23 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     categoryId: number
-    smartphoneSpecId?: number | null
   }
 
   export type ProductUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ProductUncheckedUpdateManyInput = {
@@ -8998,15 +8913,12 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
   }
 
   export type CategoryCreateInput = {
@@ -9075,7 +8987,7 @@ export namespace Prisma {
     battery: string
     created_at?: Date | string
     updated_at?: Date | string
-    product?: ProductCreateNestedOneWithoutSmartphoneSpecInput
+    product: ProductCreateNestedOneWithoutSmartphone_specInput
   }
 
   export type SmartphoneSpecUncheckedCreateInput = {
@@ -9088,7 +9000,7 @@ export namespace Prisma {
     battery: string
     created_at?: Date | string
     updated_at?: Date | string
-    product?: ProductUncheckedCreateNestedOneWithoutSmartphoneSpecInput
+    productId: number
   }
 
   export type SmartphoneSpecUpdateInput = {
@@ -9100,7 +9012,7 @@ export namespace Prisma {
     battery?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUpdateOneWithoutSmartphoneSpecNestedInput
+    product?: ProductUpdateOneRequiredWithoutSmartphone_specNestedInput
   }
 
   export type SmartphoneSpecUncheckedUpdateInput = {
@@ -9113,7 +9025,7 @@ export namespace Prisma {
     battery?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    product?: ProductUncheckedUpdateOneWithoutSmartphoneSpecNestedInput
+    productId?: IntFieldUpdateOperationsInput | number
   }
 
   export type SmartphoneSpecCreateManyInput = {
@@ -9126,6 +9038,7 @@ export namespace Prisma {
     battery: string
     created_at?: Date | string
     updated_at?: Date | string
+    productId: number
   }
 
   export type SmartphoneSpecUpdateManyMutationInput = {
@@ -9149,6 +9062,7 @@ export namespace Prisma {
     battery?: StringFieldUpdateOperationsInput | string
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    productId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ColorProductCreateInput = {
@@ -9212,54 +9126,38 @@ export namespace Prisma {
 
   export type StorageOptionCreateInput = {
     size: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    Product: ProductCreateNestedOneWithoutStorageOptionsInput
+    products?: ProductCreateNestedManyWithoutStorage_optionsInput
   }
 
   export type StorageOptionUncheckedCreateInput = {
     id?: number
     size: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    productId: number
+    products?: ProductUncheckedCreateNestedManyWithoutStorage_optionsInput
   }
 
   export type StorageOptionUpdateInput = {
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    Product?: ProductUpdateOneRequiredWithoutStorageOptionsNestedInput
+    products?: ProductUpdateManyWithoutStorage_optionsNestedInput
   }
 
   export type StorageOptionUncheckedUpdateInput = {
     id?: IntFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    productId?: IntFieldUpdateOperationsInput | number
+    products?: ProductUncheckedUpdateManyWithoutStorage_optionsNestedInput
   }
 
   export type StorageOptionCreateManyInput = {
     id?: number
     size: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    productId: number
   }
 
   export type StorageOptionUpdateManyMutationInput = {
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type StorageOptionUncheckedUpdateManyInput = {
     id?: IntFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    productId?: IntFieldUpdateOperationsInput | number
   }
 
   export type ReviewCreateInput = {
@@ -9360,48 +9258,26 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type DecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type DecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
+  export type FloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
     notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type CategoryScalarRelationFilter = {
@@ -9459,10 +9335,7 @@ export namespace Prisma {
     stock?: SortOrder
     url_image?: SortOrder
     tag?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrder
   }
 
   export type ProductAvgOrderByAggregateInput = {
@@ -9471,7 +9344,6 @@ export namespace Prisma {
     discounted_price?: SortOrder
     stock?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrder
   }
 
   export type ProductMaxOrderByAggregateInput = {
@@ -9484,10 +9356,7 @@ export namespace Prisma {
     stock?: SortOrder
     url_image?: SortOrder
     tag?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrder
   }
 
   export type ProductMinOrderByAggregateInput = {
@@ -9500,10 +9369,7 @@ export namespace Prisma {
     stock?: SortOrder
     url_image?: SortOrder
     tag?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrder
   }
 
   export type ProductSumOrderByAggregateInput = {
@@ -9512,7 +9378,6 @@ export namespace Prisma {
     discounted_price?: SortOrder
     stock?: SortOrder
     categoryId?: SortOrder
-    smartphoneSpecId?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -9548,39 +9413,39 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type DecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type FloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
   }
 
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+  export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
     notIn?: Date[] | string[]
@@ -9588,26 +9453,7 @@ export namespace Prisma {
     lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type ProductListRelationFilter = {
@@ -9652,9 +9498,23 @@ export namespace Prisma {
     id?: SortOrder
   }
 
-  export type ProductNullableScalarRelationFilter = {
-    is?: ProductWhereInput | null
-    isNot?: ProductWhereInput | null
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type ProductScalarRelationFilter = {
+    is?: ProductWhereInput
+    isNot?: ProductWhereInput
   }
 
   export type SmartphoneSpecCountOrderByAggregateInput = {
@@ -9667,10 +9527,12 @@ export namespace Prisma {
     battery?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    productId?: SortOrder
   }
 
   export type SmartphoneSpecAvgOrderByAggregateInput = {
     id?: SortOrder
+    productId?: SortOrder
   }
 
   export type SmartphoneSpecMaxOrderByAggregateInput = {
@@ -9683,6 +9545,7 @@ export namespace Prisma {
     battery?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    productId?: SortOrder
   }
 
   export type SmartphoneSpecMinOrderByAggregateInput = {
@@ -9695,15 +9558,12 @@ export namespace Prisma {
     battery?: SortOrder
     created_at?: SortOrder
     updated_at?: SortOrder
+    productId?: SortOrder
   }
 
   export type SmartphoneSpecSumOrderByAggregateInput = {
     id?: SortOrder
-  }
-
-  export type ProductScalarRelationFilter = {
-    is?: ProductWhereInput
-    isNot?: ProductWhereInput
+    productId?: SortOrder
   }
 
   export type ColorProductCountOrderByAggregateInput = {
@@ -9746,35 +9606,24 @@ export namespace Prisma {
   export type StorageOptionCountOrderByAggregateInput = {
     id?: SortOrder
     size?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    productId?: SortOrder
   }
 
   export type StorageOptionAvgOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
   }
 
   export type StorageOptionMaxOrderByAggregateInput = {
     id?: SortOrder
     size?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    productId?: SortOrder
   }
 
   export type StorageOptionMinOrderByAggregateInput = {
     id?: SortOrder
     size?: SortOrder
-    created_at?: SortOrder
-    updated_at?: SortOrder
-    productId?: SortOrder
   }
 
   export type StorageOptionSumOrderByAggregateInput = {
     id?: SortOrder
-    productId?: SortOrder
   }
 
   export type ReviewCountOrderByAggregateInput = {
@@ -9841,10 +9690,9 @@ export namespace Prisma {
     connect?: ColorProductWhereUniqueInput | ColorProductWhereUniqueInput[]
   }
 
-  export type StorageOptionCreateNestedManyWithoutProductInput = {
-    create?: XOR<StorageOptionCreateWithoutProductInput, StorageOptionUncheckedCreateWithoutProductInput> | StorageOptionCreateWithoutProductInput[] | StorageOptionUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductInput | StorageOptionCreateOrConnectWithoutProductInput[]
-    createMany?: StorageOptionCreateManyProductInputEnvelope
+  export type StorageOptionCreateNestedManyWithoutProductsInput = {
+    create?: XOR<StorageOptionCreateWithoutProductsInput, StorageOptionUncheckedCreateWithoutProductsInput> | StorageOptionCreateWithoutProductsInput[] | StorageOptionUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductsInput | StorageOptionCreateOrConnectWithoutProductsInput[]
     connect?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
   }
 
@@ -9855,6 +9703,12 @@ export namespace Prisma {
     connect?: ReviewWhereUniqueInput | ReviewWhereUniqueInput[]
   }
 
+  export type SmartphoneSpecUncheckedCreateNestedOneWithoutProductInput = {
+    create?: XOR<SmartphoneSpecCreateWithoutProductInput, SmartphoneSpecUncheckedCreateWithoutProductInput>
+    connectOrCreate?: SmartphoneSpecCreateOrConnectWithoutProductInput
+    connect?: SmartphoneSpecWhereUniqueInput
+  }
+
   export type ColorProductUncheckedCreateNestedManyWithoutProductInput = {
     create?: XOR<ColorProductCreateWithoutProductInput, ColorProductUncheckedCreateWithoutProductInput> | ColorProductCreateWithoutProductInput[] | ColorProductUncheckedCreateWithoutProductInput[]
     connectOrCreate?: ColorProductCreateOrConnectWithoutProductInput | ColorProductCreateOrConnectWithoutProductInput[]
@@ -9862,10 +9716,9 @@ export namespace Prisma {
     connect?: ColorProductWhereUniqueInput | ColorProductWhereUniqueInput[]
   }
 
-  export type StorageOptionUncheckedCreateNestedManyWithoutProductInput = {
-    create?: XOR<StorageOptionCreateWithoutProductInput, StorageOptionUncheckedCreateWithoutProductInput> | StorageOptionCreateWithoutProductInput[] | StorageOptionUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductInput | StorageOptionCreateOrConnectWithoutProductInput[]
-    createMany?: StorageOptionCreateManyProductInputEnvelope
+  export type StorageOptionUncheckedCreateNestedManyWithoutProductsInput = {
+    create?: XOR<StorageOptionCreateWithoutProductsInput, StorageOptionUncheckedCreateWithoutProductsInput> | StorageOptionCreateWithoutProductsInput[] | StorageOptionUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductsInput | StorageOptionCreateOrConnectWithoutProductsInput[]
     connect?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
   }
 
@@ -9880,20 +9733,20 @@ export namespace Prisma {
     set?: string
   }
 
-  export type DecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
-  export type NullableDecimalFieldUpdateOperationsInput = {
-    set?: Decimal | DecimalJsLike | number | string | null
-    increment?: Decimal | DecimalJsLike | number | string
-    decrement?: Decimal | DecimalJsLike | number | string
-    multiply?: Decimal | DecimalJsLike | number | string
-    divide?: Decimal | DecimalJsLike | number | string
+  export type NullableFloatFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type IntFieldUpdateOperationsInput = {
@@ -9902,10 +9755,6 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type CategoryUpdateOneRequiredWithoutProductsNestedInput = {
@@ -9940,17 +9789,16 @@ export namespace Prisma {
     deleteMany?: ColorProductScalarWhereInput | ColorProductScalarWhereInput[]
   }
 
-  export type StorageOptionUpdateManyWithoutProductNestedInput = {
-    create?: XOR<StorageOptionCreateWithoutProductInput, StorageOptionUncheckedCreateWithoutProductInput> | StorageOptionCreateWithoutProductInput[] | StorageOptionUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductInput | StorageOptionCreateOrConnectWithoutProductInput[]
-    upsert?: StorageOptionUpsertWithWhereUniqueWithoutProductInput | StorageOptionUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: StorageOptionCreateManyProductInputEnvelope
+  export type StorageOptionUpdateManyWithoutProductsNestedInput = {
+    create?: XOR<StorageOptionCreateWithoutProductsInput, StorageOptionUncheckedCreateWithoutProductsInput> | StorageOptionCreateWithoutProductsInput[] | StorageOptionUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductsInput | StorageOptionCreateOrConnectWithoutProductsInput[]
+    upsert?: StorageOptionUpsertWithWhereUniqueWithoutProductsInput | StorageOptionUpsertWithWhereUniqueWithoutProductsInput[]
     set?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
     disconnect?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
     delete?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
     connect?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
-    update?: StorageOptionUpdateWithWhereUniqueWithoutProductInput | StorageOptionUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: StorageOptionUpdateManyWithWhereWithoutProductInput | StorageOptionUpdateManyWithWhereWithoutProductInput[]
+    update?: StorageOptionUpdateWithWhereUniqueWithoutProductsInput | StorageOptionUpdateWithWhereUniqueWithoutProductsInput[]
+    updateMany?: StorageOptionUpdateManyWithWhereWithoutProductsInput | StorageOptionUpdateManyWithWhereWithoutProductsInput[]
     deleteMany?: StorageOptionScalarWhereInput | StorageOptionScalarWhereInput[]
   }
 
@@ -9968,12 +9816,14 @@ export namespace Prisma {
     deleteMany?: ReviewScalarWhereInput | ReviewScalarWhereInput[]
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
+  export type SmartphoneSpecUncheckedUpdateOneWithoutProductNestedInput = {
+    create?: XOR<SmartphoneSpecCreateWithoutProductInput, SmartphoneSpecUncheckedCreateWithoutProductInput>
+    connectOrCreate?: SmartphoneSpecCreateOrConnectWithoutProductInput
+    upsert?: SmartphoneSpecUpsertWithoutProductInput
+    disconnect?: SmartphoneSpecWhereInput | boolean
+    delete?: SmartphoneSpecWhereInput | boolean
+    connect?: SmartphoneSpecWhereUniqueInput
+    update?: XOR<XOR<SmartphoneSpecUpdateToOneWithWhereWithoutProductInput, SmartphoneSpecUpdateWithoutProductInput>, SmartphoneSpecUncheckedUpdateWithoutProductInput>
   }
 
   export type ColorProductUncheckedUpdateManyWithoutProductNestedInput = {
@@ -9990,17 +9840,16 @@ export namespace Prisma {
     deleteMany?: ColorProductScalarWhereInput | ColorProductScalarWhereInput[]
   }
 
-  export type StorageOptionUncheckedUpdateManyWithoutProductNestedInput = {
-    create?: XOR<StorageOptionCreateWithoutProductInput, StorageOptionUncheckedCreateWithoutProductInput> | StorageOptionCreateWithoutProductInput[] | StorageOptionUncheckedCreateWithoutProductInput[]
-    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductInput | StorageOptionCreateOrConnectWithoutProductInput[]
-    upsert?: StorageOptionUpsertWithWhereUniqueWithoutProductInput | StorageOptionUpsertWithWhereUniqueWithoutProductInput[]
-    createMany?: StorageOptionCreateManyProductInputEnvelope
+  export type StorageOptionUncheckedUpdateManyWithoutProductsNestedInput = {
+    create?: XOR<StorageOptionCreateWithoutProductsInput, StorageOptionUncheckedCreateWithoutProductsInput> | StorageOptionCreateWithoutProductsInput[] | StorageOptionUncheckedCreateWithoutProductsInput[]
+    connectOrCreate?: StorageOptionCreateOrConnectWithoutProductsInput | StorageOptionCreateOrConnectWithoutProductsInput[]
+    upsert?: StorageOptionUpsertWithWhereUniqueWithoutProductsInput | StorageOptionUpsertWithWhereUniqueWithoutProductsInput[]
     set?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
     disconnect?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
     delete?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
     connect?: StorageOptionWhereUniqueInput | StorageOptionWhereUniqueInput[]
-    update?: StorageOptionUpdateWithWhereUniqueWithoutProductInput | StorageOptionUpdateWithWhereUniqueWithoutProductInput[]
-    updateMany?: StorageOptionUpdateManyWithWhereWithoutProductInput | StorageOptionUpdateManyWithWhereWithoutProductInput[]
+    update?: StorageOptionUpdateWithWhereUniqueWithoutProductsInput | StorageOptionUpdateWithWhereUniqueWithoutProductsInput[]
+    updateMany?: StorageOptionUpdateManyWithWhereWithoutProductsInput | StorageOptionUpdateManyWithWhereWithoutProductsInput[]
     deleteMany?: StorageOptionScalarWhereInput | StorageOptionScalarWhereInput[]
   }
 
@@ -10032,6 +9881,10 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
   export type ProductUpdateManyWithoutCategoryNestedInput = {
     create?: XOR<ProductCreateWithoutCategoryInput, ProductUncheckedCreateWithoutCategoryInput> | ProductCreateWithoutCategoryInput[] | ProductUncheckedCreateWithoutCategoryInput[]
     connectOrCreate?: ProductCreateOrConnectWithoutCategoryInput | ProductCreateOrConnectWithoutCategoryInput[]
@@ -10060,36 +9913,18 @@ export namespace Prisma {
     deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
-  export type ProductCreateNestedOneWithoutSmartphoneSpecInput = {
-    create?: XOR<ProductCreateWithoutSmartphoneSpecInput, ProductUncheckedCreateWithoutSmartphoneSpecInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutSmartphoneSpecInput
+  export type ProductCreateNestedOneWithoutSmartphone_specInput = {
+    create?: XOR<ProductCreateWithoutSmartphone_specInput, ProductUncheckedCreateWithoutSmartphone_specInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutSmartphone_specInput
     connect?: ProductWhereUniqueInput
   }
 
-  export type ProductUncheckedCreateNestedOneWithoutSmartphoneSpecInput = {
-    create?: XOR<ProductCreateWithoutSmartphoneSpecInput, ProductUncheckedCreateWithoutSmartphoneSpecInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutSmartphoneSpecInput
+  export type ProductUpdateOneRequiredWithoutSmartphone_specNestedInput = {
+    create?: XOR<ProductCreateWithoutSmartphone_specInput, ProductUncheckedCreateWithoutSmartphone_specInput>
+    connectOrCreate?: ProductCreateOrConnectWithoutSmartphone_specInput
+    upsert?: ProductUpsertWithoutSmartphone_specInput
     connect?: ProductWhereUniqueInput
-  }
-
-  export type ProductUpdateOneWithoutSmartphoneSpecNestedInput = {
-    create?: XOR<ProductCreateWithoutSmartphoneSpecInput, ProductUncheckedCreateWithoutSmartphoneSpecInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutSmartphoneSpecInput
-    upsert?: ProductUpsertWithoutSmartphoneSpecInput
-    disconnect?: ProductWhereInput | boolean
-    delete?: ProductWhereInput | boolean
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutSmartphoneSpecInput, ProductUpdateWithoutSmartphoneSpecInput>, ProductUncheckedUpdateWithoutSmartphoneSpecInput>
-  }
-
-  export type ProductUncheckedUpdateOneWithoutSmartphoneSpecNestedInput = {
-    create?: XOR<ProductCreateWithoutSmartphoneSpecInput, ProductUncheckedCreateWithoutSmartphoneSpecInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutSmartphoneSpecInput
-    upsert?: ProductUpsertWithoutSmartphoneSpecInput
-    disconnect?: ProductWhereInput | boolean
-    delete?: ProductWhereInput | boolean
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutSmartphoneSpecInput, ProductUpdateWithoutSmartphoneSpecInput>, ProductUncheckedUpdateWithoutSmartphoneSpecInput>
+    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutSmartphone_specInput, ProductUpdateWithoutSmartphone_specInput>, ProductUncheckedUpdateWithoutSmartphone_specInput>
   }
 
   export type ProductCreateNestedOneWithoutColorsInput = {
@@ -10106,18 +9941,42 @@ export namespace Prisma {
     update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutColorsInput, ProductUpdateWithoutColorsInput>, ProductUncheckedUpdateWithoutColorsInput>
   }
 
-  export type ProductCreateNestedOneWithoutStorageOptionsInput = {
-    create?: XOR<ProductCreateWithoutStorageOptionsInput, ProductUncheckedCreateWithoutStorageOptionsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutStorageOptionsInput
-    connect?: ProductWhereUniqueInput
+  export type ProductCreateNestedManyWithoutStorage_optionsInput = {
+    create?: XOR<ProductCreateWithoutStorage_optionsInput, ProductUncheckedCreateWithoutStorage_optionsInput> | ProductCreateWithoutStorage_optionsInput[] | ProductUncheckedCreateWithoutStorage_optionsInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutStorage_optionsInput | ProductCreateOrConnectWithoutStorage_optionsInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
   }
 
-  export type ProductUpdateOneRequiredWithoutStorageOptionsNestedInput = {
-    create?: XOR<ProductCreateWithoutStorageOptionsInput, ProductUncheckedCreateWithoutStorageOptionsInput>
-    connectOrCreate?: ProductCreateOrConnectWithoutStorageOptionsInput
-    upsert?: ProductUpsertWithoutStorageOptionsInput
-    connect?: ProductWhereUniqueInput
-    update?: XOR<XOR<ProductUpdateToOneWithWhereWithoutStorageOptionsInput, ProductUpdateWithoutStorageOptionsInput>, ProductUncheckedUpdateWithoutStorageOptionsInput>
+  export type ProductUncheckedCreateNestedManyWithoutStorage_optionsInput = {
+    create?: XOR<ProductCreateWithoutStorage_optionsInput, ProductUncheckedCreateWithoutStorage_optionsInput> | ProductCreateWithoutStorage_optionsInput[] | ProductUncheckedCreateWithoutStorage_optionsInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutStorage_optionsInput | ProductCreateOrConnectWithoutStorage_optionsInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+  }
+
+  export type ProductUpdateManyWithoutStorage_optionsNestedInput = {
+    create?: XOR<ProductCreateWithoutStorage_optionsInput, ProductUncheckedCreateWithoutStorage_optionsInput> | ProductCreateWithoutStorage_optionsInput[] | ProductUncheckedCreateWithoutStorage_optionsInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutStorage_optionsInput | ProductCreateOrConnectWithoutStorage_optionsInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutStorage_optionsInput | ProductUpsertWithWhereUniqueWithoutStorage_optionsInput[]
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutStorage_optionsInput | ProductUpdateWithWhereUniqueWithoutStorage_optionsInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutStorage_optionsInput | ProductUpdateManyWithWhereWithoutStorage_optionsInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
+  }
+
+  export type ProductUncheckedUpdateManyWithoutStorage_optionsNestedInput = {
+    create?: XOR<ProductCreateWithoutStorage_optionsInput, ProductUncheckedCreateWithoutStorage_optionsInput> | ProductCreateWithoutStorage_optionsInput[] | ProductUncheckedCreateWithoutStorage_optionsInput[]
+    connectOrCreate?: ProductCreateOrConnectWithoutStorage_optionsInput | ProductCreateOrConnectWithoutStorage_optionsInput[]
+    upsert?: ProductUpsertWithWhereUniqueWithoutStorage_optionsInput | ProductUpsertWithWhereUniqueWithoutStorage_optionsInput[]
+    set?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    disconnect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    delete?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    connect?: ProductWhereUniqueInput | ProductWhereUniqueInput[]
+    update?: ProductUpdateWithWhereUniqueWithoutStorage_optionsInput | ProductUpdateWithWhereUniqueWithoutStorage_optionsInput[]
+    updateMany?: ProductUpdateManyWithWhereWithoutStorage_optionsInput | ProductUpdateManyWithWhereWithoutStorage_optionsInput[]
+    deleteMany?: ProductScalarWhereInput | ProductScalarWhereInput[]
   }
 
   export type ProductCreateNestedOneWithoutReviewsInput = {
@@ -10159,48 +10018,26 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
-  export type NestedDecimalFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[]
-    notIn?: Date[] | string[]
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
     in?: number[] | null
     notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -10217,17 +10054,6 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
-  }
-
-  export type NestedFloatFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel>
-    in?: number[]
-    notIn?: number[]
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatFilter<$PrismaModel> | number
   }
 
   export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
@@ -10247,36 +10073,58 @@ export namespace Prisma {
     _max?: NestedStringFilter<$PrismaModel>
   }
 
-  export type NestedDecimalWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[]
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
     _count?: NestedIntFilter<$PrismaModel>
-    _avg?: NestedDecimalFilter<$PrismaModel>
-    _sum?: NestedDecimalFilter<$PrismaModel>
-    _min?: NestedDecimalFilter<$PrismaModel>
-    _max?: NestedDecimalFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
-  export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableWithAggregatesFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
+  export type NestedFloatNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableWithAggregatesFilter<$PrismaModel> | number | null
     _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedDecimalNullableFilter<$PrismaModel>
-    _sum?: NestedDecimalNullableFilter<$PrismaModel>
-    _min?: NestedDecimalNullableFilter<$PrismaModel>
-    _max?: NestedDecimalNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedFloatNullableFilter<$PrismaModel>
+    _min?: NestedFloatNullableFilter<$PrismaModel>
+    _max?: NestedFloatNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10291,33 +10139,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
-  export type NestedFloatNullableFilter<$PrismaModel = never> = {
-    equals?: number | FloatFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | FloatFieldRefInput<$PrismaModel>
-    lte?: number | FloatFieldRefInput<$PrismaModel>
-    gt?: number | FloatFieldRefInput<$PrismaModel>
-    gte?: number | FloatFieldRefInput<$PrismaModel>
-    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
   }
 
   export type CategoryCreateWithoutProductsInput = {
@@ -10392,26 +10213,18 @@ export namespace Prisma {
     data: ColorProductCreateManyProductInput | ColorProductCreateManyProductInput[]
   }
 
-  export type StorageOptionCreateWithoutProductInput = {
+  export type StorageOptionCreateWithoutProductsInput = {
     size: string
-    created_at?: Date | string
-    updated_at?: Date | string
   }
 
-  export type StorageOptionUncheckedCreateWithoutProductInput = {
+  export type StorageOptionUncheckedCreateWithoutProductsInput = {
     id?: number
     size: string
-    created_at?: Date | string
-    updated_at?: Date | string
   }
 
-  export type StorageOptionCreateOrConnectWithoutProductInput = {
+  export type StorageOptionCreateOrConnectWithoutProductsInput = {
     where: StorageOptionWhereUniqueInput
-    create: XOR<StorageOptionCreateWithoutProductInput, StorageOptionUncheckedCreateWithoutProductInput>
-  }
-
-  export type StorageOptionCreateManyProductInputEnvelope = {
-    data: StorageOptionCreateManyProductInput | StorageOptionCreateManyProductInput[]
+    create: XOR<StorageOptionCreateWithoutProductsInput, StorageOptionUncheckedCreateWithoutProductsInput>
   }
 
   export type ReviewCreateWithoutProductInput = {
@@ -10530,20 +10343,20 @@ export namespace Prisma {
     productId?: IntFilter<"ColorProduct"> | number
   }
 
-  export type StorageOptionUpsertWithWhereUniqueWithoutProductInput = {
+  export type StorageOptionUpsertWithWhereUniqueWithoutProductsInput = {
     where: StorageOptionWhereUniqueInput
-    update: XOR<StorageOptionUpdateWithoutProductInput, StorageOptionUncheckedUpdateWithoutProductInput>
-    create: XOR<StorageOptionCreateWithoutProductInput, StorageOptionUncheckedCreateWithoutProductInput>
+    update: XOR<StorageOptionUpdateWithoutProductsInput, StorageOptionUncheckedUpdateWithoutProductsInput>
+    create: XOR<StorageOptionCreateWithoutProductsInput, StorageOptionUncheckedCreateWithoutProductsInput>
   }
 
-  export type StorageOptionUpdateWithWhereUniqueWithoutProductInput = {
+  export type StorageOptionUpdateWithWhereUniqueWithoutProductsInput = {
     where: StorageOptionWhereUniqueInput
-    data: XOR<StorageOptionUpdateWithoutProductInput, StorageOptionUncheckedUpdateWithoutProductInput>
+    data: XOR<StorageOptionUpdateWithoutProductsInput, StorageOptionUncheckedUpdateWithoutProductsInput>
   }
 
-  export type StorageOptionUpdateManyWithWhereWithoutProductInput = {
+  export type StorageOptionUpdateManyWithWhereWithoutProductsInput = {
     where: StorageOptionScalarWhereInput
-    data: XOR<StorageOptionUpdateManyMutationInput, StorageOptionUncheckedUpdateManyWithoutProductInput>
+    data: XOR<StorageOptionUpdateManyMutationInput, StorageOptionUncheckedUpdateManyWithoutProductsInput>
   }
 
   export type StorageOptionScalarWhereInput = {
@@ -10552,9 +10365,6 @@ export namespace Prisma {
     NOT?: StorageOptionScalarWhereInput | StorageOptionScalarWhereInput[]
     id?: IntFilter<"StorageOption"> | number
     size?: StringFilter<"StorageOption"> | string
-    created_at?: DateTimeFilter<"StorageOption"> | Date | string
-    updated_at?: DateTimeFilter<"StorageOption"> | Date | string
-    productId?: IntFilter<"StorageOption"> | number
   }
 
   export type ReviewUpsertWithWhereUniqueWithoutProductInput = {
@@ -10591,16 +10401,14 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    smartphoneSpec?: SmartphoneSpecCreateNestedOneWithoutProductInput
+    smartphone_spec?: SmartphoneSpecCreateNestedOneWithoutProductInput
     colors?: ColorProductCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionCreateNestedManyWithoutProductsInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
@@ -10609,16 +10417,14 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    smartphoneSpecId?: number | null
+    smartphone_spec?: SmartphoneSpecUncheckedCreateNestedOneWithoutProductInput
     colors?: ColorProductUncheckedCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionUncheckedCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionUncheckedCreateNestedManyWithoutProductsInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -10655,100 +10461,89 @@ export namespace Prisma {
     name?: StringFilter<"Product"> | string
     description?: StringFilter<"Product"> | string
     brand?: StringFilter<"Product"> | string
-    price?: DecimalFilter<"Product"> | Decimal | DecimalJsLike | number | string
-    discounted_price?: DecimalNullableFilter<"Product"> | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFilter<"Product"> | number
+    discounted_price?: FloatNullableFilter<"Product"> | number | null
     stock?: IntFilter<"Product"> | number
     url_image?: StringFilter<"Product"> | string
     tag?: StringFilter<"Product"> | string
-    created_at?: DateTimeFilter<"Product"> | Date | string
-    updated_at?: DateTimeFilter<"Product"> | Date | string
     categoryId?: IntFilter<"Product"> | number
-    smartphoneSpecId?: IntNullableFilter<"Product"> | number | null
   }
 
-  export type ProductCreateWithoutSmartphoneSpecInput = {
+  export type ProductCreateWithoutSmartphone_specInput = {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
     colors?: ColorProductCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionCreateNestedManyWithoutProductsInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
-  export type ProductUncheckedCreateWithoutSmartphoneSpecInput = {
+  export type ProductUncheckedCreateWithoutSmartphone_specInput = {
     id?: number
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     categoryId: number
     colors?: ColorProductUncheckedCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionUncheckedCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionUncheckedCreateNestedManyWithoutProductsInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ProductCreateOrConnectWithoutSmartphoneSpecInput = {
+  export type ProductCreateOrConnectWithoutSmartphone_specInput = {
     where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutSmartphoneSpecInput, ProductUncheckedCreateWithoutSmartphoneSpecInput>
+    create: XOR<ProductCreateWithoutSmartphone_specInput, ProductUncheckedCreateWithoutSmartphone_specInput>
   }
 
-  export type ProductUpsertWithoutSmartphoneSpecInput = {
-    update: XOR<ProductUpdateWithoutSmartphoneSpecInput, ProductUncheckedUpdateWithoutSmartphoneSpecInput>
-    create: XOR<ProductCreateWithoutSmartphoneSpecInput, ProductUncheckedCreateWithoutSmartphoneSpecInput>
+  export type ProductUpsertWithoutSmartphone_specInput = {
+    update: XOR<ProductUpdateWithoutSmartphone_specInput, ProductUncheckedUpdateWithoutSmartphone_specInput>
+    create: XOR<ProductCreateWithoutSmartphone_specInput, ProductUncheckedCreateWithoutSmartphone_specInput>
     where?: ProductWhereInput
   }
 
-  export type ProductUpdateToOneWithWhereWithoutSmartphoneSpecInput = {
+  export type ProductUpdateToOneWithWhereWithoutSmartphone_specInput = {
     where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutSmartphoneSpecInput, ProductUncheckedUpdateWithoutSmartphoneSpecInput>
+    data: XOR<ProductUpdateWithoutSmartphone_specInput, ProductUncheckedUpdateWithoutSmartphone_specInput>
   }
 
-  export type ProductUpdateWithoutSmartphoneSpecInput = {
+  export type ProductUpdateWithoutSmartphone_specInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
     colors?: ColorProductUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
-  export type ProductUncheckedUpdateWithoutSmartphoneSpecInput = {
+  export type ProductUncheckedUpdateWithoutSmartphone_specInput = {
     id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
     colors?: ColorProductUncheckedUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUncheckedUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUncheckedUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -10756,16 +10551,14 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
-    smartphoneSpec?: SmartphoneSpecCreateNestedOneWithoutProductInput
-    storageOptions?: StorageOptionCreateNestedManyWithoutProductInput
+    smartphone_spec?: SmartphoneSpecCreateNestedOneWithoutProductInput
+    storage_options?: StorageOptionCreateNestedManyWithoutProductsInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
@@ -10774,16 +10567,14 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     categoryId: number
-    smartphoneSpecId?: number | null
-    storageOptions?: StorageOptionUncheckedCreateNestedManyWithoutProductInput
+    smartphone_spec?: SmartphoneSpecUncheckedCreateNestedOneWithoutProductInput
+    storage_options?: StorageOptionUncheckedCreateNestedManyWithoutProductsInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
   }
 
@@ -10807,16 +10598,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    smartphoneSpec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
-    storageOptions?: StorageOptionUpdateManyWithoutProductNestedInput
+    smartphone_spec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
+    storage_options?: StorageOptionUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
@@ -10825,120 +10614,82 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
-    storageOptions?: StorageOptionUncheckedUpdateManyWithoutProductNestedInput
+    smartphone_spec?: SmartphoneSpecUncheckedUpdateOneWithoutProductNestedInput
+    storage_options?: StorageOptionUncheckedUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
   }
 
-  export type ProductCreateWithoutStorageOptionsInput = {
+  export type ProductCreateWithoutStorage_optionsInput = {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
-    smartphoneSpec?: SmartphoneSpecCreateNestedOneWithoutProductInput
+    smartphone_spec?: SmartphoneSpecCreateNestedOneWithoutProductInput
     colors?: ColorProductCreateNestedManyWithoutProductInput
     reviews?: ReviewCreateNestedManyWithoutProductInput
   }
 
-  export type ProductUncheckedCreateWithoutStorageOptionsInput = {
+  export type ProductUncheckedCreateWithoutStorage_optionsInput = {
     id?: number
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     categoryId: number
-    smartphoneSpecId?: number | null
+    smartphone_spec?: SmartphoneSpecUncheckedCreateNestedOneWithoutProductInput
     colors?: ColorProductUncheckedCreateNestedManyWithoutProductInput
     reviews?: ReviewUncheckedCreateNestedManyWithoutProductInput
   }
 
-  export type ProductCreateOrConnectWithoutStorageOptionsInput = {
+  export type ProductCreateOrConnectWithoutStorage_optionsInput = {
     where: ProductWhereUniqueInput
-    create: XOR<ProductCreateWithoutStorageOptionsInput, ProductUncheckedCreateWithoutStorageOptionsInput>
+    create: XOR<ProductCreateWithoutStorage_optionsInput, ProductUncheckedCreateWithoutStorage_optionsInput>
   }
 
-  export type ProductUpsertWithoutStorageOptionsInput = {
-    update: XOR<ProductUpdateWithoutStorageOptionsInput, ProductUncheckedUpdateWithoutStorageOptionsInput>
-    create: XOR<ProductCreateWithoutStorageOptionsInput, ProductUncheckedCreateWithoutStorageOptionsInput>
-    where?: ProductWhereInput
+  export type ProductUpsertWithWhereUniqueWithoutStorage_optionsInput = {
+    where: ProductWhereUniqueInput
+    update: XOR<ProductUpdateWithoutStorage_optionsInput, ProductUncheckedUpdateWithoutStorage_optionsInput>
+    create: XOR<ProductCreateWithoutStorage_optionsInput, ProductUncheckedCreateWithoutStorage_optionsInput>
   }
 
-  export type ProductUpdateToOneWithWhereWithoutStorageOptionsInput = {
-    where?: ProductWhereInput
-    data: XOR<ProductUpdateWithoutStorageOptionsInput, ProductUncheckedUpdateWithoutStorageOptionsInput>
+  export type ProductUpdateWithWhereUniqueWithoutStorage_optionsInput = {
+    where: ProductWhereUniqueInput
+    data: XOR<ProductUpdateWithoutStorage_optionsInput, ProductUncheckedUpdateWithoutStorage_optionsInput>
   }
 
-  export type ProductUpdateWithoutStorageOptionsInput = {
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    stock?: IntFieldUpdateOperationsInput | number
-    url_image?: StringFieldUpdateOperationsInput | string
-    tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    smartphoneSpec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
-    colors?: ColorProductUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUpdateManyWithoutProductNestedInput
-  }
-
-  export type ProductUncheckedUpdateWithoutStorageOptionsInput = {
-    id?: IntFieldUpdateOperationsInput | number
-    name?: StringFieldUpdateOperationsInput | string
-    description?: StringFieldUpdateOperationsInput | string
-    brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    stock?: IntFieldUpdateOperationsInput | number
-    url_image?: StringFieldUpdateOperationsInput | string
-    tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    categoryId?: IntFieldUpdateOperationsInput | number
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
-    colors?: ColorProductUncheckedUpdateManyWithoutProductNestedInput
-    reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
+  export type ProductUpdateManyWithWhereWithoutStorage_optionsInput = {
+    where: ProductScalarWhereInput
+    data: XOR<ProductUpdateManyMutationInput, ProductUncheckedUpdateManyWithoutStorage_optionsInput>
   }
 
   export type ProductCreateWithoutReviewsInput = {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     category: CategoryCreateNestedOneWithoutProductsInput
-    smartphoneSpec?: SmartphoneSpecCreateNestedOneWithoutProductInput
+    smartphone_spec?: SmartphoneSpecCreateNestedOneWithoutProductInput
     colors?: ColorProductCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionCreateNestedManyWithoutProductsInput
   }
 
   export type ProductUncheckedCreateWithoutReviewsInput = {
@@ -10946,17 +10697,15 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
     categoryId: number
-    smartphoneSpecId?: number | null
+    smartphone_spec?: SmartphoneSpecUncheckedCreateNestedOneWithoutProductInput
     colors?: ColorProductUncheckedCreateNestedManyWithoutProductInput
-    storageOptions?: StorageOptionUncheckedCreateNestedManyWithoutProductInput
+    storage_options?: StorageOptionUncheckedCreateNestedManyWithoutProductsInput
   }
 
   export type ProductCreateOrConnectWithoutReviewsInput = {
@@ -10979,17 +10728,15 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
-    smartphoneSpec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
+    smartphone_spec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
     colors?: ColorProductUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUpdateManyWithoutProductsNestedInput
   }
 
   export type ProductUncheckedUpdateWithoutReviewsInput = {
@@ -10997,30 +10744,21 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
     categoryId?: IntFieldUpdateOperationsInput | number
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
+    smartphone_spec?: SmartphoneSpecUncheckedUpdateOneWithoutProductNestedInput
     colors?: ColorProductUncheckedUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUncheckedUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUncheckedUpdateManyWithoutProductsNestedInput
   }
 
   export type ColorProductCreateManyProductInput = {
     id?: number
     hex_code: string
     name: string
-    created_at?: Date | string
-    updated_at?: Date | string
-  }
-
-  export type StorageOptionCreateManyProductInput = {
-    id?: number
-    size: string
     created_at?: Date | string
     updated_at?: Date | string
   }
@@ -11058,24 +10796,18 @@ export namespace Prisma {
     updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StorageOptionUpdateWithoutProductInput = {
+  export type StorageOptionUpdateWithoutProductsInput = {
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StorageOptionUncheckedUpdateWithoutProductInput = {
+  export type StorageOptionUncheckedUpdateWithoutProductsInput = {
     id?: IntFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type StorageOptionUncheckedUpdateManyWithoutProductInput = {
+  export type StorageOptionUncheckedUpdateManyWithoutProductsInput = {
     id?: IntFieldUpdateOperationsInput | number
     size?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type ReviewUpdateWithoutProductInput = {
@@ -11112,30 +10844,25 @@ export namespace Prisma {
     name: string
     description: string
     brand: string
-    price: Decimal | DecimalJsLike | number | string
-    discounted_price?: Decimal | DecimalJsLike | number | string | null
+    price: number
+    discounted_price?: number | null
     stock: number
     url_image: string
     tag: string
-    created_at?: Date | string
-    updated_at?: Date | string
-    smartphoneSpecId?: number | null
   }
 
   export type ProductUpdateWithoutCategoryInput = {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    smartphoneSpec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
+    smartphone_spec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
     colors?: ColorProductUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUpdateManyWithoutProductNestedInput
   }
 
@@ -11144,16 +10871,14 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
+    smartphone_spec?: SmartphoneSpecUncheckedUpdateOneWithoutProductNestedInput
     colors?: ColorProductUncheckedUpdateManyWithoutProductNestedInput
-    storageOptions?: StorageOptionUncheckedUpdateManyWithoutProductNestedInput
+    storage_options?: StorageOptionUncheckedUpdateManyWithoutProductsNestedInput
     reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
   }
 
@@ -11162,14 +10887,55 @@ export namespace Prisma {
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     brand?: StringFieldUpdateOperationsInput | string
-    price?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
-    discounted_price?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
     stock?: IntFieldUpdateOperationsInput | number
     url_image?: StringFieldUpdateOperationsInput | string
     tag?: StringFieldUpdateOperationsInput | string
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    updated_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    smartphoneSpecId?: NullableIntFieldUpdateOperationsInput | number | null
+  }
+
+  export type ProductUpdateWithoutStorage_optionsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: IntFieldUpdateOperationsInput | number
+    url_image?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    category?: CategoryUpdateOneRequiredWithoutProductsNestedInput
+    smartphone_spec?: SmartphoneSpecUpdateOneWithoutProductNestedInput
+    colors?: ColorProductUpdateManyWithoutProductNestedInput
+    reviews?: ReviewUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateWithoutStorage_optionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: IntFieldUpdateOperationsInput | number
+    url_image?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    categoryId?: IntFieldUpdateOperationsInput | number
+    smartphone_spec?: SmartphoneSpecUncheckedUpdateOneWithoutProductNestedInput
+    colors?: ColorProductUncheckedUpdateManyWithoutProductNestedInput
+    reviews?: ReviewUncheckedUpdateManyWithoutProductNestedInput
+  }
+
+  export type ProductUncheckedUpdateManyWithoutStorage_optionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    brand?: StringFieldUpdateOperationsInput | string
+    price?: FloatFieldUpdateOperationsInput | number
+    discounted_price?: NullableFloatFieldUpdateOperationsInput | number | null
+    stock?: IntFieldUpdateOperationsInput | number
+    url_image?: StringFieldUpdateOperationsInput | string
+    tag?: StringFieldUpdateOperationsInput | string
+    categoryId?: IntFieldUpdateOperationsInput | number
   }
 
 
