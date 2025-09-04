@@ -4,7 +4,6 @@ import { Request, Response } from 'express';
 export class ProductsController {
   private productsService = new ProductsService();
 
-  // GET /api/products/tag/:tag_name
   async getByTag(req: Request, res: Response) {
     const { tag_name } = req.params;
     try {
@@ -15,7 +14,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products
   async getAll(req: Request, res: Response) {
     const page = parseInt(req.query.page as string) || 1;
     const sort = (req.query.sort as string) || 'price';
@@ -29,7 +27,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/category/:category_name
   async getByCategoryName(req: Request, res: Response) {
     const { category_name } = req.params;
     const page = parseInt(req.query.page as string) || 1;
@@ -44,7 +41,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/:id
   async getById(req: Request, res: Response) {
     const productId = Number(req.params.id);
     if (!productId) return res.status(400).json({ error: 'Invalid product ID' });
@@ -59,7 +55,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/reviews/:product_id
   async getReviews(req: Request, res: Response) {
     const productId = Number(req.params.product_id);
     if (!productId) return res.status(400).json({ error: 'Invalid product_id' });
@@ -71,7 +66,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/related/:brand
   async getRelatedByBrand(req: Request, res: Response) {
     const brand = req.params.brand;
     if (!brand) return res.status(400).json({ error: 'Invalid brand' });

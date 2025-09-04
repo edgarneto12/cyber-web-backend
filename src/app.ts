@@ -1,19 +1,24 @@
 import express, { Application, Request, Response } from 'express';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './swaggerConfig';
 import { categoriesRouter } from './routes/categories';
 import productsRouter from './routes/products';
 import brandsRouter from './routes/brands';
 import reviewsRouter from './routes/reviews';
+import cors from 'cors';
+
 
 const app: Application = express();
 
+app.use(cors({ origin: 'http://localhost:5173' }));
+
 app.use(express.json());
 
-// Rota raiz
 app.get('/', (req: Request, res: Response) => {
   res.send('API is running!');
 });
 
-// Rotas da API
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 app.use('/api/categories', categoriesRouter);
 app.use('/api/products', productsRouter);
