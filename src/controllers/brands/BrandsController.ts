@@ -4,7 +4,6 @@ import { Request, Response } from 'express';
 export class BrandsController {
   private brandsService = new BrandsService();
 
-  // GET /api/brands
   async getAllBrands(req: Request, res: Response) {
     try {
       const data = await this.brandsService.getAllBrands();

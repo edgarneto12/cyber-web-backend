@@ -1,7 +1,6 @@
 import { prisma } from '../../config/prisma';
 
 export class ReviewsService {
-  // GET /api/reviews/summary/:product_id
   async getSummary(productId: number) {
     const reviews = await prisma.review.findMany({
       where: { productId },
