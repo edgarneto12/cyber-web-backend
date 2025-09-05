@@ -94,9 +94,9 @@ npx prisma migrate reset
 Resets the database and re-runs all migrations and seeds.
 
 ## Swagger documentation
-```bash
+
 [localhost:3001/api-docs/](http://localhost:3001/api-docs/)/
-```
+
 
 
 ## Frontend & Backend
