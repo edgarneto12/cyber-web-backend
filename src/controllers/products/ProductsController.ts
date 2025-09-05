@@ -15,12 +15,18 @@ export class ProductsController {
   }
 
   async getAll(req: Request, res: Response) {
-    const page = parseInt(req.query.page as string) || 1;
-    const sort = (req.query.sort as string) || 'price';
-    const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-    const categoryIds = Array.isArray(req.body?.category) ? req.body.category : undefined;
     try {
-      const result = await this.productsService.getAll({ page, sort, order, categoryIds });
+      const page = parseInt(req.query.page as string) || 1;
+      const sort = (req.query.sort as string) || 'price';
+      const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
+
+      const brandsQuery = req.query.brands as string;
+      const brands = brandsQuery ? brandsQuery.split(',') : undefined;
+
+      const categoriesQuery = req.query.categories as string;
+      const categories = categoriesQuery ? categoriesQuery.split(',') : undefined;
+
+      const result = await this.productsService.getAll({ page, sort, order, brands, categories });
       res.json({ data: result.products, metadata: result.metadata });
     } catch (error) {
       res.status(500).json({ error: 'Error fetching products.' });
@@ -32,7 +38,9 @@ export class ProductsController {
     const page = parseInt(req.query.page as string) || 1;
     const sort = (req.query.sort as string) || 'price';
     const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-    const brands = req.body.filters?.brands;
+    const brandsQuery = req.query.brands as string;
+    const brands = brandsQuery ? brandsQuery.split(',') : undefined;
+
     try {
       const result = await this.productsService.getByCategoryName(category_name, page, sort, order, brands);
       res.json({ data: result.products, metadata: result.metadata });

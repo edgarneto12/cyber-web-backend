@@ -25,12 +25,22 @@ export class ProductsService {
 		});
 	}
 
-	async getAll({ page = 1, sort = 'price', order = 'asc', categoryIds }: { page?: number; sort?: string; order?: 'asc'|'desc'; categoryIds?: number[] }) {
+	async getAll({ page = 1, sort = 'price', order = 'asc', brands, categories }: { page?: number; sort?: string; order?: 'asc'|'desc'; brands?: string[]; categories?: string[] }) {
 		const take = 10;
 		const skip = (page - 1) * take;
-		const where = categoryIds ? { categoryId: { in: categoryIds } } : {};
+
+		const where: any = {};
+		if (brands && brands.length > 0) where.brand = { in: brands };
+
+		if (categories && categories.length > 0) {
+			where.category = {
+				name: { in: categories }
+			};
+		}
+
 		const total_items = await prisma.product.count({ where });
 		const total_pages = Math.ceil(total_items / take);
+
 		const products = await prisma.product.findMany({
 			where,
 			orderBy: { [sort]: order },
