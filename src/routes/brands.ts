@@ -6,4 +6,6 @@ const brandsController = new BrandsController();
 
 router.get('/', brandsController.getAllBrands.bind(brandsController));
 
+router.get('/:category_name', brandsController.getBrandsByCategory.bind(brandsController))
+
 export default router;
