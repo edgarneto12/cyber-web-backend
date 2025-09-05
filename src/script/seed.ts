@@ -57,15 +57,21 @@ async function main() {
   await prisma.product.createMany({
     data: [
 
-      { name: 'Apple iPhone 14 Pro Max', description: 'Enhanced capabilities thanks toan enlarged display of 6.7 inchesand work without rechargingthroughout the day. Incredible photosas in weak, yesand in bright lightusing the new systemwith two cameras ', brand: 'Apple', price: 1499.00, discounted_price: 1399, stock: 25, url_image: 'https://i.postimg.cc/4368k2tt/iphone-14-pro.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
-      { name: 'Apple iPhone 15 Pro', description: 'The ultimate iPhone experience.', brand: 'Apple', price: 999.00, stock: 50, url_image: 'https://i.postimg.cc/ydnvWJL8/iphone-15-pro.png', tag: 'new_arrival', categoryId: phonesCategory.id },
-      { name: 'OnePlus 12', description: 'Fast and smooth with flagship performance.', brand: 'OnePlus', price: 699.00, stock: 45, url_image: 'https://i.postimg.cc/CLRmLxkw/oneplus-12.png', tag: 'new_arrival', categoryId: phonesCategory.id },
-      { name: 'Redmi Note 13 Pro', description: 'Powerful mid-range with 200MP camera.', brand: 'Redmi', price: 399.00, stock: 60, url_image: 'https://i.postimg.cc/K8LfBp0V/redmi-note-13.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
-      { name: 'Nothing Phone (2)', description: 'Pure instinct. Glyph Interface illuminated.', brand: 'Nothing', price: 599.00, stock: 50, url_image: 'https://i.postimg.cc/DfjxTXWC/nothing-phone-2.png', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'Apple iPhone 14 Pro Max', description: 'The iPhone 14 Pro Max takes the Apple experience to the next level with a 6.7-inch Super Retina XDR display featuring ProMotion and Always-On Display. Powered by the blazing-fast A16 Bionic chip, it delivers unmatched performance for multitasking, gaming, and demanding apps while maintaining energy efficiency. Its 48MP triple-camera system captures professional-quality photos in any lighting, with advanced features like Cinematic Mode in 4K. With all-day battery life, improved Face ID security, and the revolutionary Dynamic Island that changes how you interact with notifications, this is a truly premium smartphone for those who demand the best. ', brand: 'Apple', price: 1499.00, discounted_price: 1399, stock: 25, url_image: 'https://i.postimg.cc/4368k2tt/iphone-14-pro.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
+      { name: 'Apple iPhone 15 Pro', description: 'Built with aerospace-grade titanium, the iPhone 15 Pro combines incredible strength with lightweight elegance. Powered by the all-new A17 Pro chip, it introduces console-level gaming performance and next-generation efficiency. The professional-grade camera system delivers stunning images, from lifelike portraits to cinematic videos in high definition. Its 6.1-inch Super Retina XDR display with ProMotion ensures ultra-smooth visuals, while the long-lasting battery keeps up with your day. With the addition of high-speed USB-C connectivity, transferring large files or working with ProRAW images is now faster and easier than ever.', brand: 'Apple', price: 999.00, stock: 50, url_image: 'https://i.postimg.cc/ydnvWJL8/iphone-15-pro.png', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'OnePlus 12', description: 'The OnePlus 12 blends cutting-edge power with sleek design, making it one of the most impressive smartphones on the market. Featuring the latest Snapdragon processor, it delivers flawless performance for gaming, multitasking, and productivity. The 6.7-inch AMOLED display boasts vivid colors, exceptional brightness, and smooth refresh rates for a truly immersive experience. With Hasselblad camera technology, every photo looks professional, whether in daylight or low light. A large battery with ultra-fast charging ensures you stay connected longer. The OnePlus 12 is designed for speed, innovation, and premium quality.', brand: 'OnePlus', price: 699.00, stock: 45, url_image: 'https://i.postimg.cc/CLRmLxkw/oneplus-12.png', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'OnePlus 13', description: 'The OnePlus 13 pushes innovation even further with a refined design and flagship-level performance. Its 6.8-inch AMOLED display delivers ultra-bright visuals, silky-smooth refresh rates, and vivid colors, making it perfect for gaming and streaming. Equipped with the latest Snapdragon processor, it ensures lightning-fast multitasking and responsiveness. The advanced triple-camera system powered by Hasselblad technology captures stunning photos with natural tones and incredible detail, whether in daylight or at night. With super-fast charging, an all-day battery, and OxygenOS optimizations, the OnePlus 13 is built for users who want speed, style, and next-generation mobile technology.', brand: 'OnePlus', price: 799.00, stock: 45, url_image: 'https://i.postimg.cc/TwWfZwQd/oneplus-13.webp', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'Redmi Note 13 Pro', description: 'The Redmi Note 13 Pro redefines value by combining high-end features at an affordable price. Its groundbreaking 200MP main camera captures ultra-detailed and crisp images in any condition, while the 6.67-inch AMOLED display with 120Hz refresh rate provides fluid and immersive visuals. Powered by a robust processor and long-lasting battery, it’s built for heavy users, gamers, and movie lovers alike. With fast charging, durable design, and stylish looks, the Redmi Note 13 Pro is a top choice for anyone who wants flagship-like performance without breaking the bank.', brand: 'Redmi', price: 399.00, discounted_price: 199.00, stock: 60, url_image: 'https://i.postimg.cc/K8LfBp0V/redmi-note-13.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
+      { name: 'Redmi Note 14 Pro', description: 'The Redmi Note 14 Pro raises the bar for mid-range smartphones, offering premium features at an unbeatable price. It comes with a powerful 200MP camera system that captures crystal-clear images with exceptional detail and dynamic range. Its 6.7-inch AMOLED display with 120Hz refresh rate provides smooth scrolling and an immersive viewing experience, ideal for gaming, movies, and everyday use. Powered by an efficient yet high-performing chipset, it ensures fast performance without compromising battery life. With fast charging, sleek design, and HyperOS enhancements, the Redmi Note 14 Pro is the perfect balance of performance, style, and affordability.', brand: 'Redmi', price: 499.00, stock: 60, url_image: 'https://i.postimg.cc/qvjb2Hy4/redmi-note-14pro.png', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'Nothing Phone (2)', description: 'The Nothing Phone (2) stands out with its futuristic transparent design and unique Glyph Interface, which lights up for notifications, calls, and interactions in an entirely new way. Its 6.7-inch OLED display delivers vivid colors and smooth performance, while the Snapdragon flagship processor ensures flawless speed for gaming, apps, and multitasking. The dual-camera system enhanced with AI produces sharp and detailed photos even in low light. With long-lasting battery life, fast charging, and wireless charging support, the Nothing Phone (2) is built for users who want innovation, style, and advanced technology in one package. ', brand: 'Nothing', price: 599.00, stock: 50, url_image: 'https://i.postimg.cc/DfjxTXWC/nothing-phone-2.png', tag: 'new_arrival', categoryId: phonesCategory.id },
+      { name: 'Nothing Phone (3)', description: 'The Nothing Phone (3) continues the brand’s bold vision of blending cutting-edge technology with a futuristic design. Its transparent back and upgraded Glyph Interface offer a unique way to interact with notifications, music, and calls through customizable LED patterns. Featuring a 6.8-inch OLED display with ultra-smooth refresh rates and HDR support, it delivers vivid colors and stunning clarity for gaming, streaming, and everyday use. Powered by the latest Snapdragon flagship processor, it ensures lightning-fast performance, efficient multitasking, and console-level gaming graphics. The enhanced triple-camera system captures lifelike photos and videos with AI-driven optimization, even in challenging lighting conditions. With long battery life, ultra-fast wired and wireless charging, and a design that stands out from the crowd, the Nothing Phone (3) is the perfect balance of innovation, performance, and style.', brand: 'Nothing', price: 699.00, stock: 50, url_image: 'https://i.postimg.cc/vDRrW3Hr/nothing-phone-3.png', tag: 'new_arrival', categoryId: phonesCategory.id },
       { name: 'OPPO Find X7 Ultra', description: 'Master portrait photography with Hasselblad.', brand: 'OPPO', price: 849.00, stock: 35, url_image: 'https://www.oppo.com/content/dam/oppo/product-asset-library/find/find-x8-series/en/oppo-find-x8-pro/white-apac/assets/images-color-konka-b-1.png', tag: 'featured_product', categoryId: phonesCategory.id },
+      { name: 'OPPO Reno 13', description: 'The OPPO Reno 13 combines sleek design with advanced technology, making it a perfect choice for users who want style and performance in one device. Its 6.7-inch AMOLED display offers stunning clarity, vibrant colors, and a smooth refresh rate for an immersive viewing experience. Powered by the latest Snapdragon processor, it delivers fast and efficient performance for gaming, multitasking, and everyday use. The versatile triple-camera system with AI enhancements ensures sharp, detailed, and vibrant photos in all lighting conditions, while the front camera is optimized for crystal-clear selfies. With a long-lasting battery, super-fast charging, and premium finish, the OPPO Reno 13 is a smartphone that blends beauty and power seamlessly.', brand: 'OPPO', price: 699.00, stock: 35, url_image: 'https://i.postimg.cc/V6r0DnhD/oppo-reno13.png', tag: 'new_arrival', categoryId: phonesCategory.id },
       { name: 'MacBook Pro 14', description: 'Mind-blowing performance with M3 Pro chip.', brand: 'Apple', price: 1999.00, stock: 25, url_image: 'https://i.postimg.cc/0jQZS84d/macbook-14-pro.png', tag: 'new_arrival', categoryId: computersCategory.id },
-      { name: 'Dell XPS 15', description: 'Stunning display, powerful performance.', brand: 'Dell', price: 1799.00, discounted_price: 1599.00, stock: 30, url_image: 'https://i.postimg.cc/yYxrgP44/dell-xps-15.png', tag: 'discount_up_to_50', categoryId: computersCategory.id },
+      { name: 'Dell XPS 15', description: 'Stunning display, powerful performance.', brand: 'Dell', price: 1999.00, discounted_price: 999.00, stock: 30, url_image: 'https://i.postimg.cc/yYxrgP44/dell-xps-15.png', tag: 'discount_up_to_50', categoryId: computersCategory.id },
+      { name: 'Dell Alienware M16 R2 Ultra', description: 'Best performance of gaming laptops.', brand: 'Dell', price: 2499.00, stock: 30, url_image: 'https://i.postimg.cc/VNbbFXp4/dell-alienwarem16.png', tag: 'featured_product', categoryId: computersCategory.id },
       { name: 'ThinkPad X1 Carbon Gen 11', description: 'Ultra-lightweight business laptop.', brand: 'Lenovo', price: 1899.00, stock: 20, url_image: 'https://i.postimg.cc/N0kxP9qk/thinkpad-x1-gen11.png', tag: 'bestseller', categoryId: computersCategory.id },
+      { name: 'Legion 5i Intel Core i9-14900HX', description: 'Best Lenovo Gaming laptop.', brand: 'Lenovo', price: 2899.00, stock: 20, url_image: 'https://i.postimg.cc/Y9MqmgHv/lenovo-legion5i.png', tag: 'bestseller', categoryId: computersCategory.id },
       { name: 'ASUS ROG Zephyrus G16', description: 'Gaming laptop with style and performance.', brand: 'ASUS', price: 2299.00, stock: 18, url_image: 'https://i.postimg.cc/XYyHxYYs/asus-rog-zephyruz-g16.png', tag: 'new_arrival', categoryId: computersCategory.id },
       { name: 'Samsung Galaxy S24 Ultra', description: 'Galaxy AI is here.', brand: 'Samsung', price: 1199.00, discounted_price: 1099.00, stock: 30, url_image: 'https://i.postimg.cc/DyR5W3PL/samsung-s24-ultra.png', tag: 'bestseller', categoryId: phonesCategory.id },
       { name: 'Xiaomi 14', description: 'Lens to legend.', brand: 'Xiaomi', price: 799.00, stock: 60, url_image: 'https://i.postimg.cc/NMNkB30y/xiaomi-14.png', tag: 'featured_product', categoryId: phonesCategory.id },
@@ -74,7 +80,8 @@ async function main() {
       { name: 'Motorola Edge 50 Pro', description: 'Flagship performance with stunning display.', brand: 'Motorola', price: 649.00, stock: 40, url_image: 'https://i.postimg.cc/gjTsqCF9/moto-edge-50pro.png', tag: 'bestseller', categoryId: phonesCategory.id },
       { name: 'Huawei P60 Pro', description: 'Ultra Lighting Camera with XMAGE technology.', brand: 'Huawei', price: 899.00, stock: 35, url_image: 'https://i.postimg.cc/Y9tdpNfP/huawei-p60pro.png', tag: 'featured_product', categoryId: phonesCategory.id },
       { name: 'Vivo X100 Pro', description: 'Professional portrait photography redefined.', brand: 'Vivo', price: 749.00, stock: 40, url_image: 'https://i.postimg.cc/bJYRXyqc/vivo-x100-pro.png', tag: 'bestseller', categoryId: phonesCategory.id },
-      { name: 'Google Pixel 7a', description: 'Affordable Pixel with flagship camera.', brand: 'Google', price: 499.00, stock: 55, url_image: 'https://i.postimg.cc/8PYXh6NF/google-pixel-7a.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
+      { name: 'Vivo X200 Pro', description: 'Professional portrait photography redefined.', brand: 'Vivo', price: 899.00, stock: 40, url_image: 'https://i.postimg.cc/J0HMRBL9/vivo-x200-pro.png', tag: 'bestseller', categoryId: phonesCategory.id },
+      { name: 'Google Pixel 7a', description: 'Affordable Pixel with flagship camera.', brand: 'Google', price: 499.00, discounted_price: 249.00, stock: 55, url_image: 'https://i.postimg.cc/8PYXh6NF/google-pixel-7a.png', tag: 'discount_up_to_50', categoryId: phonesCategory.id },
 
       { name: 'Apple Watch Ultra 2', description: 'Next-level adventure.', brand: 'Apple', price: 799.00, stock: 45, url_image: 'https://i.postimg.cc/Zn77s9NM/apple-watch-ultra-2.png', tag: 'new_arrival', categoryId: watchesCategory.id },
       { name: 'Samsung Galaxy Watch6', description: 'Start your everyday wellness journey.', brand: 'Samsung', price: 299.00, stock: 70, url_image: 'https://i.postimg.cc/VN8RR9TN/samsung-watch-6.png', tag: 'bestseller', categoryId: watchesCategory.id },
@@ -281,6 +288,51 @@ async function main() {
     });
   }
 
+  const onePlus13 = await prisma.product.findFirst({ where: { name: 'OnePlus 13' } });
+  if (onePlus13) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.82 inches',
+        cpu: 'Snapdragon 8 Elite',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Sony LYT-808 + 50MP Periscope Telephoto + 50MP Ultra Wide',
+        front_camera: '32MP Sony IMX615',
+        battery: '6000mAh',
+        product: { connect: { id: onePlus13.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Midnight Ocean', hex_code: '#2C4E88', productId: onePlus13.id }, 
+        { name: 'Arctic Dawn', hex_code: '#E3E5E8', productId: onePlus13.id },
+        { name: 'Black Eclipse', hex_code: '#202124', productId: onePlus13.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: onePlus13.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Blazing fast performance and amazing display quality!', name_user: 'SpeedDemon', url_image_user: 'https://randomuser.me/api/portraits/men/65.jpg', productId: onePlus13.id },
+        { rating: 4, message: 'Great value flagship, but camera could be better in low light.', name_user: 'TechReviewer22', url_image_user: 'https://randomuser.me/api/portraits/women/65.jpg', productId: onePlus13.id },
+        { rating: 5, message: 'OxygenOS is clean and fast. Love the charging speed!', name_user: 'AndroidFan', url_image_user: 'https://randomuser.me/api/portraits/men/66.jpg', productId: onePlus13.id },
+        { rating: 3, message: 'Good phone, but battery life could be better for heavy usage.', name_user: 'PowerUser99', url_image_user: 'https://randomuser.me/api/portraits/women/66.jpg', productId: onePlus13.id },
+        { rating: 4, message: 'Solid build quality and premium feel. Recommended!', name_user: 'GadgetGuru', url_image_user: 'https://randomuser.me/api/portraits/men/67.jpg', productId: onePlus13.id },
+      ],
+    });
+  }
+
   
   const motorolaEdge = await prisma.product.findFirst({ where: { name: 'Motorola Edge 50 Pro' } });
   if (motorolaEdge) {
@@ -374,8 +426,8 @@ async function main() {
   }
 
   
-  const redmiNote = await prisma.product.findFirst({ where: { name: 'Redmi Note 13 Pro' } });
-  if (redmiNote) {
+  const redmiNote13pro = await prisma.product.findFirst({ where: { name: 'Redmi Note 13 Pro' } });
+  if (redmiNote13pro) {
     await prisma.smartphoneSpec.create({
       data: {
         screen_size: '6.67 inches',
@@ -384,20 +436,20 @@ async function main() {
         main_camera: '200MP Main + 8MP Ultra Wide + 2MP Macro',
         front_camera: '16MP',
         battery: '5100mAh',
-        product: { connect: { id: redmiNote.id } },
+        product: { connect: { id: redmiNote13pro.id } },
       },
     });
 
     await prisma.colorProduct.createMany({ 
       data: [
-        { name: 'Aurora Purple', hex_code: '#8B5A9F', productId: redmiNote.id }, 
-        { name: 'Midnight Black', hex_code: '#0D0D0D', productId: redmiNote.id },
-        { name: 'Ocean Teal', hex_code: '#4A9B9B', productId: redmiNote.id }
+        { name: 'Aurora Purple', hex_code: '#8B5A9F', productId: redmiNote13pro.id }, 
+        { name: 'Midnight Black', hex_code: '#0D0D0D', productId: redmiNote13pro.id },
+        { name: 'Ocean Teal', hex_code: '#4A9B9B', productId: redmiNote13pro.id }
       ] 
     });
 
     await prisma.product.update({
-      where: { id: redmiNote.id },
+      where: { id: redmiNote13pro.id },
       data: {
         storage_options: {
           connect: [
@@ -410,18 +462,63 @@ async function main() {
 
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'Amazing value for money! 200MP camera takes incredible photos.', name_user: 'BudgetHunter', url_image_user: 'https://randomuser.me/api/portraits/women/72.jpg', productId: redmiNote.id },
-        { rating: 4, message: 'Great performance for the price, but MIUI has too many ads.', name_user: 'ValueSeeker', url_image_user: 'https://randomuser.me/api/portraits/men/73.jpg', productId: redmiNote.id },
-        { rating: 5, message: 'Perfect mid-range phone with flagship-level camera quality.', name_user: 'MidRangeKing', url_image_user: 'https://randomuser.me/api/portraits/women/73.jpg', productId: redmiNote.id },
-        { rating: 3, message: 'Good phone overall, but build quality feels a bit plasticky.', name_user: 'BuildCritic', url_image_user: 'https://randomuser.me/api/portraits/men/74.jpg', productId: redmiNote.id },
-        { rating: 4, message: 'Fast charging and excellent screen quality for this price range.', name_user: 'ScreenLover', url_image_user: 'https://randomuser.me/api/portraits/women/74.jpg', productId: redmiNote.id },
+        { rating: 5, message: 'Amazing value for money! 200MP camera takes incredible photos.', name_user: 'BudgetHunter', url_image_user: 'https://randomuser.me/api/portraits/women/72.jpg', productId: redmiNote13pro.id },
+        { rating: 4, message: 'Great performance for the price, but MIUI has too many ads.', name_user: 'ValueSeeker', url_image_user: 'https://randomuser.me/api/portraits/men/73.jpg', productId: redmiNote13pro.id },
+        { rating: 5, message: 'Perfect mid-range phone with flagship-level camera quality.', name_user: 'MidRangeKing', url_image_user: 'https://randomuser.me/api/portraits/women/73.jpg', productId: redmiNote13pro.id },
+        { rating: 3, message: 'Good phone overall, but build quality feels a bit plasticky.', name_user: 'BuildCritic', url_image_user: 'https://randomuser.me/api/portraits/men/74.jpg', productId: redmiNote13pro.id },
+        { rating: 4, message: 'Fast charging and excellent screen quality for this price range.', name_user: 'ScreenLover', url_image_user: 'https://randomuser.me/api/portraits/women/74.jpg', productId: redmiNote13pro.id },
+      ],
+    });
+  }
+
+  const redmiNote14pro = await prisma.product.findFirst({ where: { name: 'Redmi Note 14 Pro' } });
+  if (redmiNote14pro) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.67 inches',
+        cpu: 'MediaTek Dimensity 7300 Ultra',
+        total_cores: '8-core CPU',
+        main_camera: '200MP Main + 8MP Ultra Wide + 2MP Macro',
+        front_camera: '20MP',
+        battery: '5500mAh',
+        product: { connect: { id: redmiNote14pro.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Aurora Purple', hex_code: '#8B5A9F', productId: redmiNote14pro.id }, 
+        { name: 'Midnight Black', hex_code: '#0D0D0D', productId: redmiNote14pro.id },
+        { name: 'Ocean Teal', hex_code: '#4A9B9B', productId: redmiNote14pro.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: redmiNote14pro.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Amazing value for money! 200MP camera takes incredible photos.', name_user: 'BudgetHunter', url_image_user: 'https://randomuser.me/api/portraits/women/72.jpg', productId: redmiNote14pro.id },
+        { rating: 4, message: 'Great performance for the price, but MIUI has too many ads.', name_user: 'ValueSeeker', url_image_user: 'https://randomuser.me/api/portraits/men/73.jpg', productId: redmiNote14pro.id },
+        { rating: 5, message: 'Perfect mid-range phone with flagship-level camera quality.', name_user: 'MidRangeKing', url_image_user: 'https://randomuser.me/api/portraits/women/73.jpg', productId: redmiNote14pro.id },
+        { rating: 3, message: 'Good phone overall, but build quality feels a bit plasticky.', name_user: 'BuildCritic', url_image_user: 'https://randomuser.me/api/portraits/men/74.jpg', productId: redmiNote14pro.id },
+        { rating: 4, message: 'Fast charging and excellent screen quality for this price range.', name_user: 'ScreenLover', url_image_user: 'https://randomuser.me/api/portraits/women/74.jpg', productId: redmiNote14pro.id },
       ],
     });
   }
 
  
-  const nothingPhone = await prisma.product.findFirst({ where: { name: 'Nothing Phone (2)' } });
-  if (nothingPhone) {
+  const nothingPhone2 = await prisma.product.findFirst({ where: { name: 'Nothing Phone (2)' } });
+  if (nothingPhone2) {
     await prisma.smartphoneSpec.create({
       data: {
         screen_size: '6.7 inches',
@@ -430,19 +527,19 @@ async function main() {
         main_camera: '50MP Main + 50MP Ultra Wide',
         front_camera: '32MP',
         battery: '4700mAh',
-        product: { connect: { id: nothingPhone.id } },
+        product: { connect: { id: nothingPhone2.id } },
       },
     });
 
     await prisma.colorProduct.createMany({ 
       data: [
-        { name: 'White', hex_code: '#FFFFFF', productId: nothingPhone.id }, 
-        { name: 'Dark Gray', hex_code: '#3A3A3A', productId: nothingPhone.id }
+        { name: 'White', hex_code: '#FFFFFF', productId: nothingPhone2.id }, 
+        { name: 'Dark Gray', hex_code: '#3A3A3A', productId: nothingPhone2.id }
       ] 
     });
 
     await prisma.product.update({
-      where: { id: nothingPhone.id },
+      where: { id: nothingPhone2.id },
       data: {
         storage_options: {
           connect: [
@@ -456,11 +553,56 @@ async function main() {
 
     await prisma.review.createMany({
       data: [
-        { rating: 5, message: 'The Glyph Interface is so cool and functional! Unique design.', name_user: 'GlyphFan', url_image_user: 'https://randomuser.me/api/portraits/men/75.jpg', productId: nothingPhone.id },
-        { rating: 4, message: 'Clean Nothing OS and great performance, but camera is average.', name_user: 'OSClean', url_image_user: 'https://randomuser.me/api/portraits/women/75.jpg', productId: nothingPhone.id },
-        { rating: 5, message: 'Finally, a phone that stands out! Love the transparent design.', name_user: 'DesignRebel', url_image_user: 'https://randomuser.me/api/portraits/men/76.jpg', productId: nothingPhone.id },
-        { rating: 3, message: 'Interesting concept, but battery life could be improved.', name_user: 'BatteryWatcher', url_image_user: 'https://randomuser.me/api/portraits/women/76.jpg', productId: nothingPhone.id },
-        { rating: 4, message: 'Great alternative to mainstream brands. Smooth performance!', name_user: 'AlternativeSeeker', url_image_user: 'https://randomuser.me/api/portraits/men/77.jpg', productId: nothingPhone.id },
+        { rating: 5, message: 'The Glyph Interface is so cool and functional! Unique design.', name_user: 'GlyphFan', url_image_user: 'https://randomuser.me/api/portraits/men/75.jpg', productId: nothingPhone2.id },
+        { rating: 4, message: 'Clean Nothing OS and great performance, but camera is average.', name_user: 'OSClean', url_image_user: 'https://randomuser.me/api/portraits/women/75.jpg', productId: nothingPhone2.id },
+        { rating: 5, message: 'Finally, a phone that stands out! Love the transparent design.', name_user: 'DesignRebel', url_image_user: 'https://randomuser.me/api/portraits/men/76.jpg', productId: nothingPhone2.id },
+        { rating: 3, message: 'Interesting concept, but battery life could be improved.', name_user: 'BatteryWatcher', url_image_user: 'https://randomuser.me/api/portraits/women/76.jpg', productId: nothingPhone2.id },
+        { rating: 4, message: 'Great alternative to mainstream brands. Smooth performance!', name_user: 'AlternativeSeeker', url_image_user: 'https://randomuser.me/api/portraits/men/77.jpg', productId: nothingPhone2.id },
+      ],
+    });
+  }
+
+  const nothingPhone3 = await prisma.product.findFirst({ where: { name: 'Nothing Phone (3)' } });
+  if (nothingPhone3) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.67 inches',
+        cpu: 'Snapdragon 8s Gen 4',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 50MP Ultra Wide + 50MP Telephoto',
+        front_camera: '50MP',
+        battery: '5150mAh',
+        product: { connect: { id: nothingPhone3.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'White', hex_code: '#FFFFFF', productId: nothingPhone3.id }, 
+        { name: 'Dark Gray', hex_code: '#3A3A3A', productId: nothingPhone3.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: nothingPhone3.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['128GB'] },
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'The Glyph Interface is so cool and functional! Unique design.', name_user: 'GlyphFan', url_image_user: 'https://randomuser.me/api/portraits/men/75.jpg', productId: nothingPhone3.id },
+        { rating: 4, message: 'Clean Nothing OS and great performance, but camera is average.', name_user: 'OSClean', url_image_user: 'https://randomuser.me/api/portraits/women/75.jpg', productId: nothingPhone3.id },
+        { rating: 5, message: 'Finally, a phone that stands out! Love the transparent design.', name_user: 'DesignRebel', url_image_user: 'https://randomuser.me/api/portraits/men/76.jpg', productId: nothingPhone3.id },
+        { rating: 3, message: 'Interesting concept, but battery life could be improved.', name_user: 'BatteryWatcher', url_image_user: 'https://randomuser.me/api/portraits/women/76.jpg', productId: nothingPhone3.id },
+        { rating: 4, message: 'Great alternative to mainstream brands. Smooth performance!', name_user: 'AlternativeSeeker', url_image_user: 'https://randomuser.me/api/portraits/men/77.jpg', productId: nothingPhone3.id },
       ],
     });
   }
@@ -512,6 +654,49 @@ async function main() {
     });
   }
 
+    const oppoReno = await prisma.product.findFirst({ where: { name: 'OPPO Reno 13' } });
+  if (oppoReno) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.59 inches',
+        cpu: 'MediaTek Dimensity 8350',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 8MP + 2MP',
+        front_camera: '50MP',
+        battery: '5600mAh',
+        product: { connect: { id: oppoReno.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Luminous Blue', hex_code: '#2E5896', productId: oppoReno.id }, 
+        { name: 'Plume White', hex_code: '#EDF5F7', productId: oppoReno.id }
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: oppoReno.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Hasselblad camera partnership delivers exceptional portrait photos.', name_user: 'PortraitPro', url_image_user: 'https://randomuser.me/api/portraits/women/77.jpg', productId: oppoReno.id },
+        { rating: 4, message: 'Premium build and fast performance, but ColorOS needs improvement.', name_user: 'PremiumUser', url_image_user: 'https://randomuser.me/api/portraits/men/78.jpg', productId: oppoReno.id },
+        { rating: 5, message: 'Best camera phone I have ever used. Colors are incredibly accurate.', name_user: 'ColorAccuracy', url_image_user: 'https://randomuser.me/api/portraits/women/78.jpg', productId: oppoReno.id },
+        { rating: 3, message: 'Great hardware, but software experience is not as polished.', name_user: 'SoftwareCritic', url_image_user: 'https://randomuser.me/api/portraits/men/79.jpg', productId: oppoReno.id },
+        { rating: 4, message: 'Excellent display quality and super fast charging speeds.', name_user: 'ChargingSpeed', url_image_user: 'https://randomuser.me/api/portraits/women/79.jpg', productId: oppoReno.id },
+      ],
+    });
+  }
   
   const vivoX100 = await prisma.product.findFirst({ where: { name: 'Vivo X100 Pro' } });
   if (vivoX100) {
@@ -554,6 +739,50 @@ async function main() {
         { rating: 5, message: 'Best in class camera with professional-grade features.', name_user: 'ProPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/81.jpg', productId: vivoX100.id },
         { rating: 3, message: 'Good overall package, but brand recognition is lacking.', name_user: 'BrandConscious', url_image_user: 'https://randomuser.me/api/portraits/women/81.jpg', productId: vivoX100.id },
         { rating: 4, message: 'Impressive build quality and very smooth performance.', name_user: 'SmoothOperator', url_image_user: 'https://randomuser.me/api/portraits/men/82.jpg', productId: vivoX100.id },
+      ],
+    });
+  }
+
+  const vivoX200 = await prisma.product.findFirst({ where: { name: 'Vivo X200 Pro' } });
+  if (vivoX200) {
+    await prisma.smartphoneSpec.create({
+      data: {
+        screen_size: '6.78 inches',
+        cpu: 'MediaTek Dimensity 9400',
+        total_cores: '8-core CPU',
+        main_camera: '50MP Main + 50MP Ultra Wide + 200MP Periscope',
+        front_camera: '32MP',
+        battery: '6000mAh',
+        product: { connect: { id: vivoX200.id } },
+      },
+    });
+
+    await prisma.colorProduct.createMany({ 
+      data: [
+        { name: 'Midnight Black', hex_code: '#00040D', productId: vivoX200.id }, 
+        { name: 'Titanium Grey', hex_code: '#545B62', productId: vivoX200.id },
+      ] 
+    });
+
+    await prisma.product.update({
+      where: { id: vivoX200.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['256GB'] },
+            { id: storageMap['512GB'] },
+          ],
+        },
+      },
+    });
+
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Portrait photography is redefined with this phone. Simply amazing!', name_user: 'PortraitMaster', url_image_user: 'https://randomuser.me/api/portraits/men/80.jpg', productId: vivoX200.id },
+        { rating: 4, message: 'Great camera and performance, but Funtouch OS has a learning curve.', name_user: 'OSLearner', url_image_user: 'https://randomuser.me/api/portraits/women/80.jpg', productId: vivoX200.id },
+        { rating: 5, message: 'Best in class camera with professional-grade features.', name_user: 'ProPhotographer', url_image_user: 'https://randomuser.me/api/portraits/men/81.jpg', productId: vivoX200.id },
+        { rating: 3, message: 'Good overall package, but brand recognition is lacking.', name_user: 'BrandConscious', url_image_user: 'https://randomuser.me/api/portraits/women/81.jpg', productId: vivoX200.id },
+        { rating: 4, message: 'Impressive build quality and very smooth performance.', name_user: 'SmoothOperator', url_image_user: 'https://randomuser.me/api/portraits/men/82.jpg', productId: vivoX200.id },
       ],
     });
   }
@@ -745,6 +974,33 @@ async function main() {
       },
     });
   }
+
+  const legion = await prisma.product.findFirst({ where: { name: 'Legion 5i Intel Core i9-14900HX' } });
+  if (legion) {
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Gamming laptop perfection! Lightweight yet incredibly durable.', name_user: 'GamerExec', url_image_user: 'https://randomuser.me/api/portraits/men/100.jpg', productId: legion.id },
+        { rating: 4, message: 'Excellent keyboard and build quality, but display could be brighter.', name_user: 'KeyboardEnthusiast', url_image_user: 'https://randomuser.me/api/portraits/women/100.jpg', productId: legion.id },
+        { rating: 5, message: 'Most reliable laptop I have ever owned. Perfect for productivity.', name_user: 'GamingPro', url_image_user: 'https://randomuser.me/api/portraits/men/12.jpg', productId: legion.id },
+        { rating: 3, message: 'Good laptop, but premium price for Gamming-focused features.', name_user: 'BudgetGamer', url_image_user: 'https://randomuser.me/api/portraits/women/12.jpg', productId: legion.id },
+        { rating: 4, message: 'Exceptional battery life and performance for demanding workloads.', name_user: 'WorkloadMaster', url_image_user: 'https://randomuser.me/api/portraits/men/13.jpg', productId: legion.id },
+      ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [{ name: 'Black', hex_code: '#000000', productId: legion.id }]
+    });
+    await prisma.product.update({
+      where: { id: legion.id },
+      data: {
+        storage_options: {
+          connect: [
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
+  }
+
 
   const asusROG = await prisma.product.findFirst({ where: { name: 'ASUS ROG Zephyrus G16' } });
   if (asusROG) {
@@ -1174,6 +1430,35 @@ async function main() {
         storage_options: {
           connect: [
             { id: storageMap['512GB'] },
+            { id: storageMap['1TB'] },
+          ],
+        },
+      },
+    });
+  }
+
+
+  const dellAlienware = await prisma.product.findFirst({ where: { name: 'Dell Alienware M16 R2 Ultra' } });
+  if (dellAlienware) {
+    await prisma.review.createMany({
+      data: [
+        { rating: 5, message: 'Stunning 4K display and powerful performance for content creation!', name_user: 'ContentCreator', url_image_user: 'https://randomuser.me/api/portraits/men/13.jpg', productId: dellAlienware.id },
+        { rating: 4, message: 'Great build quality and display, but trackpad could be more responsive.', name_user: 'TrackpadCritic', url_image_user: 'https://randomuser.me/api/portraits/women/13.jpg', productId: dellAlienware.id },
+        { rating: 5, message: 'Best Windows laptop for developers and creative professionals.', name_user: 'WindowsDeveloper', url_image_user: 'https://randomuser.me/api/portraits/men/14.jpg', productId: dellAlienware.id },
+        { rating: 3, message: 'Good laptop, but thermal management could be better under load.', name_user: 'ThermalTester', url_image_user: 'https://randomuser.me/api/portraits/women/14.jpg', productId: dellAlienware.id },
+        { rating: 4, message: 'Excellent keyboard and premium materials throughout.', name_user: 'MaterialExpert', url_image_user: 'https://randomuser.me/api/portraits/men/19.jpg', productId: dellAlienware.id },
+      ],
+    });
+    await prisma.colorProduct.createMany({
+      data: [
+        { name: 'Graphite', hex_code: '#2F2F2F', productId: dellAlienware.id }
+      ]
+    });
+    await prisma.product.update({
+      where: { id: dellAlienware.id },
+      data: {
+        storage_options: {
+          connect: [
             { id: storageMap['1TB'] },
           ],
         },
