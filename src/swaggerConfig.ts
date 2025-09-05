@@ -230,6 +230,79 @@ const swaggerDefinition = {
         },
       },
     },
+    '/api/brands/{categoryName}': {
+      get: {
+        tags: ['Brands'],
+        summary: 'Lista marcas de uma categoria específica',
+        description: 'Retorna uma lista de marcas que possuem produtos na categoria especificada, juntamente com a contagem de produtos de cada marca dentro dessa categoria.',
+        parameters: [
+          {
+            in: 'path',
+            name: 'categoryName',
+            required: true,
+            description: 'O nome da categoria para filtrar as marcas (ex: Phones).',
+            schema: { type: 'string' },
+          },
+        ],
+        responses: {
+          '200': {
+            description: 'Uma lista de marcas filtrada pela categoria.',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    data: {
+                      type: 'array',
+                      items: {
+                        type: 'object',
+                        properties: {
+                          id: { type: 'integer' },
+                          brand: { type: 'string' },
+                          total: { type: 'integer' },
+                        },
+                      },
+                    },
+                  },
+                },
+              },
+            },
+          },
+          '500': { description: 'Erro interno do servidor.' },
+        },
+      },
+    },
+    '/api/products': {
+      get: {
+        tags: ['Products'],
+        summary: 'Busca produtos com filtros, paginação e ordenação',
+        description: 'Endpoint principal para buscar produtos. Suporta filtros opcionais por categoria(s) e marca(s), além de paginação e ordenação. Se nenhum filtro for fornecido, retorna todos os produtos.',
+        parameters: [
+          { in: 'query', name: 'page', description: 'Número da página.', schema: { type: 'integer', default: 1 } },
+          { in: 'query', name: 'order', description: 'Ordem da ordenação.', schema: { type: 'string', enum: ['asc', 'desc'], default: 'asc' } },
+          { in: 'query', name: 'sort', description: 'Campo para ordenação.', schema: { type: 'string', enum: ['price', 'name'], default: 'price' } },
+          { in: 'query', name: 'categories', description: 'Nomes de categorias para filtrar, separados por vírgula (ex: Phones,Gaming).', schema: { type: 'string' } },
+          { in: 'query', name: 'brands', description: 'Nomes de marcas para filtrar, separados por vírgula (ex: Apple,Samsung).', schema: { type: 'string' } },
+        ],
+        responses: {
+          '200': {
+            description: 'Uma lista paginada de produtos.',
+            content: {
+              'application/json': {
+                schema: {
+                  type: 'object',
+                  properties: {
+                    data: { type: 'array', items: { $ref: '#/components/schemas/ProductSummary' } },
+                    metadata: { $ref: '#/components/schemas/PaginationMetadata' },
+                  },
+                },
+              },
+            },
+          },
+          '500': { description: 'Erro interno do servidor.' },
+        },
+      },
+    },
     '/api/products/tag/{tag_name}': {
       get: {
         tags: ['Products'],
@@ -259,87 +332,6 @@ const swaggerDefinition = {
                       type: 'array',
                       items: { $ref: '#/components/schemas/ProductSummary' },
                     },
-                  },
-                },
-              },
-            },
-          },
-          '500': { description: 'Erro interno do servidor.' },
-        },
-      },
-    },
-    '/api/products/category/{category_name}': {
-      get: {
-        tags: ['Products'],
-        summary: 'Filtra produtos por categoria e marcas',
-        description: 'Busca produtos de uma categoria específica, permitindo filtrar por marcas através do corpo da requisição. Suporta paginação e ordenação por query parameters.',
-        parameters: [
-          {
-            in: 'path',
-            name: 'category_name',
-            required: true,
-            description: 'O nome da categoria a ser buscada (ex: Phones).',
-            schema: { type: 'string' },
-          },
-          {
-            in: 'query',
-            name: 'page',
-            description: 'Número da página para paginação.',
-            schema: { type: 'integer', default: 1 },
-          },
-          {
-            in: 'query',
-            name: 'sort',
-            description: 'Campo pelo qual ordenar os produtos.',
-            schema: { type: 'string', enum: ['price', 'name'], default: 'price' },
-          },
-          {
-            in: 'query',
-            name: 'order',
-            description: 'Ordem da ordenação.',
-            schema: { type: 'string', enum: ['asc', 'desc'], default: 'asc' },
-          },
-        ],
-        requestBody: {
-          description: 'Objeto opcional contendo filtros a serem aplicados.',
-          content: {
-            'application/json': {
-              schema: {
-                type: 'object',
-                properties: {
-                  filters: {
-                    type: 'object',
-                    properties: {
-                      brands: {
-                        type: 'array',
-                        items: { type: 'string' },
-                        description: 'Uma lista de marcas para filtrar.',
-                      },
-                    },
-                  },
-                },
-                example: {
-                  filters: {
-                    brands: ["Apple", "Samsung"],
-                  },
-                },
-              },
-            },
-          },
-        },
-        responses: {
-          '200': {
-            description: 'Uma lista paginada de produtos filtrados.',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    data: {
-                      type: 'array',
-                      items: { $ref: '#/components/schemas/ProductSummary' },
-                    },
-                    metadata: { $ref: '#/components/schemas/PaginationMetadata' },
                   },
                 },
               },
@@ -441,35 +433,6 @@ const swaggerDefinition = {
                       type: 'array',
                       items: { $ref: '#/components/schemas/ProductSummary' },
                     },
-                  },
-                },
-              },
-            },
-          },
-          '500': { description: 'Erro interno do servidor.' },
-        },
-      },
-    },
-    '/api/products': {
-      get: {
-        tags: ['Products'],
-        summary: 'Busca todos os produtos com paginação e ordenação',
-        description: 'Retorna uma lista paginada de todos os produtos, com opções de ordenação.',
-        parameters: [
-          { in: 'query', name: 'page', schema: { type: 'integer', default: 1 } },
-          { in: 'query', name: 'sort', schema: { type: 'string', enum: ['price', 'name'], default: 'price' } },
-          { in: 'query', name: 'order', schema: { type: 'string', enum: ['asc', 'desc'], default: 'asc' } },
-        ],
-        responses: {
-          '200': {
-            description: 'Uma lista paginada de produtos.',
-            content: {
-              'application/json': {
-                schema: {
-                  type: 'object',
-                  properties: {
-                    data: { type: 'array', items: { $ref: '#/components/schemas/ProductSummary' } },
-                    metadata: { $ref: '#/components/schemas/PaginationMetadata' },
                   },
                 },
               },
