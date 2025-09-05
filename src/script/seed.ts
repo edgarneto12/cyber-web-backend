@@ -1203,7 +1203,7 @@ async function main() {
   }
 
   
-  const iphone14Pro = await prisma.product.findFirst({ where: { name: 'Apple iPhone 14 Pro' } });
+  const iphone14Pro = await prisma.product.findFirst({ where: { name: 'Apple iPhone 14 Pro Max' } });
   if (iphone14Pro) {
     await prisma.smartphoneSpec.create({
       data: {
