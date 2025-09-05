@@ -4,7 +4,6 @@ import { Request, Response } from 'express';
 export class ProductsController {
   private productsService = new ProductsService();
 
-  // GET /api/products/tag/:tag_name
   async getByTag(req: Request, res: Response) {
     const { tag_name } = req.params;
     try {
@@ -15,27 +14,33 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products
   async getAll(req: Request, res: Response) {
-    const page = parseInt(req.query.page as string) || 1;
-    const sort = (req.query.sort as string) || 'price';
-    const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-    const categoryIds = Array.isArray(req.body?.category) ? req.body.category : undefined;
     try {
-      const result = await this.productsService.getAll({ page, sort, order, categoryIds });
+      const page = parseInt(req.query.page as string) || 1;
+      const sort = (req.query.sort as string) || 'price';
+      const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
+
+      const brandsQuery = req.query.brands as string;
+      const brands = brandsQuery ? brandsQuery.split(',') : undefined;
+
+      const categoriesQuery = req.query.categories as string;
+      const categories = categoriesQuery ? categoriesQuery.split(',') : undefined;
+
+      const result = await this.productsService.getAll({ page, sort, order, brands, categories });
       res.json({ data: result.products, metadata: result.metadata });
     } catch (error) {
       res.status(500).json({ error: 'Error fetching products.' });
     }
   }
 
-  // GET /api/products/category/:category_name
   async getByCategoryName(req: Request, res: Response) {
     const { category_name } = req.params;
     const page = parseInt(req.query.page as string) || 1;
     const sort = (req.query.sort as string) || 'price';
     const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
-    const brands = req.body.filters?.brands;
+    const brandsQuery = req.query.brands as string;
+    const brands = brandsQuery ? brandsQuery.split(',') : undefined;
+
     try {
       const result = await this.productsService.getByCategoryName(category_name, page, sort, order, brands);
       res.json({ data: result.products, metadata: result.metadata });
@@ -44,7 +49,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/:id
   async getById(req: Request, res: Response) {
     const productId = Number(req.params.id);
     if (!productId) return res.status(400).json({ error: 'Invalid product ID' });
@@ -59,7 +63,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/reviews/:product_id
   async getReviews(req: Request, res: Response) {
     const productId = Number(req.params.product_id);
     if (!productId) return res.status(400).json({ error: 'Invalid product_id' });
@@ -71,7 +74,6 @@ export class ProductsController {
     }
   }
 
-  // GET /api/products/related/:brand
   async getRelatedByBrand(req: Request, res: Response) {
     const brand = req.params.brand;
     if (!brand) return res.status(400).json({ error: 'Invalid brand' });
