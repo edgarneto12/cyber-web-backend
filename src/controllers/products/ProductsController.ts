@@ -20,10 +20,13 @@ export class ProductsController {
       const sort = (req.query.sort as string) || 'price';
       const order = (req.query.order as string) === 'desc' ? 'desc' : 'asc';
 
-      const categoriesQuery = req.query.categories as string;
-      const categoryIds = categoriesQuery ? categoriesQuery.split(',').map(id => parseInt(id, 10)) : undefined;
+      const brandsQuery = req.query.brands as string;
+      const brands = brandsQuery ? brandsQuery.split(',') : undefined;
 
-      const result = await this.productsService.getAll({ page, sort, order, categoryIds });
+      const categoriesQuery = req.query.categories as string;
+      const categories = categoriesQuery ? categoriesQuery.split(',') : undefined;
+
+      const result = await this.productsService.getAll({ page, sort, order, brands, categories });
       res.json({ data: result.products, metadata: result.metadata });
     } catch (error) {
       res.status(500).json({ error: 'Error fetching products.' });
