@@ -95,7 +95,7 @@ Resets the database and re-runs all migrations and seeds.
 
 ## Swagger documentation
 
-[localhost:3001/api-docs/](http://localhost:3001/api-docs/)/
+[localhost:3001/api-docs/](http://localhost:3001/api-docs/)
 
 
 
