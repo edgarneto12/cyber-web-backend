@@ -93,6 +93,9 @@ npx prisma migrate reset
 ```
 Resets the database and re-runs all migrations and seeds.
 
+## Swagger documentation
+{url}/api-docs/
+
 ## Front-end
 The front-end for this project is available at:
 [https://github.com/danielacvmelo/cyber-web-frontend.git](https://github.com/danielacvmelo/cyber-web-frontend.git)
