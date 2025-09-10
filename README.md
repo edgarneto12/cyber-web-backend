@@ -30,17 +30,22 @@ Follow the steps below to run the project locally:
 	```bash
 	npm install
 	```
-3. Set up the database:
+3. Configure Environment Variables:
+  Create a copy of the .env.example file and rename it to .env:
+	```bash
+	  cp .env.example .env
+	```
+4. Set up the database:
 	- The project is already configured for SQLite. If needed, adjust the `.env` file.
 	- Run migrations:
 	```bash
 	npx prisma migrate dev
 	```
-4. Generate Prisma Client:
+5. Generate Prisma Client:
 	```bash
 	npx prisma generate
 	```
-5. Seed the database with sample data:
+6. Seed the database with sample data:
 	```bash
 	npx prisma db seed
 	```
@@ -48,11 +53,11 @@ Follow the steps below to run the project locally:
 	```bash
 	npx tsx src/script/seed.ts
 	```
-6. Start the server:
+7. Start the server:
 	```bash
 	npm run dev
 	```
-7. Access the API at `http://localhost:3001`
+8. Access the API at `http://localhost:3001`
 
 ## Database Commands
 Essential commands for database management:
