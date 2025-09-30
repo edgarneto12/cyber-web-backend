@@ -176,6 +176,23 @@ exports.Prisma.ReviewScalarFieldEnum = {
   productId: 'productId'
 };
 
+exports.Prisma.ShoppingCartScalarFieldEnum = {
+  id: 'id',
+  user_id: 'user_id',
+  status: 'status',
+  created_at: 'created_at',
+  updated_at: 'updated_at'
+};
+
+exports.Prisma.ItemsShoppingCartScalarFieldEnum = {
+  id: 'id',
+  shopping_cart_id: 'shopping_cart_id',
+  product_id: 'product_id',
+  quantity: 'quantity',
+  color: 'color',
+  memory: 'memory'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -193,7 +210,9 @@ exports.Prisma.ModelName = {
   SmartphoneSpec: 'SmartphoneSpec',
   ColorProduct: 'ColorProduct',
   StorageOption: 'StorageOption',
-  Review: 'Review'
+  Review: 'Review',
+  ShoppingCart: 'ShoppingCart',
+  ItemsShoppingCart: 'ItemsShoppingCart'
 };
 
 /**
