@@ -31,6 +31,8 @@ model Product {
   storage_options  StorageOption[]
   reviews          Review[]
 
+  itemsShoppingCart ItemsShoppingCart[]
+
   @@map("products")
 }
 
@@ -95,4 +97,30 @@ model Review {
   productId Int     @map("id_product")
 
   @@map("reviews")
+}
+
+model ShoppingCart {
+  id         Int      @id @default(autoincrement())
+  user_id    String
+  status     String // "ativo" ou "finalizado"
+  created_at DateTime @default(now()) @map("created_at")
+  updated_at DateTime @updatedAt @map("updated_at")
+
+  items ItemsShoppingCart[]
+
+  @@map("shopping_cart")
+}
+
+model ItemsShoppingCart {
+  id               Int     @id @default(autoincrement())
+  shopping_cart_id Int
+  product_id       Int
+  quantity         Int
+  color            String?
+  memory           String?
+
+  shoppingCart ShoppingCart @relation(fields: [shopping_cart_id], references: [id])
+  product      Product      @relation(fields: [product_id], references: [id])
+
+  @@map("items_shopping_cart")
 }
